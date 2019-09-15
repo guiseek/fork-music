@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { LazyElementsModule } from '@angular-extensions/elements';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import {
@@ -12,7 +11,6 @@ import {
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    LazyElementsModule,
     RouterModule.forRoot(
       [
         { path: 'profile-settings-ui', children: profileSettingsUiRoutes },
@@ -24,7 +22,7 @@ import {
             )
         },
         {
-          path: 'auth-lazy-sign',
+          path: 'auth',
           loadChildren: () =>
             import('@suite/auth/lazy/sign').then(
               module => module.AuthLazySignModule
