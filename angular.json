@@ -1,7 +1,545 @@
 {
   "version": 1,
-  "projects": {},
+  "projects": {
+    "customer-portal": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/customer-portal",
+      "sourceRoot": "apps/customer-portal/src",
+      "prefix": "suite",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/customer-portal",
+            "index": "apps/customer-portal/src/index.html",
+            "main": "apps/customer-portal/src/main.ts",
+            "polyfills": "apps/customer-portal/src/polyfills.ts",
+            "tsConfig": "apps/customer-portal/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/customer-portal/src/favicon.ico",
+              "apps/customer-portal/src/assets"
+            ],
+            "styles": ["apps/customer-portal/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/customer-portal/src/environments/environment.ts",
+                  "with": "apps/customer-portal/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "customer-portal:build",
+            "port": 4201
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "customer-portal:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "customer-portal:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/customer-portal/tsconfig.app.json",
+              "apps/customer-portal/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/customer-portal/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/customer-portal/jest.config.js",
+            "tsConfig": "apps/customer-portal/tsconfig.spec.json",
+            "setupFile": "apps/customer-portal/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "customer-portal-e2e": {
+      "root": "apps/customer-portal-e2e",
+      "sourceRoot": "apps/customer-portal-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/customer-portal-e2e/cypress.json",
+            "tsConfig": "apps/customer-portal-e2e/tsconfig.e2e.json",
+            "devServerTarget": "customer-portal:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "customer-portal:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/customer-portal-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/customer-portal-e2e/**"]
+          }
+        }
+      }
+    },
+    "agent-workdesk": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/agent-workdesk",
+      "sourceRoot": "apps/agent-workdesk/src",
+      "prefix": "suite",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/agent-workdesk",
+            "index": "apps/agent-workdesk/src/index.html",
+            "main": "apps/agent-workdesk/src/main.ts",
+            "polyfills": "apps/agent-workdesk/src/polyfills.ts",
+            "tsConfig": "apps/agent-workdesk/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/agent-workdesk/src/favicon.ico",
+              "apps/agent-workdesk/src/assets"
+            ],
+            "styles": ["apps/agent-workdesk/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/agent-workdesk/src/environments/environment.ts",
+                  "with": "apps/agent-workdesk/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "agent-workdesk:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "agent-workdesk:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "agent-workdesk:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/agent-workdesk/tsconfig.app.json",
+              "apps/agent-workdesk/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/agent-workdesk/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/agent-workdesk/jest.config.js",
+            "tsConfig": "apps/agent-workdesk/tsconfig.spec.json",
+            "setupFile": "apps/agent-workdesk/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "agent-workdesk-e2e": {
+      "root": "apps/agent-workdesk-e2e",
+      "sourceRoot": "apps/agent-workdesk-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/agent-workdesk-e2e/cypress.json",
+            "tsConfig": "apps/agent-workdesk-e2e/tsconfig.e2e.json",
+            "devServerTarget": "agent-workdesk:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "agent-workdesk:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/agent-workdesk-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/agent-workdesk-e2e/**"]
+          }
+        }
+      }
+    },
+    "reporting-stat-tracker": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "apps/reporting/stat-tracker",
+      "sourceRoot": "apps/reporting/stat-tracker/src",
+      "prefix": "suite",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/reporting/stat-tracker",
+            "index": "apps/reporting/stat-tracker/src/index.html",
+            "main": "apps/reporting/stat-tracker/src/main.ts",
+            "polyfills": "apps/reporting/stat-tracker/src/polyfills.ts",
+            "tsConfig": "apps/reporting/stat-tracker/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/reporting/stat-tracker/src/favicon.ico",
+              "apps/reporting/stat-tracker/src/assets"
+            ],
+            "styles": ["apps/reporting/stat-tracker/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/reporting/stat-tracker/src/environments/environment.ts",
+                  "with": "apps/reporting/stat-tracker/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "reporting-stat-tracker:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "reporting-stat-tracker:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "reporting-stat-tracker:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/reporting/stat-tracker/tsconfig.app.json",
+              "apps/reporting/stat-tracker/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/reporting/stat-tracker/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/reporting/stat-tracker/jest.config.js",
+            "tsConfig": "apps/reporting/stat-tracker/tsconfig.spec.json",
+            "setupFile": "apps/reporting/stat-tracker/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "reporting-stat-tracker-e2e": {
+      "root": "apps/reporting/stat-tracker-e2e",
+      "sourceRoot": "apps/reporting/stat-tracker-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/reporting/stat-tracker-e2e/cypress.json",
+            "tsConfig": "apps/reporting/stat-tracker-e2e/tsconfig.e2e.json",
+            "devServerTarget": "reporting-stat-tracker:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "reporting-stat-tracker:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/reporting/stat-tracker-e2e/tsconfig.e2e.json"],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/reporting/stat-tracker-e2e/**"
+            ]
+          }
+        }
+      }
+    },
+    "backend": {
+      "projectType": "library",
+      "root": "libs/backend",
+      "sourceRoot": "libs/backend/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/backend/tsconfig.lib.json",
+              "libs/backend/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/backend/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/backend/jest.config.js",
+            "tsConfig": "libs/backend/tsconfig.spec.json",
+            "setupFile": "libs/backend/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "account-ui": {
+      "projectType": "library",
+      "root": "libs/account-ui",
+      "sourceRoot": "libs/account-ui/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/account-ui/tsconfig.lib.json",
+              "libs/account-ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/account-ui/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/account-ui/jest.config.js",
+            "tsConfig": "libs/account-ui/tsconfig.spec.json",
+            "setupFile": "libs/account-ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "profile-settings-ui": {
+      "projectType": "library",
+      "root": "libs/profile-settings-ui",
+      "sourceRoot": "libs/profile-settings-ui/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/profile-settings-ui/tsconfig.lib.json",
+              "libs/profile-settings-ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/profile-settings-ui/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/profile-settings-ui/jest.config.js",
+            "tsConfig": "libs/profile-settings-ui/tsconfig.spec.json",
+            "setupFile": "libs/profile-settings-ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "ticket-list-ui": {
+      "projectType": "library",
+      "root": "libs/ticket-list-ui",
+      "sourceRoot": "libs/ticket-list-ui/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ticket-list-ui/tsconfig.lib.json",
+              "libs/ticket-list-ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ticket-list-ui/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ticket-list-ui/jest.config.js",
+            "tsConfig": "libs/ticket-list-ui/tsconfig.spec.json",
+            "setupFile": "libs/ticket-list-ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "reporting-ui-stat-dashboard-ui": {
+      "projectType": "library",
+      "root": "libs/reporting/ui/stat-dashboard-ui",
+      "sourceRoot": "libs/reporting/ui/stat-dashboard-ui/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/reporting/ui/stat-dashboard-ui/tsconfig.lib.json",
+              "libs/reporting/ui/stat-dashboard-ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/reporting/ui/stat-dashboard-ui/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/reporting/ui/stat-dashboard-ui/jest.config.js",
+            "tsConfig": "libs/reporting/ui/stat-dashboard-ui/tsconfig.spec.json",
+            "setupFile": "libs/reporting/ui/stat-dashboard-ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "customer-portal"
 }

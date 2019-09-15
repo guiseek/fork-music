@@ -7,5 +7,39 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "customer-portal-e2e": {
+      "tags": []
+    },
+    "customer-portal": {
+      "tags": []
+    },
+    "agent-workdesk-e2e": {
+      "tags": []
+    },
+    "agent-workdesk": {
+      "tags": []
+    },
+    "reporting-stat-tracker-e2e": {
+      "tags": []
+    },
+    "reporting-stat-tracker": {
+      "tags": []
+    },
+    "backend": {
+      "tags": []
+    },
+    "account-ui": {
+      "tags": []
+    },
+    "profile-settings-ui": {
+      "tags": []
+    },
+    "ticket-list-ui": {
+      "tags": []
+    },
+    "reporting-ui-stat-dashboard-ui": {
+      "tags": []
+    }
+  }
 }

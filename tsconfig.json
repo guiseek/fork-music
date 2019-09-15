@@ -15,7 +15,15 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@suite/backend": ["libs/backend/src/index.ts"],
+      "@suite/account-ui": ["libs/account-ui/src/index.ts"],
+      "@suite/profile-settings-ui": ["libs/profile-settings-ui/src/index.ts"],
+      "@suite/ticket-list-ui": ["libs/ticket-list-ui/src/index.ts"],
+      "@suite/reporting/ui/stat-dashboard-ui": [
+        "libs/reporting/ui/stat-dashboard-ui/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
