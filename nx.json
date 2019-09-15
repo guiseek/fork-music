@@ -40,6 +40,9 @@
     },
     "reporting-ui-stat-dashboard-ui": {
       "tags": []
+    },
+    "auth-lazy-sign": {
+      "tags": []
     }
   }
 }

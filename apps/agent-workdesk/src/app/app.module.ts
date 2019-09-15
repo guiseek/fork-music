@@ -22,6 +22,13 @@ import {
             import('@suite/ticket-list-ui').then(
               module => module.TicketListUiModule
             )
+        },
+        {
+          path: 'auth-lazy-sign',
+          loadChildren: () =>
+            import('@suite/auth/lazy/sign').then(
+              module => module.AuthLazySignModule
+            )
         }
       ],
       { initialNavigation: 'enabled' }

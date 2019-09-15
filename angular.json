@@ -187,7 +187,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "agent-workdesk:build"
+            "browserTarget": "agent-workdesk:build",
+            "proxyConfig": "apps/agent-workdesk/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -371,33 +372,56 @@
       }
     },
     "backend": {
-      "projectType": "library",
-      "root": "libs/backend",
-      "sourceRoot": "libs/backend/src",
-      "prefix": "suite",
+      "root": "apps/backend",
+      "sourceRoot": "apps/backend/src",
+      "projectType": "application",
+      "prefix": "backend",
+      "schematics": {},
       "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/backend",
+            "main": "apps/backend/src/main.ts",
+            "tsConfig": "apps/backend/tsconfig.app.json",
+            "assets": ["apps/backend/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/backend/src/environments/environment.ts",
+                  "with": "apps/backend/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "backend:build"
+          }
+        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/backend/tsconfig.lib.json",
-              "libs/backend/tsconfig.spec.json"
+              "apps/backend/tsconfig.app.json",
+              "apps/backend/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/backend/**"]
+            "exclude": ["**/node_modules/**", "!apps/backend/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/backend/jest.config.js",
-            "tsConfig": "libs/backend/tsconfig.spec.json",
-            "setupFile": "libs/backend/src/test-setup.ts"
+            "jestConfig": "apps/backend/jest.config.js",
+            "tsConfig": "apps/backend/tsconfig.spec.json"
           }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
         }
       }
     },
@@ -519,6 +543,37 @@
             "jestConfig": "libs/reporting/ui/stat-dashboard-ui/jest.config.js",
             "tsConfig": "libs/reporting/ui/stat-dashboard-ui/tsconfig.spec.json",
             "setupFile": "libs/reporting/ui/stat-dashboard-ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "auth-lazy-sign": {
+      "projectType": "library",
+      "root": "libs/auth/lazy/sign",
+      "sourceRoot": "libs/auth/lazy/sign/src",
+      "prefix": "auth",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/auth/lazy/sign/tsconfig.lib.json",
+              "libs/auth/lazy/sign/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/auth/lazy/sign/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/auth/lazy/sign/jest.config.js",
+            "tsConfig": "libs/auth/lazy/sign/tsconfig.spec.json",
+            "setupFile": "libs/auth/lazy/sign/src/test-setup.ts"
           }
         }
       },
