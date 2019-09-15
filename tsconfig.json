@@ -45,10 +45,10 @@
       "@suite/auth/lazy/sign": [
         "libs/auth/lazy/sign/src/index.ts"
       ],
-      "auth/backend": [
+      "auth/backend/auth": [
         "libs/auth/backend/auth/src"
       ],
-      "auth/backend/*": [
+      "auth/backend/auth/*": [
         "libs/auth/backend/auth/src/*"
       ],
       "auth/backend/users": [
