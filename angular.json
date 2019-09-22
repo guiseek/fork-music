@@ -149,7 +149,10 @@
               "apps/agent-workdesk/src/favicon.ico",
               "apps/agent-workdesk/src/assets"
             ],
-            "styles": ["apps/agent-workdesk/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/agent-workdesk/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -582,6 +585,87 @@
           "styleext": "scss"
         }
       }
+    },
+    "auth-shared-auth": {
+      "projectType": "library",
+      "root": "libs/auth/shared/auth",
+      "sourceRoot": "libs/auth/shared/auth/src",
+      "prefix": "auth",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/auth/shared/auth/tsconfig.lib.json",
+              "libs/auth/shared/auth/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/auth/shared/auth/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/auth/shared/auth/jest.config.js",
+            "tsConfig": "libs/auth/shared/auth/tsconfig.spec.json",
+            "setupFile": "libs/auth/shared/auth/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "entities": {
+      "root": "libs/entities",
+      "sourceRoot": "libs/entities/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/entities/tsconfig.lib.json",
+              "libs/entities/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/entities/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/entities/jest.config.js",
+            "tsConfig": "libs/entities/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "interfaces": {
+      "root": "libs/interfaces",
+      "sourceRoot": "libs/interfaces/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/interfaces/tsconfig.lib.json",
+              "libs/interfaces/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/interfaces/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/interfaces/jest.config.js",
+            "tsConfig": "libs/interfaces/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {
@@ -596,5 +680,5 @@
       "unitTestRunner": "jest"
     }
   },
-  "defaultProject": "customer-portal"
+  "defaultProject": "agent-workdesk"
 }

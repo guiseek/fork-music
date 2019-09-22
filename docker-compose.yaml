@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    ports:
+      - ${DB_PORT:-5432}:5432
+    environment:
+      POSTGRES_DB: ${DB_NAME:-postgres}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+    restart: always
+    networks:
+      - backend
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on:
+      - db
+    ports:
+      - "5555:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: admin
+    restart: unless-stopped
+    networks:
+      - backend
+
+networks:
+  backend:

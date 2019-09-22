@@ -1,6 +1,6 @@
-import { UserEntity } from "./user.entity";
+import { UserSubscriberEntity } from "./user.subscriber-entity";
 
-const USER_ENTITIES = [UserEntity]
+const USER_ENTITIES = [UserSubscriberEntity]
 
 export {
   USER_ENTITIES

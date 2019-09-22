@@ -43,6 +43,15 @@
     },
     "auth-lazy-sign": {
       "tags": []
+    },
+    "auth-shared-auth": {
+      "tags": ["auth-module"]
+    },
+    "entities": {
+      "tags": []
+    },
+    "interfaces": {
+      "tags": ["shared-module"]
     }
   }
 }

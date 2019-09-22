@@ -6,6 +6,9 @@ import {
   ProfileSettingsUiModule,
   profileSettingsUiRoutes
 } from '@suite/profile-settings-ui';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '@suite/auth/shared/auth';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,14 +30,18 @@ import {
             import('@suite/auth/lazy/sign').then(
               module => module.AuthLazySignModule
             )
-        }
+        },
+        { path: '', pathMatch: 'full', redirectTo: 'auth' }
       ],
       { initialNavigation: 'enabled' }
     ),
-    ProfileSettingsUiModule
+    ProfileSettingsUiModule,
+    BrowserAnimationsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

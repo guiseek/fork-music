@@ -12,6 +12,6 @@ export class AuthSignupController {
   // @UseGuards(AuthGuard('local'))
   @Post('signup')
   async signup(@Body() user: UserSignupDto) {
-    this.authService.signup(user)
+    // this.authService.signup(user)
   }
 }

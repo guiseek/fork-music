@@ -20,9 +20,16 @@ export class UserEntity {
   @Column({ default: '' })
   image: string;
 
+  // @Column()
+  // password: string;
+
+  // @BeforeInsert()
+  // hashPassword() {
+  //   this.password = crypto.createHmac('sha256', this.password).digest('hex');
+  // }
   @Column()
   password: string;
-
+  
   @BeforeInsert()
   hashPassword() {
     this.password = crypto.createHmac('sha256', this.password).digest('hex');

@@ -15,6 +15,10 @@ ng generate @nestjs/schematics:controller authSignup --path=src/controllers --so
 
 ng generate @nestjs/schematics:controller user --path=src/controllers --sourceRoot=libs/auth/backend/users --module=auth --flat=true --dry-run
 
+ng generate @nestjs/schematics:service user --path=src/services --language=ts --sourceRoot=libs/auth/backend/users --flat=true
+
+ng generate @nestjs/schematics:guard fetchRequestedUser --path=src/guards --language=ts --sourceRoot=libs/auth/backend/users --flat=false --dry-run
+
 // angular
 ng generate @nrwl/angular:library sign --directory=auth/lazy --prefix=auth --style=scss --routing --lazy --parentModule=apps/agent-workdesk/src/app/app.module.ts --dry-run
 

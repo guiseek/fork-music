@@ -10,57 +10,35 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@suite/backend": [
-        "libs/backend/src/index.ts"
-      ],
-      "@suite/account-ui": [
-        "libs/account-ui/src/index.ts"
-      ],
-      "@suite/profile-settings-ui": [
-        "libs/profile-settings-ui/src/index.ts"
-      ],
-      "@suite/ticket-list-ui": [
-        "libs/ticket-list-ui/src/index.ts"
-      ],
+      "@suite/backend": ["libs/backend/src/index.ts"],
+      "@suite/account-ui": ["libs/account-ui/src/index.ts"],
+      "@suite/profile-settings-ui": ["libs/profile-settings-ui/src/index.ts"],
+      "@suite/ticket-list-ui": ["libs/ticket-list-ui/src/index.ts"],
       "@suite/reporting/ui/stat-dashboard-ui": [
         "libs/reporting/ui/stat-dashboard-ui/src/index.ts"
       ],
-      "auth/api": [
-        "libs/auth/api/src"
-      ],
-      "auth/api/*": [
-        "libs/auth/api/src/*"
-      ],
-      "@suite/auth/lazy/sign": [
-        "libs/auth/lazy/sign/src/index.ts"
-      ],
-      "auth/backend/auth": [
-        "libs/auth/backend/auth/src"
-      ],
-      "auth/backend/auth/*": [
-        "libs/auth/backend/auth/src/*"
-      ],
-      "auth/backend/users": [
-        "libs/auth/backend/users/src"
-      ],
-      "auth/backend/users/*": [
-        "libs/auth/backend/users/src/*"
-      ]
+      "auth/api": ["libs/auth/api/src"],
+      "auth/api/*": ["libs/auth/api/src/*"],
+      "@suite/auth/lazy/sign": ["libs/auth/lazy/sign/src/index.ts"],
+      "auth/backend/auth": ["libs/auth/backend/auth/src"],
+      "auth/backend/auth/*": ["libs/auth/backend/auth/src/*"],
+      "auth/backend/users": ["libs/auth/backend/users/src"],
+      "auth/backend/users/*": ["libs/auth/backend/users/src/*"],
+      "@suite/auth/shared/auth": ["libs/auth/shared/auth/src/index.ts"],
+      "@suite/entities": ["libs/entities/src/index.ts"],
+      "@suite/entities/*": ["libs/entities/src/*"],
+      "backend/location": ["libs/common/backend/location/src"],
+      "backend/location/*": ["libs/common/backend/location/src/*"],
+      "common/backend/typeorm": ["libs/common/backend/typeorm/src"],
+      "common/backend/typeorm/*": ["libs/common/backend/typeorm/src/*"],
+      "@suite/interfaces": ["libs/interfaces/src/index.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

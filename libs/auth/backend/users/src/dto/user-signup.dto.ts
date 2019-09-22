@@ -2,9 +2,9 @@ import { IsNotEmpty, IsEmail } from 'class-validator/decorator/decorators';
 import { ApiModelProperty } from '@nestjs/swagger';
 
 export class UserSignupDto {
-  @ApiModelProperty()
-  @IsNotEmpty()
-  readonly username: string;
+  // @ApiModelProperty()
+  // @IsNotEmpty()
+  // readonly username: string;
 
   @ApiModelProperty()
   @IsNotEmpty({ message: 'Email obrigatório' })
