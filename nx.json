@@ -52,6 +52,30 @@
     },
     "interfaces": {
       "tags": ["shared-module"]
+    },
+    "dashboard": {
+      "tags": ["private-module"]
+    },
+    "ui-kit": {
+      "tags": ["shared-module"]
+    },
+    "utils": {
+      "tags": ["shared-module"]
+    },
+    "data": {
+      "tags": ["shared-module"]
+    },
+    "layout-toolbar": {
+      "tags": ["shared-module"]
+    },
+    "layout-sidenav": {
+      "tags": ["shared-module"]
+    },
+    "auth-lazy-manager": {
+      "tags": []
+    },
+    "common-forms-address-form": {
+      "tags": ["shared-module"]
     }
   }
 }

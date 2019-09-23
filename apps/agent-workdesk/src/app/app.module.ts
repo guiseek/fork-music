@@ -16,9 +16,10 @@ import { AuthInterceptor } from '@suite/auth/shared/auth';
     BrowserModule,
     RouterModule.forRoot(
       [
+        { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
         { path: 'profile-settings-ui', children: profileSettingsUiRoutes },
         {
-          path: 'ticket-list-ui',
+          path: 'ticket-list',
           loadChildren: () =>
             import('@suite/ticket-list-ui').then(
               module => module.TicketListUiModule
@@ -31,7 +32,15 @@ import { AuthInterceptor } from '@suite/auth/shared/auth';
               module => module.AuthLazySignModule
             )
         },
-        { path: '', pathMatch: 'full', redirectTo: 'auth' }
+        {
+          path: 'dashboard',
+          loadChildren: () =>
+            import('@suite/dashboard').then(module => module.DashboardModule)
+        }, {
+          path: 'conta',
+          loadChildren: () =>
+            import('@suite/account-ui').then(module => module.AccountUiModule)
+        }
       ],
       { initialNavigation: 'enabled' }
     ),
@@ -39,9 +48,7 @@ import { AuthInterceptor } from '@suite/auth/shared/auth';
     BrowserAnimationsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor }
-  ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor }],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

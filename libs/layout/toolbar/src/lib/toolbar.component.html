@@ -1,0 +1,18 @@
+<mat-toolbar color="primary" class="toolbar" fxLayout="row" fxLayoutAlign="space-between">
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+    <ng-content select="img"></ng-content>
+    <span>{{ title }}</span>
+
+    <suite-searchbar fxFlex="350px" fxHide fxShow.gt-md></suite-searchbar>
+
+    <suite-menu-bar></suite-menu-bar>
+
+  </div>
+  <div fxLayout="row">
+    <div fxFlex fxFill></div>
+    <div fxFlex="250px" id="context-search-container"></div>
+    <div fxFlex="50px" id="context-fab-container"></div>
+
+    <!-- <mmws-search class="button" fxHide fxShow.gt-sm></mmws-search> -->
+  </div>
+</mat-toolbar>

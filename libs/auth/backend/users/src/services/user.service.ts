@@ -1,5 +1,5 @@
 import * as crypto from 'crypto';
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, HttpStatus, ConflictException } from '@nestjs/common';
 // import { CreateUserDto } from './dtos/createUser.dto';
 // import { User } from './user.entity';
 import { EntityManager } from 'typeorm';
@@ -11,7 +11,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { UserRepository } from '../repositories';
 import { UserSignupDto } from '../dto';
 import { User } from '@suite/entities';
-import { CustomFindManyOptions, CustomFindOneOptions, EntityNotFoundExceptionHandler } from 'common/backend/typeorm';
+import { CustomFindManyOptions, CustomFindOneOptions, EntityNotFoundExceptionHandler, EmailAlreadyExistsHandler } from 'common/backend/typeorm';
 
 @Injectable()
 export class UserService {
@@ -96,5 +96,24 @@ export class UserService {
   }
   findAll() {
     return this.userRepository.find()
+  }
+  // @EmailAlreadyExistsHandler()
+  verifyEmail(email: string) {
+    return this.userRepository.findOne({ email }, {
+      select: ['active', 'createdAt', 'emailValidatedAt']
+    })
+  }
+  async checkEmail(email: string): Promise<HttpStatus | ConflictException> {
+    const user = await this.userRepository.findOne({
+      where: { email }
+    })
+    if (user) {
+      throw new ConflictException()
+    } else {
+      return HttpStatus.ACCEPTED
+    }
+    // return this.userRepository.count({
+    //   where: { email }
+    // })
   }
 }

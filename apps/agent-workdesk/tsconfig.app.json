@@ -8,7 +8,9 @@
   "include": [
     "**/*.ts",
     "../../libs/ticket-list-ui/src/index.ts",
-    "../../libs/auth/lazy/sign/src/index.ts"
+    "../../libs/auth/lazy/sign/src/index.ts",
+
+    "../../libs/dashboard/src/index.ts"
   ],
   "exclude": ["src/test-setup.ts", "**/*.spec.ts"]
 }
