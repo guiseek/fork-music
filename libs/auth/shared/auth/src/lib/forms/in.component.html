@@ -1,1 +1,40 @@
-<p>in works!</p>
+<form [formGroup]="form" (ngSubmit)="onSignIn()">
+  <mat-form-field class="w-full" [color]="email.valid && 'accent'">
+    <input
+      matInput
+      formControlName="email"
+      type="email"
+      placeholder="Email"
+      autocomplete="off"
+    />
+    <mat-error *ngIf="email.invalid && email.dirty">
+      Email inválido
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="w-full" [color]="email.valid && 'accent'">
+    <input
+      matInput
+      formControlName="password"
+      type="password"
+      placeholder="Password"
+      autocomplete="off"
+    />
+
+    <mat-error *ngIf="password.invalid && password.dirty">
+      Mínimo de 6 caracteres
+    </mat-error>
+  </mat-form-field>
+
+  <button
+    mat-button
+    color="primary"
+    type="submit"
+    [disabled]="form.invalid || checkingEmail"
+  >
+    Enviar
+  </button>
+</form>
+<!-- <pre>
+  {{ form.value | json }}
+</pre> -->

@@ -49,7 +49,12 @@
         "libs/common/forms/address-form/src/index.ts"
       ],
       "@suite/nav/navigator": ["libs/nav/navigator/src/index.ts"],
-      "@suite/common/core": ["libs/common/core/src/index.ts"]
+      "@suite/common/core": ["libs/common/core/src/index.ts"],
+      "@suite/workdesk/admin": ["libs/workdesk/admin/src/index.ts"],
+      "@suite/workdesk/teacher": ["libs/workdesk/teacher/src/index.ts"],
+      "@suite/common/forms/account-form": [
+        "libs/common/forms/account-form/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

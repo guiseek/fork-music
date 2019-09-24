@@ -31,8 +31,8 @@ export class UpComponent implements OnInit {
       city: []
     })
   }
-  get email() {
-    return this.form.get('email');
+  get email(): FormControl {
+    return this.form.get('email') as FormControl;
   }
   get password() {
     return this.form.get('password');

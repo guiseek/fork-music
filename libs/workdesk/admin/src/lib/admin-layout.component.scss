@@ -1,0 +1,15 @@
+// :host {
+//   display: flex;
+//   flex: 1;
+// }
+.layout-container {
+  height: 100%;
+  // height: calc(100% - #{$mat-toolbar-height-desktop});
+}
+.main-container {
+  flex: 1;
+  display: flex;
+  & > wd-* {
+    flex: 1;
+  }
+}

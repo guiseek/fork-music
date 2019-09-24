@@ -6,3 +6,4 @@ export * from './repositories/transactional-repository';
 export * from './custom-types';
 export * from './decorators';
 export * from './exceptions';
+export * from './dto/meta.dto';

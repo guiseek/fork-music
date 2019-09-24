@@ -7,18 +7,18 @@ import {
   profileSettingsUiRoutes
 } from '@suite/profile-settings-ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from '@suite/auth/shared/auth';
+import { AuthInterceptor, AuthGuard, AuthService } from '@suite/auth/shared/auth';
 import { CoreModule } from '@suite/common/core';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     CoreModule,
+    HttpClientModule,
     RouterModule.forRoot(
       [
-        { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
         { path: 'profile-settings-ui', children: profileSettingsUiRoutes },
         {
           path: 'ticket-list',
@@ -37,12 +37,30 @@ import { CoreModule } from '@suite/common/core';
         {
           path: 'dashboard',
           loadChildren: () =>
-            import('@suite/dashboard').then(module => module.DashboardModule)
-        }, {
+            import('@suite/dashboard').then(module => module.DashboardModule),
+          canLoad: [AuthGuard]
+        },
+        {
           path: 'conta',
           loadChildren: () =>
             import('@suite/account-ui').then(module => module.AccountUiModule)
-        }
+        },
+        {
+          path: 'admin',
+          loadChildren: () =>
+            import('@suite/workdesk/admin').then(
+              module => module.WorkdeskAdminModule
+            ),
+          canLoad: [AuthGuard]
+        },
+        {
+          path: 'workdesk-teacher',
+          loadChildren: () =>
+            import('@suite/workdesk/teacher').then(
+              module => module.WorkdeskTeacherModule
+            )
+        },
+        { path: '', pathMatch: 'full', redirectTo: 'admin' }
       ],
       { initialNavigation: 'enabled' }
     ),
@@ -50,7 +68,10 @@ import { CoreModule } from '@suite/common/core';
     BrowserAnimationsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor }],
+  providers: [
+    // AuthService,
+    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

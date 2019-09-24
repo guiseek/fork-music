@@ -46,7 +46,68 @@ const dashboardItems: NavItem[] = [
 export const dashboardMenu: NavItem[] = [
   ...dashboardItems
 ]
+const navCalendar = {
+  name: 'Calendário',
+  icon: 'event',
+  link: 'calendario'
+}
+const navDashboard = {
+  name: 'Dashboard',
+  icon: 'dashboard',
+  link: '/dashboard',
+}
+const navNotifications = {
+  name: 'Notificações',
+  icon: 'notification_important',
+  link: 'notificacoes',
+}
+const navServices = {
+  name: 'Serviços',
+  icon: 'local_offer',
+  link: 'servicos',
+}
+const navTeam = {
+  name: 'Equipe',
+  icon: 'supervisor_account',
+  link: 'equipe',
+}
+const navRooms = {
+  name: 'Salas',
+  icon: 'account_tree',
+  link: 'salas',
+}
+const navAccount = {
+  name: 'Conta',
+  icon: 'account_circle',
+  link: 'conta',
+}
+const navSettings = {
+  name: 'Configurações',
+  icon: 'settings',
+  link: 'configuracoes',
+}
 
+const navCompany = {
+  name: 'Gerenciar',
+  type: NavItemType.DropDown,
+  icon: 'settings_applications',
+  badge: { value: 1, color: 'accent' },
+  tooltip: 'Configurações da empresa',
+  children: [
+    navAccount,
+    navTeam,
+    navServices,
+    navSettings
+  ]
+}
 export const navigation = {
 
 }
+
+export const adminMenu: NavItem[] = [
+  navDashboard,
+  navCalendar,
+  navRooms,
+  navNotifications,
+  navCompany
+]

@@ -10,7 +10,11 @@
     "../../libs/ticket-list-ui/src/index.ts",
     "../../libs/auth/lazy/sign/src/index.ts",
 
-    "../../libs/dashboard/src/index.ts"
+    "../../libs/dashboard/src/index.ts",
+
+    "../../libs/workdesk/admin/src/index.ts",
+
+    "../../libs/workdesk/teacher/src/index.ts"
   ],
   "exclude": ["src/test-setup.ts", "**/*.spec.ts"]
 }

@@ -12,6 +12,7 @@ import { AddressFormModule } from '@suite/common/forms/address-form';
 import { AuthService } from './auth.service';
 import { InComponent } from './forms/in.component';
 import { UpComponent } from './forms/up.component';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { UpComponent } from './forms/up.component';
     AddressFormModule
   ],
   providers: [
-    AuthService
+    AuthService,
   ],
   declarations: [InComponent, UpComponent],
   exports: [InComponent, UpComponent]

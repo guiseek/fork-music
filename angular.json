@@ -959,6 +959,98 @@
         }
       },
       "schematics": {}
+    },
+    "workdesk-admin": {
+      "projectType": "library",
+      "root": "libs/workdesk/admin",
+      "sourceRoot": "libs/workdesk/admin/src",
+      "prefix": "wd",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/workdesk/admin/tsconfig.lib.json",
+              "libs/workdesk/admin/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/workdesk/admin/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/workdesk/admin/jest.config.js",
+            "tsConfig": "libs/workdesk/admin/tsconfig.spec.json",
+            "setupFile": "libs/workdesk/admin/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "workdesk-teacher": {
+      "projectType": "library",
+      "root": "libs/workdesk/teacher",
+      "sourceRoot": "libs/workdesk/teacher/src",
+      "prefix": "wd",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/workdesk/teacher/tsconfig.lib.json",
+              "libs/workdesk/teacher/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/workdesk/teacher/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/workdesk/teacher/jest.config.js",
+            "tsConfig": "libs/workdesk/teacher/tsconfig.spec.json",
+            "setupFile": "libs/workdesk/teacher/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "common-forms-account-form": {
+      "projectType": "library",
+      "root": "libs/common/forms/account-form",
+      "sourceRoot": "libs/common/forms/account-form/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/common/forms/account-form/tsconfig.lib.json",
+              "libs/common/forms/account-form/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/common/forms/account-form/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/common/forms/account-form/jest.config.js",
+            "tsConfig": "libs/common/forms/account-form/tsconfig.spec.json",
+            "setupFile": "libs/common/forms/account-form/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
     }
   },
   "cli": {

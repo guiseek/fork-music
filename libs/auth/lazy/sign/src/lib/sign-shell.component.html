@@ -1,17 +1,17 @@
 <mat-card *ngIf="(authState | async) as user">
   <mat-card-title>
-    {{user | json }}
+    {{ user | json }}
   </mat-card-title>
 </mat-card>
 <mat-card>
   <mat-tab-group mat-stretch-tabs dynamicHeight>
     <mat-tab>
-      <ng-template mat-tab-label> The <em>best</em> pasta </ng-template>
-      <auth-in></auth-in>
+      <ng-template mat-tab-label> Login </ng-template>
+      <auth-in (in)="onSignIn($event)"></auth-in>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
-        <mat-icon>thumb_down</mat-icon> The worst sushi
+        Cadastro
       </ng-template>
       <auth-up (up)="onSignUp($event)"></auth-up>
     </mat-tab>

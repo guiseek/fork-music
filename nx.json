@@ -82,6 +82,15 @@
     },
     "common-core": {
       "tags": ["core-module"]
+    },
+    "workdesk-admin": {
+      "tags": ["private-module"]
+    },
+    "workdesk-teacher": {
+      "tags": ["private-module"]
+    },
+    "common-forms-account-form": {
+      "tags": []
     }
   }
 }

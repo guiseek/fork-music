@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay, first } from 'rxjs/operators';
 import { AuthService } from '@suite/auth/shared/auth';
-import { RouterOutlet, Router } from '@angular/router';
+import { RouterOutlet, Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'auth-sign-shell',
@@ -26,11 +26,19 @@ export class SignShellComponent {
     label: 'Começar',
     path: 'up',
   }]
+  private returnUrl: string
   constructor(
     private breakpointObserver: BreakpointObserver,
     private auth: AuthService,
+    private route: ActivatedRoute,
     private router: Router
   ) {
+    const { returnTo } = this.route.snapshot.queryParams
+    if (returnTo) {
+      console.log(returnTo)
+      this.returnUrl = returnTo
+    }
+
     this.authState = this.auth.authState
   }
   prepareRoute(outlet: RouterOutlet) {
@@ -42,7 +50,16 @@ export class SignShellComponent {
       .pipe(first())
       .subscribe((user) => {
         console.table(user)
-        this.router.navigate(['/dashboard'])
+        this.router.navigate([this.returnUrl])
+      })
+  }
+  onSignIn(data) {
+    console.log('d: ', data)
+    this.auth.signIn(data)
+      .pipe(first())
+      .subscribe((user) => {
+        console.table(user)
+        this.router.navigate([this.returnUrl])
       })
   }
 }
