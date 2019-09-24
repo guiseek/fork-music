@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'layout-sidenav',
+  name: 'nav-navigator',
   preset: '../../../jest.config.js',
-  coverageDirectory: '../../../coverage/libs/layout/sidenav',
+  coverageDirectory: '../../../coverage/libs/nav/navigator',
   snapshotSerializers: [
     'jest-preset-angular/AngularSnapshotSerializer.js',
     'jest-preset-angular/HTMLCommentSerializer.js'

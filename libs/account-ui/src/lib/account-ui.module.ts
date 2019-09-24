@@ -5,7 +5,7 @@ import { AccountSidebarComponent } from './account-sidebar/account-sidebar.compo
 import { AccountPageComponent } from './account-page/account-page.component';
 import { MatGridListModule, MatMenuModule, MatIconModule, MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatRadioModule, MatCheckboxModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ToolbarModule } from '@suite/layout/toolbar';
+import { ToolbarModule } from '@suite/nav/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 const modules = [

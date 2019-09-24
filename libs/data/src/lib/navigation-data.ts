@@ -1,11 +1,11 @@
-import { MenuItem, MenuItemType } from '@suite/interfaces';
+import { NavItem, NavItemType } from '@suite/nav/navigator';
 
-const studentItems: MenuItem[] = [
+const studentItems: NavItem[] = [
   {
     name: 'Familias',
     icon: 'group',
     link: '/dashboard/clientes/novo',
-    disabled: true
+    disabled: false
   },
   {
     name: 'Alunos',
@@ -17,10 +17,10 @@ const studentItems: MenuItem[] = [
     name: 'Adicionar familia',
     icon: 'group',
     link: '/dashboard/clientes/novo',
-    disabled: true
+    disabled: false
   }
 ]
-const dashboardItems: MenuItem[] = [
+const dashboardItems: NavItem[] = [
   {
     name: 'Dashboard',
     icon: 'dashboard',
@@ -34,7 +34,7 @@ const dashboardItems: MenuItem[] = [
   },
   {
     name: 'Alunos',
-    type: MenuItemType.DropDown,
+    type: NavItemType.DropDown,
     icon: 'group',
     badge: { value: 1, color: 'accent' },
     tooltip: 'Alunos',
@@ -43,7 +43,7 @@ const dashboardItems: MenuItem[] = [
     ]
   }
 ]
-export const dashboardMenu: MenuItem[] = [
+export const dashboardMenu: NavItem[] = [
   ...dashboardItems
 ]
 

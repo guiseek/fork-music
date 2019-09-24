@@ -9,11 +9,13 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '@suite/auth/shared/auth';
+import { CoreModule } from '@suite/common/core';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    CoreModule,
     RouterModule.forRoot(
       [
         { path: '', pathMatch: 'full', redirectTo: 'dashboard' },

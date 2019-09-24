@@ -779,28 +779,28 @@
         }
       }
     },
-    "layout-toolbar": {
+    "nav-toolbar": {
       "projectType": "library",
-      "root": "libs/layout/toolbar",
-      "sourceRoot": "libs/layout/toolbar/src",
+      "root": "libs/nav/toolbar",
+      "sourceRoot": "libs/nav/toolbar/src",
       "prefix": "suite",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/layout/toolbar/tsconfig.lib.json",
-              "libs/layout/toolbar/tsconfig.spec.json"
+              "libs/nav/toolbar/tsconfig.lib.json",
+              "libs/nav/toolbar/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/layout/toolbar/**"]
+            "exclude": ["**/node_modules/**", "!libs/nav/toolbar/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/layout/toolbar/jest.config.js",
-            "tsConfig": "libs/layout/toolbar/tsconfig.spec.json",
-            "setupFile": "libs/layout/toolbar/src/test-setup.ts"
+            "jestConfig": "libs/nav/toolbar/jest.config.js",
+            "tsConfig": "libs/nav/toolbar/tsconfig.spec.json",
+            "setupFile": "libs/nav/toolbar/src/test-setup.ts"
           }
         }
       },
@@ -810,28 +810,28 @@
         }
       }
     },
-    "layout-sidenav": {
+    "nav-sidenav": {
       "projectType": "library",
-      "root": "libs/layout/sidenav",
-      "sourceRoot": "libs/layout/sidenav/src",
+      "root": "libs/nav/sidenav",
+      "sourceRoot": "libs/nav/sidenav/src",
       "prefix": "suite",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/layout/sidenav/tsconfig.lib.json",
-              "libs/layout/sidenav/tsconfig.spec.json"
+              "libs/nav/sidenav/tsconfig.lib.json",
+              "libs/nav/sidenav/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/layout/sidenav/**"]
+            "exclude": ["**/node_modules/**", "!libs/nav/sidenav/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/layout/sidenav/jest.config.js",
-            "tsConfig": "libs/layout/sidenav/tsconfig.spec.json",
-            "setupFile": "libs/layout/sidenav/src/test-setup.ts"
+            "jestConfig": "libs/nav/sidenav/jest.config.js",
+            "tsConfig": "libs/nav/sidenav/tsconfig.spec.json",
+            "setupFile": "libs/nav/sidenav/src/test-setup.ts"
           }
         }
       },
@@ -905,6 +905,60 @@
           "styleext": "scss"
         }
       }
+    },
+    "nav-navigator": {
+      "projectType": "library",
+      "root": "libs/nav/navigator",
+      "sourceRoot": "libs/nav/navigator/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/nav/navigator/tsconfig.lib.json",
+              "libs/nav/navigator/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/nav/navigator/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/nav/navigator/jest.config.js",
+            "tsConfig": "libs/nav/navigator/tsconfig.spec.json",
+            "setupFile": "libs/nav/navigator/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
+    },
+    "common-core": {
+      "projectType": "library",
+      "root": "libs/common/core",
+      "sourceRoot": "libs/common/core/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/common/core/tsconfig.lib.json",
+              "libs/common/core/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/common/core/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/common/core/jest.config.js",
+            "tsConfig": "libs/common/core/tsconfig.spec.json",
+            "setupFile": "libs/common/core/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
     }
   },
   "cli": {

@@ -1,26 +1,49 @@
 <suite-toolbar title="Dashboard"></suite-toolbar>
-
-<div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>
+<mat-sidenav-container [hasBackdrop]="false" class="portal-container">
+  <mat-sidenav
+    class="sidenav"
+    [opened]="sidenavOpen"
+    align="start"
+    role="navigation"
+    [mode]="sidenavMode"
+    suiteToggleSidenav
+    #sidenav
+  >
+    <suite-sidenav></suite-sidenav>
+  </mat-sidenav>
+  <mat-sidenav-content class="content-container" fxLayout="column">
+    <div class="main-container grid-container">
+      <h1 class="mat-h1">Dashboard</h1>
+      <mat-grid-list cols="2" rowHeight="350px">
+        <mat-grid-tile
+          *ngFor="let card of (cards | async)"
+          [colspan]="card.cols"
+          [rowspan]="card.rows"
+        >
+          <mat-card class="dashboard-card">
+            <mat-card-header>
+              <mat-card-title>
+                {{ card.title }}
+                <button
+                  mat-icon-button
+                  class="more-button"
+                  [matMenuTriggerFor]="menu"
+                  aria-label="Toggle menu"
+                >
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" xPosition="before">
+                  <button mat-menu-item>Expand</button>
+                  <button mat-menu-item>Remove</button>
+                </mat-menu>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="dashboard-card-content">
+              <div>Card Content Here</div>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </mat-sidenav-content></mat-sidenav-container
+>

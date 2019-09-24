@@ -19,3 +19,14 @@
 .dashboard-card-content {
   text-align: center;
 }
+.main-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  // height: 100%;
+  // height: calc(100% - #{$mat-toolbar-height-desktop});
+  position: relative;
+  // @media ($mat-xsmall) {
+  //   height: calc(100% - #{$mat-toolbar-height-mobile-portrait});
+  // }
+}

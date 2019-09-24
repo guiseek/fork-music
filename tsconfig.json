@@ -42,12 +42,14 @@
       "@suite/ui-kit": ["libs/ui-kit/src/index.ts"],
       "@suite/utils": ["libs/utils/src/index.ts"],
       "@suite/data": ["libs/data/src/index.ts"],
-      "@suite/layout/toolbar": ["libs/layout/toolbar/src/index.ts"],
-      "@suite/layout/sidenav": ["libs/layout/sidenav/src/index.ts"],
+      "@suite/nav/toolbar": ["libs/nav/toolbar/src/index.ts"],
+      "@suite/nav/sidenav": ["libs/nav/sidenav/src/index.ts"],
       "@suite/auth/lazy/manager": ["libs/auth/lazy/manager/src/index.ts"],
       "@suite/common/forms/address-form": [
         "libs/common/forms/address-form/src/index.ts"
-      ]
+      ],
+      "@suite/nav/navigator": ["libs/nav/navigator/src/index.ts"],
+      "@suite/common/core": ["libs/common/core/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
