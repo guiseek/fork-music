@@ -1,0 +1,30 @@
+<div class="sidenav-container">
+  <mat-toolbar color="primary" class="sidenav-toolbar mat-elevation-z2">
+    <div fxLayout="row" style="width: 100%;">
+      <span fxFlex><!-- fill space --></span>
+      <div
+        fxHide="true"
+        fxHide.gt-sm="false"
+        fxHide.gt-xs="false"
+        fxFlexAlign="center"
+      >
+        <button mat-icon-button (click)="toggleIconSidenav()">
+          <mat-icon
+            class="icon-sidenav-toggle fade-in-on-icon-sidenav"
+            [class.rotate]="isIconSidenav()"
+            >chevron_left</mat-icon
+          >
+        </button>
+      </div>
+    </div>
+  </mat-toolbar>
+
+  <div class="sidenav-scrollbar-container" fxLayout="column">
+    <mat-nav-list fxLayout="column" class="sidenav-list sidenav-toplevel">
+      <suite-sidenav-item
+        *ngFor="let item of items"
+        [item]="item"
+      ></suite-sidenav-item>
+    </mat-nav-list>
+  </div>
+</div>

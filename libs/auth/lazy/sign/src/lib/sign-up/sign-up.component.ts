@@ -19,11 +19,19 @@ export class SignUpComponent implements OnInit {
         '',
         [Validators.minLength(6), Validators.required]
       ],
-      passwordConfirm: ['', []]
+      passwordConfirm: ['', []],
+      state: [],
+      city: []
     })
   }
   get email() {
     return this.form.get('email');
+  }
+  get state() {
+    return this.form.get('state');
+  }
+  get city() {
+    return this.form.get('city');
   }
   get password() {
     return this.form.get('password');

@@ -1,0 +1,75 @@
+<form [formGroup]="form" (ngSubmit)="onSignUp()">
+  <mat-form-field class="w-full" [color]="email.valid && 'accent'">
+    <input
+      matInput
+      formControlName="email"
+      type="email"
+      placeholder="Email"
+      autocomplete="off"
+    />
+    <span matSuffix *ngIf="loading">
+      <mat-spinner
+        matSuffix
+        strokeWidth="2"
+        diameter="16"
+        mode="indeterminate"
+      ></mat-spinner>
+    </span>
+    <mat-error *ngIf="email.invalid && email.dirty">
+      {{ email.errors.duplicated ? 'Email em uso' : 'Email inválido' }}
+    </mat-error>
+  </mat-form-field>
+
+  <div class="flex-row gap">
+    <mat-form-field
+      class="flex-1"
+      [color]="email.valid && 'accent'"
+      *ngIf="!isPasswordReset"
+    >
+      <input
+        matInput
+        formControlName="password"
+        type="password"
+        placeholder="Password"
+        autocomplete="off"
+      />
+
+      <mat-error *ngIf="password.invalid && password.dirty">
+        Password must be at least 6 characters long
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field
+      class="flex-1"
+      [color]="passwordDoesMatch ? 'accent' : 'warn'"
+    >
+      <input
+        matInput
+        formControlName="confirm"
+        type="password"
+        placeholder="Confirm password"
+        autocomplete="off"
+      />
+
+      <mat-error *ngIf="passwordConfirm.dirty && !passwordDoesMatch">
+        Password does not match
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <!-- <suite-state-form [parentControl]="state"></suite-state-form> -->
+  <suite-city-form (valueChange)="onCityChanged($event)"></suite-city-form>
+
+  <mat-error class="server-error">{{ serverMessage }}</mat-error>
+
+  <button
+    mat-raised-button
+    color="accent"
+    type="submit"
+    [disabled]="form.invalid || loading"
+  >
+    Submit
+  </button>
+</form>
+<pre>
+  {{ form.value | json }}
+</pre>

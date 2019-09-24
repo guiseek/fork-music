@@ -37,7 +37,19 @@
       "backend/location/*": ["libs/common/backend/location/src/*"],
       "common/backend/typeorm": ["libs/common/backend/typeorm/src"],
       "common/backend/typeorm/*": ["libs/common/backend/typeorm/src/*"],
-      "@suite/interfaces": ["libs/interfaces/src/index.ts"]
+      "@suite/interfaces": ["libs/interfaces/src/index.ts"],
+      "@suite/dashboard": ["libs/dashboard/src/index.ts"],
+      "@suite/ui-kit": ["libs/ui-kit/src/index.ts"],
+      "@suite/utils": ["libs/utils/src/index.ts"],
+      "@suite/data": ["libs/data/src/index.ts"],
+      "@suite/nav/toolbar": ["libs/nav/toolbar/src/index.ts"],
+      "@suite/nav/sidenav": ["libs/nav/sidenav/src/index.ts"],
+      "@suite/auth/lazy/manager": ["libs/auth/lazy/manager/src/index.ts"],
+      "@suite/common/forms/address-form": [
+        "libs/common/forms/address-form/src/index.ts"
+      ],
+      "@suite/nav/navigator": ["libs/nav/navigator/src/index.ts"],
+      "@suite/common/core": ["libs/common/core/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

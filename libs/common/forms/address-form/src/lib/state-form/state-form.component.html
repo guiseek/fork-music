@@ -1,0 +1,21 @@
+<mat-form-field class="w-full">
+  <mat-label>Estado</mat-label>
+  <input
+    type="text"
+    placeholder="Buscar estado"
+    aria-label="Estado"
+    matInput
+    (focus)="onFocus()"
+    [formControl]="parentControl"
+    [matAutocomplete]="auto"
+    autocomplete="new-password"
+  />
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (closed)="onClosed()">
+    <mat-option
+      *ngFor="let option of (filteredOptions | async)"
+      [value]="option"
+    >
+      {{ option.name }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

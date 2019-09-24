@@ -1,6 +1,24 @@
-
-
+<mat-card *ngIf="(authState | async) as user">
+  <mat-card-title>
+    {{user | json }}
+  </mat-card-title>
+</mat-card>
 <mat-card>
+  <mat-tab-group mat-stretch-tabs dynamicHeight>
+    <mat-tab>
+      <ng-template mat-tab-label> The <em>best</em> pasta </ng-template>
+      <auth-in></auth-in>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>thumb_down</mat-icon> The worst sushi
+      </ng-template>
+      <auth-up (up)="onSignUp($event)"></auth-up>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>
+
+<!-- <mat-card>
   <nav mat-tab-nav-bar mat-stretch-tabs>
     <a
       mat-tab-link
@@ -13,8 +31,11 @@
       {{ link.label }}
     </a>
   </nav>
+  <div [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
   <router-outlet></router-outlet>
-</mat-card>
+</mat-card> -->
 
 <!-- <mat-sidenav-container class="sidenav-container">
   <mat-sidenav

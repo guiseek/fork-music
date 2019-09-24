@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject, throwError } from 'rxjs';
+import { Subject, throwError, EMPTY, of } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 
 const API = '/api/auth'
@@ -59,6 +59,14 @@ export class AuthService {
   }
   get token() {
     return window.localStorage.getItem(this.TOKEN_KEY);
+  }
+  checkEmail(email) {
+    console.log('user: ', email)
+    if (email) {
+      return this.http.post(API + '/check', { email })
+    } else {
+      return of(0)
+    }
   }
   signOut() {
     console.log('signout')

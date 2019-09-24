@@ -63,11 +63,13 @@ const modules = [
           },
           {
             path: 'in',
-            component: SignInComponent
+            component: SignInComponent,
+            data: { animation: 'SignIn' }
           },
           {
             path: 'up',
-            component: SignUpComponent
+            component: SignUpComponent,
+            data: { animation: 'SignUp' }
           }
         ]
       }

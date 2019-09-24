@@ -46,6 +46,9 @@ export class AuthService {
       access_token: this.jwtService.sign(payload)
     });
   }
+  checkEmail(email: string) {
+    return this.userService.verifyEmail(email)
+  }
   // async validateUser({ email, password }: UserSigninDto) {
   //   const user = await this.userService.findByEmail(email)
 

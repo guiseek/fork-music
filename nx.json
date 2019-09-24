@@ -52,6 +52,36 @@
     },
     "interfaces": {
       "tags": ["shared-module"]
+    },
+    "dashboard": {
+      "tags": ["private-module"]
+    },
+    "ui-kit": {
+      "tags": ["shared-module"]
+    },
+    "utils": {
+      "tags": ["shared-module"]
+    },
+    "data": {
+      "tags": ["shared-module"]
+    },
+    "nav-toolbar": {
+      "tags": ["shared-module"]
+    },
+    "nav-sidenav": {
+      "tags": ["shared-module"]
+    },
+    "auth-lazy-manager": {
+      "tags": []
+    },
+    "common-forms-address-form": {
+      "tags": ["shared-module"]
+    },
+    "nav-navigator": {
+      "tags": ["private-module"]
+    },
+    "common-core": {
+      "tags": ["core-module"]
     }
   }
 }
