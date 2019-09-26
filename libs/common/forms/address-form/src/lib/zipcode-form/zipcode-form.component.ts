@@ -70,6 +70,6 @@ function extractCepValuesFromResponse(response: Viacep) {
     state: response.uf,
     city: response.localidade,
     neighborhood: response.bairro,
-    street_address: response.logradouro
+    streetAddress: response.logradouro
   }
 }

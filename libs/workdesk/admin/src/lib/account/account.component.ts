@@ -32,8 +32,8 @@ export class AccountComponent implements OnInit, AfterViewInit {
   ) {
     this.addressForm = this._fb.group({
       neighborhood: ['', Validators.required],
-      street_address: ['', Validators.required],
-      street_number: ['', Validators.required],
+      streetAddress: ['', Validators.required],
+      streetNumber: ['', Validators.required],
       zip: [],
       state: ['', Validators.required],
       city: ['', Validators.required]

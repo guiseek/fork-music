@@ -9,12 +9,15 @@ import {
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { CdkTableModule } from '@angular/cdk/table';
+import { MatButtonModule, MatIconModule } from '@angular/material';
 
 const modules = [
   MatPaginatorModule,
   MatSortModule,
   MatTableModule,
-  CdkTableModule
+  CdkTableModule,
+  MatButtonModule,
+  MatIconModule
 ]
 
 @NgModule({

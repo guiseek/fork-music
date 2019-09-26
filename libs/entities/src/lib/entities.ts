@@ -7,9 +7,10 @@ import { Location } from './location.entity';
 import { Service } from './service.entity';
 import { WageTier } from './wage-tier.entity';
 import { CostPremium } from './cost-premium.entity';
+import { Employee } from './employee.entity';
 
-export const ENTITIES = [State, City, Company, User, Address, Location, Service, WageTier, CostPremium]
+export const ENTITIES = [State, City, Company, User, Address, Location, Service, WageTier, CostPremium, Employee]
 
 export {
-  State, City, Company, User, Address, Location, Service, WageTier, CostPremium
+  State, City, Company, User, Address, Location, Service, WageTier, CostPremium, Employee
 }

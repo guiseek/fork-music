@@ -14,25 +14,12 @@ const ENDPOINT = '/api/wage-tiers'
   styleUrls: ['./wage-tiers.component.scss']
 })
 export class WageTiersComponent implements AfterViewInit {
-
-  // columns = ['id', 'name', 'actions']
-  data: IWageTier[] = [];
-
   columns = [
     { columnDef: 'id', header: 'No.', cell: (element: any) => `${element.id}` },
     { columnDef: 'name', header: 'Name', cell: (element: any) => `${element.name}` },
     // { columnDef: 'weight', header: 'Weight', cell: (element: any) => `${element.weight}` },
     // { columnDef: 'symbol', header: 'Symbol', cell: (element: any) => `${element.symbol}` },
   ];
-  displayedColumns = this.columns.map(c => c.columnDef);
-
-  resultsLength = 0;
-  isLoadingResults = true;
-  isRateLimitReached = false;
-
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: false }) sort: MatSort;
-
   refresh = new Subject
   filter = new BehaviorSubject<string>('')
 
@@ -53,10 +40,19 @@ export class WageTiersComponent implements AfterViewInit {
   applyFilter(value = '') {
     this.filter.next(value)
   }
+  edit(data) {
+    this.wageForm.patchValue(data)
+    console.table(data)
+  }
   add() {
+  }
+  openForm(data?) {
+    this.wageForm.patchValue(data || {})
     const ref = this.dialog.open(
       this.dialogForm, {
-        data: { name: 'oi' }
+        data: {
+          title: data ? 'Alterar' : 'Adicionar'
+        }
       }
     )
     const sub = ref.afterClosed().subscribe((value) => {
@@ -64,41 +60,15 @@ export class WageTiersComponent implements AfterViewInit {
       if (value) {
         this.save(value)
       }
+      this.wageForm.reset()
+      this.wageForm.updateValueAndValidity()
+      this.refresh.next(true)
       sub.unsubscribe()
     })
+
   }
   ngAfterViewInit() {
     console.log('dialogForm: ', this.dialogForm)
-    // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0)
-
-    // merge(
-    //   this.sort.sortChange,
-    //   this.paginator.page,
-    //   this.refresh
-    // ).pipe(
-    //   startWith({}),
-    //   switchMap(() => {
-    //     this.isLoadingResults = true
-    //     const { active, direction } = this.sort
-    //     return this.database.get('/api/wage-tiers', {
-    //       sort: `${active},${direction.toUpperCase()}`,
-    //       page: this.paginator.pageIndex + 1,
-    //       per_page: 2
-    //     })
-    //   }),
-    //   map(response => {
-    //     this.isLoadingResults = false;
-    //     this.isRateLimitReached = false;
-    //     this.resultsLength = response.total;
-    //     return response.data
-    //   }),
-    //   catchError(() => {
-    //     this.isLoadingResults = false;
-    //     // Catch if the GitHub API has reached its rate limit. Return empty data.
-    //     this.isRateLimitReached = true;
-    //     return of([]);
-    //   })
-    // ).subscribe(data => this.data = data);
   }
   save(value: IWageTier) {
     const sub = this.database.post(ENDPOINT, value)

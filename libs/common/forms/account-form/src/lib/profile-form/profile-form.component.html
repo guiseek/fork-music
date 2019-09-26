@@ -1,1 +1,70 @@
-<p>profile-form works!</p>
+<form [formGroup]="parentForm" (ngSubmit)="onSubmit()">
+  <div class="flex-row gap">
+    <mat-form-field class="flex-1">
+      <mat-label>Nome</mat-label>
+      <input
+        type="text"
+        matInput
+        name="firstName"
+        formControlName="firstName"
+      />
+      <mat-error>
+        {{ parentForm.get('firstName').errors }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="flex-1">
+      <mat-label>Sobrenome</mat-label>
+      <input type="text" matInput name="lastName" formControlName="lastName" />
+      <mat-error>
+        {{ parentForm.get('lastName').errors }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="flex-1">
+      <mat-label>Aniversário</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="birthDate"
+        placeholder="Data"
+        (focus)="picker.open()"
+        readonly
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker
+        #picker
+        startView="year"
+        [startAt]="startDate"
+      ></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="flex-row gap">
+    <mat-form-field class="flex-1">
+      <mat-label>Endereço de email</mat-label>
+      <input type="email" matInput name="email" formControlName="email" />
+      <mat-error>Email inválido</mat-error>
+    </mat-form-field>
+    <mat-form-field class="flex-1">
+      <mat-label>Telefone celular</mat-label>
+      <input
+        type="text"
+        matInput
+        name="mobilePhone"
+        formControlName="mobilePhone"
+      />
+      <mat-error>
+        {{ parentForm.get('mobilePhone').errors }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="flex-1">
+      <mat-label>Telefone residencial</mat-label>
+      <input
+        type="text"
+        matInput
+        name="homePhone"
+        formControlName="homePhone"
+      />
+      <mat-error>Email inválido</mat-error>
+    </mat-form-field>
+  </div>
+  <button mat-button>Salvar</button>
+</form>

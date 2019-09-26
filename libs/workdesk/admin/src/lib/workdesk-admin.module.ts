@@ -15,9 +15,10 @@ import { ToolbarModule } from '@suite/nav/toolbar';
 import { SidenavModule } from '@suite/nav/sidenav';
 
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatGridListModule, MatMenuModule, MatIconModule, MatCardModule, MatButtonModule, MatSidenavModule, MatTableModule, MatPaginatorModule, MatSortModule, MatDialogModule, MatProgressSpinnerModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatGridListModule, MatMenuModule, MatIconModule, MatCardModule, MatButtonModule, MatSidenavModule, MatTableModule, MatPaginatorModule, MatSortModule, MatDialogModule, MatProgressSpinnerModule, MatFormFieldModule, MatInputModule, MatToolbarModule } from '@angular/material';
 import { NavigatorModule } from '@suite/nav/navigator';
 import { AddressFormModule } from '@suite/common/forms/address-form';
+import { DialogModule } from '@suite/cdk/dialog';
 
 import { dashboardMenu, adminMenu } from '@suite/data';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -26,9 +27,13 @@ import { BillingModule } from '@suite/modules/billing';
 import { TableBackendModule } from '@suite/common/tables/table-backend';
 
 import { WageTiersComponent } from './wage-tiers/wage-tiers.component';
+import { EmployeeResolverService, CoreModule } from '@suite/common/core';
+import { HttpClientModule } from '@angular/common/http';
+import { DynamicFormModule } from '@suite/common/forms/dynamic-form';
 
 const modules = [
   LayoutModule,
+  MatToolbarModule,
   MatGridListModule,
   MatSidenavModule,
   MatFormFieldModule,
@@ -49,27 +54,40 @@ const modules = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    HttpClientModule,
     ...modules,
     ToolbarModule,
     SidenavModule,
     AddressFormModule,
     BillingModule,
+    DialogModule,
+    DynamicFormModule,
     TableBackendModule,
     NavigatorModule.forRoot(adminMenu),
     RouterModule.forChild([
       /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
-      { path: '', component: AdminLayoutComponent, children: [
-        { path: '', component: OverviewComponent },
-        { path: 'calendario', component: CalendarComponent },
-        { path: 'notificacoes', component: NotificationsComponent },
-        { path: 'servicos', component: ServicesComponent },
-        { path: 'equipe', component: TeamComponent },
-        { path: 'conta', component: AccountComponent },
-        { path: 'configuracoes', component: SettingsComponent },
-        { path: 'niveis-salariais', component: WageTiersComponent }
-      ] }
+      {
+        path: '', component: AdminLayoutComponent, children: [
+          { path: '', component: OverviewComponent },
+          { path: 'calendario', component: CalendarComponent },
+          { path: 'notificacoes', component: NotificationsComponent },
+          { path: 'servicos', component: ServicesComponent },
+          { path: 'equipe', component: TeamComponent },
+          { path: 'conta', component: AccountComponent },
+          { path: 'configuracoes', component: SettingsComponent },
+          { path: 'niveis-salariais', component: WageTiersComponent },
+          {
+            path: 'equipe/:id',
+            loadChildren: () => import('./team/employee-page/employee-page.module').then(m => m.EmployeePageModule),
+            resolve: {
+              employee: EmployeeResolverService
+            }
+          }
+        ]
+      }
     ])
   ],
+  providers: [EmployeeResolverService],
   declarations: [AdminLayoutComponent, OverviewComponent, NotificationsComponent, TeamComponent, ServicesComponent, CalendarComponent, AccountComponent, SettingsComponent, CustomersComponent, WageTiersComponent]
 })
 export class WorkdeskAdminModule {

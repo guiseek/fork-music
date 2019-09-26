@@ -1,4 +1,30 @@
-<suite-table-backend endpoint="/api/wage-tiers" [columns]="columns"></suite-table-backend>
+<mat-toolbar>
+  Níveis salariais
+  <div fxFlex fxFill></div>
+  <button mat-flat-button color="primary" (click)="openForm()">
+    Adicionar
+  </button>
+</mat-toolbar>
+<suite-table-backend
+  endpoint="/api/wage-tiers"
+  [columns]="columns"
+  [refresh]="refresh"
+  editable="true"
+  (edit)="openForm($event)"
+></suite-table-backend>
+
+<ng-template #formTemplate let-data let-dialog="dialog">
+  <suite-wage [parentForm]="wageForm"></suite-wage>
+  <div class="flex justify-around">
+    <button type="button" mat-button mat-dialog-close>
+      Fechar
+    </button>
+
+    <button type="button" mat-button [mat-dialog-close]="wageForm.value">
+      Salvar
+    </button>
+  </div>
+</ng-template>
 
 <!-- <div class="container mat-elevation-z8">
   <button

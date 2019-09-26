@@ -16,8 +16,8 @@ export class AddressFormComponent implements OnInit {
     if (!this.parentForm) {
       this.parentForm = this._fb.group({
         neighborhood: [],
-        street_address: [],
-        street_number: []
+        streetAddress: [],
+        streetNumber: []
       }, { updateOn: 'blur' })
       // this.parentForm.valueChanges.pipe(
       //   map(value => this.formChange.emit(value))

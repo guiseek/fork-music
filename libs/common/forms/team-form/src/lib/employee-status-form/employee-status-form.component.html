@@ -1,0 +1,20 @@
+<form [formGroup]="parentForm">
+  <div class="flex-row gap">
+    <mat-form-field class="flex-1">
+      <mat-label>Situação</mat-label>
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let s of statusList" [value]="s.value">{{
+          s.viewValue
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Função</mat-label>
+      <mat-select formControlName="employeeType">
+        <mat-option *ngFor="let t of typeList" [value]="t.value">{{
+          t.viewValue
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</form>

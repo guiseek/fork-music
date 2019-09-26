@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input, EventEmitter, Output } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { HttpClient } from '@angular/common/http';
@@ -17,6 +17,14 @@ export class TableBackendComponent implements OnInit, AfterViewInit {
 
   @Input() filter: BehaviorSubject<string>
   @Input() refresh: Subject<boolean>
+  @Input() editable: boolean
+  @Output() edit = new EventEmitter()
+
+  @Input() deletable: boolean
+  @Output() delete = new EventEmitter()
+
+  @Input() select: boolean
+
   @Input() endpoint: string
   @Input() columns
   displayedColumns = [];
@@ -30,6 +38,10 @@ export class TableBackendComponent implements OnInit, AfterViewInit {
     console.log('columns: ', this.columns)
   }
 
+  editClicked(data) {
+    console.table(data)
+    this.edit.emit(data)
+  }
   ngOnInit() {
     if (!this.filter) {
       this.filter = new BehaviorSubject<string>('')
@@ -37,6 +49,13 @@ export class TableBackendComponent implements OnInit, AfterViewInit {
     console.log('columns: ', this.columns)
     console.log('endpoint: ', this.endpoint)
     this.displayedColumns = this.columns.map(c => c.columnDef);
+    console.log('this.edit: ', this.edit)
+    if (this.editable) {
+      this.displayedColumns.push('edit')
+    }
+    if (this.deletable) {
+      this.displayedColumns.push('delete')
+    }
     this.dataSource = new TableBackendDataSource(this.http)
   }
   ngAfterViewInit() {

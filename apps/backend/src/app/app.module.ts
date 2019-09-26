@@ -9,6 +9,7 @@ import { database } from '../environments/environment';
 import { LocationModule } from 'backend/location';
 import { AddressModule } from 'backend/address';
 import { WageTiersModule } from 'backend/wage-tiers';
+import { EmployeesModule } from 'backend/employess';
 
 // ticket-system
 @Module({
@@ -18,7 +19,8 @@ import { WageTiersModule } from 'backend/wage-tiers';
     UsersModule,
     AddressModule,
     LocationModule,
-    WageTiersModule
+    WageTiersModule,
+    EmployeesModule
   ],
   controllers: [AppController],
   providers: [AppService],

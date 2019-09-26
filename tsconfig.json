@@ -62,6 +62,15 @@
       "@suite/modules/billing": ["libs/modules/billing/src/index.ts"],
       "@suite/common/tables/table-backend": [
         "libs/common/tables/table-backend/src/index.ts"
+      ],
+      "backend/employess": ["libs/common/backend/employess/src"],
+      "backend/employess/*": ["libs/common/backend/employess/src/*"],
+      "@suite/common/forms/team-form": [
+        "libs/common/forms/team-form/src/index.ts"
+      ],
+      "@suite/cdk/dialog": ["libs/cdk/dialog/src/index.ts"],
+      "@suite/common/forms/dynamic-form": [
+        "libs/common/forms/dynamic-form/src/index.ts"
       ]
     }
   },

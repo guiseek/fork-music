@@ -14,7 +14,6 @@ import { AddressFormComponent } from './address-form.component';
 
 const modules = [
   CommonModule,
-  MatIconModule,
   MatButtonModule,
   MatIconModule,
   MatFormFieldModule,

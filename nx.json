@@ -97,6 +97,15 @@
     },
     "common-tables-table-backend": {
       "tags": []
+    },
+    "common-forms-team-form": {
+      "tags": ["private-module"]
+    },
+    "cdk-dialog": {
+      "tags": ["shared-module"]
+    },
+    "common-forms-dynamic-form": {
+      "tags": ["shared-module"]
     }
   }
 }

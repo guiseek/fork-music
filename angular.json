@@ -1112,6 +1112,98 @@
         }
       },
       "schematics": {}
+    },
+    "common-forms-team-form": {
+      "projectType": "library",
+      "root": "libs/common/forms/team-form",
+      "sourceRoot": "libs/common/forms/team-form/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/common/forms/team-form/tsconfig.lib.json",
+              "libs/common/forms/team-form/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/common/forms/team-form/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/common/forms/team-form/jest.config.js",
+            "tsConfig": "libs/common/forms/team-form/tsconfig.spec.json",
+            "setupFile": "libs/common/forms/team-form/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "cdk-dialog": {
+      "projectType": "library",
+      "root": "libs/cdk/dialog",
+      "sourceRoot": "libs/cdk/dialog/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/cdk/dialog/tsconfig.lib.json",
+              "libs/cdk/dialog/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/cdk/dialog/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/cdk/dialog/jest.config.js",
+            "tsConfig": "libs/cdk/dialog/tsconfig.spec.json",
+            "setupFile": "libs/cdk/dialog/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "common-forms-dynamic-form": {
+      "projectType": "library",
+      "root": "libs/common/forms/dynamic-form",
+      "sourceRoot": "libs/common/forms/dynamic-form/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/common/forms/dynamic-form/tsconfig.lib.json",
+              "libs/common/forms/dynamic-form/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/common/forms/dynamic-form/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/common/forms/dynamic-form/jest.config.js",
+            "tsConfig": "libs/common/forms/dynamic-form/tsconfig.spec.json",
+            "setupFile": "libs/common/forms/dynamic-form/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
     }
   },
   "cli": {

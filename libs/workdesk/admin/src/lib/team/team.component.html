@@ -1,1 +1,18 @@
-<p>team works!</p>
+<mat-toolbar class="mat-elevation-z1">
+  Equipe
+  <div fxFlex fxFill></div>
+  <a mat-fab routerLink="novo">
+    <mat-icon>add</mat-icon>
+  </a>
+</mat-toolbar>
+<a class="right-bottom" mat-fab routerLink="novo">
+  <mat-icon>add</mat-icon>
+</a>
+<suite-table-backend
+  endpoint="/api/employees"
+  [columns]="columns"
+  editable="true"
+  (edit)="onEdit($event)"
+  deletable="true"
+  (delete)="onEdit($event)"
+></suite-table-backend>

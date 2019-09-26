@@ -9,6 +9,7 @@ export const database: TypeOrmModuleOptions = {
   username: 'root',
   password: 'root',
   database: 'ticket-system',
+  // database: 'db-system',
   entities: [...USER_ENTITIES, ...ENTITIES],
   synchronize: false
 }
