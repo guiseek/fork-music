@@ -86,6 +86,11 @@ const navSettings = {
   icon: 'settings',
   link: 'configuracoes',
 }
+const navWageTiers = {
+  name: 'Níveis salariais',
+  icon: 'money',
+  link: 'niveis-salariais',
+}
 
 const navCompany = {
   name: 'Gerenciar',
@@ -97,17 +102,24 @@ const navCompany = {
     navAccount,
     navTeam,
     navServices,
-    navSettings
+    navSettings,
+    navWageTiers
   ]
 }
 export const navigation = {
 
 }
 
-export const adminMenu: NavItem[] = [
+const adminMenu: NavItem[] = [
   navDashboard,
   navCalendar,
   navRooms,
   navNotifications,
-  navCompany
+  {
+    ...navCompany,
+    children: navCompany.children.map(nav => {
+      return { ...nav, link: `/admin/${nav.link}` }
+    })
+  }
 ]
+export { adminMenu }

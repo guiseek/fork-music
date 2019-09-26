@@ -98,11 +98,31 @@ export class UserService {
     return this.userRepository.find()
   }
   // @EmailAlreadyExistsHandler()
-  verifyEmail(email: string) {
-    return this.userRepository.findOne({ email }, {
-      select: ['active', 'createdAt', 'emailValidatedAt']
-    })
+  verifyEmail(email: string): Observable<User> {
+    const userCount$: Observable<number> = from(
+      this.userRepository.count({
+        where: { email },
+        // ...options,
+        // force: true
+      })
+    );
+
+    return userCount$.pipe(
+      map((count: number) => {
+        if (count) {
+          throw new ConflictException('This email is already use.');
+        }
+        return null
+      }),
+      // switchMap((user: User) => from(this.userRepository.save(user, options))),
+      // switchMap((user: User) => this.userRepository.findOneOrFail(user.id, options))
+    );
   }
+  //  {
+  //   return this.userRepository.findOne({ email }, {
+  //     select: ['active', 'createdAt', 'emailValidatedAt']
+  //   })
+  // }
   async checkEmail(email: string): Promise<HttpStatus | ConflictException> {
     const user = await this.userRepository.findOne({
       where: { email }

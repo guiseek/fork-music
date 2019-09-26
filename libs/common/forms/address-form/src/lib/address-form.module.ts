@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AddressFormComponent } from './address-form.component';
 
 const modules = [
   CommonModule,
@@ -31,12 +32,14 @@ const modules = [
   declarations: [
     StateFormComponent,
     CityFormComponent,
-    ZipcodeFormComponent
+    ZipcodeFormComponent,
+    AddressFormComponent
   ],
   exports: [
     StateFormComponent,
     CityFormComponent,
-    ZipcodeFormComponent
+    ZipcodeFormComponent,
+    AddressFormComponent
   ]
 })
 export class AddressFormModule {}

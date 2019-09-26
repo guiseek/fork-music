@@ -91,6 +91,12 @@
     },
     "common-forms-account-form": {
       "tags": []
+    },
+    "modules-billing": {
+      "tags": []
+    },
+    "common-tables-table-backend": {
+      "tags": []
     }
   }
 }

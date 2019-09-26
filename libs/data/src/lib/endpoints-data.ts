@@ -6,5 +6,8 @@ export const endpoint = {
     return route
   },
   cities: '/api/location/cities',
-  location: '/api/location'
+  location: '/api/location',
+  viacep: (zip: string | number) => {
+    return `https://viacep.com.br/ws/${zip}/json`
+  }
 }

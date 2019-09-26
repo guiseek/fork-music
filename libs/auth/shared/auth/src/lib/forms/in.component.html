@@ -7,8 +7,13 @@
       placeholder="Email"
       autocomplete="off"
     />
-    <mat-error *ngIf="email.invalid && email.dirty">
-      Email inválido
+    <mat-error>
+      <span *ngIf="email.pristine">
+        Preencha com seu email
+      </span>
+      <span *ngIf="email.invalid && email.dirty">
+        Email inválido
+      </span>
     </mat-error>
   </mat-form-field>
 

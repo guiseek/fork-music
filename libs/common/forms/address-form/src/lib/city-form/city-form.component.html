@@ -1,9 +1,10 @@
 <mat-form-field class="w-full">
-  <mat-label>Cidade</mat-label>
+  <!-- <mat-label>Cidade</mat-label> -->
   <input
     type="text"
-    placeholder="Buscar cidade"
+    [placeholder]="placeholder || 'Buscar cidade'"
     aria-label="Cidade"
+    name="city"
     matInput
     [formControl]="parentControl"
     [matAutocomplete]="auto"

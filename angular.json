@@ -1051,6 +1051,67 @@
         }
       },
       "schematics": {}
+    },
+    "modules-billing": {
+      "projectType": "library",
+      "root": "libs/modules/billing",
+      "sourceRoot": "libs/modules/billing/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/modules/billing/tsconfig.lib.json",
+              "libs/modules/billing/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/modules/billing/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/modules/billing/jest.config.js",
+            "tsConfig": "libs/modules/billing/tsconfig.spec.json",
+            "setupFile": "libs/modules/billing/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "common-tables-table-backend": {
+      "projectType": "library",
+      "root": "libs/common/tables/table-backend",
+      "sourceRoot": "libs/common/tables/table-backend/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/common/tables/table-backend/tsconfig.lib.json",
+              "libs/common/tables/table-backend/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/common/tables/table-backend/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/common/tables/table-backend/jest.config.js",
+            "tsConfig": "libs/common/tables/table-backend/tsconfig.spec.json",
+            "setupFile": "libs/common/tables/table-backend/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
     }
   },
   "cli": {

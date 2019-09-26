@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, ValidationErrors, Validators } from '@angular/forms';
-import { Observer, Observable, timer, throwError } from 'rxjs';
+import { Observer, Observable, timer, throwError, of } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { LocationCity } from '@suite/interfaces';
 import { tap, map, debounceTime, switchMap, filter, catchError } from 'rxjs/operators';
@@ -69,14 +69,21 @@ export class UpComponent implements OnInit {
   checkEmail = (control: FormControl) =>
     timer(600).pipe(
       switchMap(() => this.authService.checkEmail(control && control.value ? control.value : '')),
-      map((user) => {
-        console.log(user)
-        if (user) {
-          return { error: true, duplicated: true }
-        } else {
-          return null
-        }
+      catchError(({error}) => {
+        console.log('error:', error)
+        const err = {}
+        err[error.error] = error.message
+        return of(err)
+        // return throwError(error.message)
       }),
+      // map((user) => {
+      //   console.log('user: ', user)
+      //   if (user) {
+      //     return { error: true, duplicated: true }
+      //   } else {
+      //     return null
+      //   }
+      // }),
       // tap()
     )
   // map((exist) => {

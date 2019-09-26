@@ -12,8 +12,8 @@
   </mat-sidenav>
   <mat-sidenav-content class="content-container" fxLayout="column">
     <suite-toolbar title="Dashboard"></suite-toolbar>
-    <div [@fadeAnimation]="getRouterOutletState(o)" class="main-container">
+    <main [@fadeAnimation]="getRouterOutletState(o)">
       <router-outlet #o="outlet"></router-outlet>
-    </div>
+    </main>
   </mat-sidenav-content>
 </mat-sidenav-container>

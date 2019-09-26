@@ -54,6 +54,14 @@
       "@suite/workdesk/teacher": ["libs/workdesk/teacher/src/index.ts"],
       "@suite/common/forms/account-form": [
         "libs/common/forms/account-form/src/index.ts"
+      ],
+      "backend/address": ["libs/common/backend/address/src"],
+      "backend/address/*": ["libs/common/backend/address/src/*"],
+      "backend/wage-tiers": ["libs/common/backend/wage-tiers/src"],
+      "backend/wage-tiers/*": ["libs/common/backend/wage-tiers/src/*"],
+      "@suite/modules/billing": ["libs/modules/billing/src/index.ts"],
+      "@suite/common/tables/table-backend": [
+        "libs/common/tables/table-backend/src/index.ts"
       ]
     }
   },

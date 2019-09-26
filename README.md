@@ -1,4 +1,33 @@
+
+
+# Location
+
+Adicionar local
+Use este formulário para criar locais para os locais onde suas aulas ocorrem. Você selecionará um local ao agendar aulas.
+
+Se você deseja adicionar quartos individuais a um edifício, pode adicionar sub-locais. Saiba mais: Adicionando locais no Teachworks .
+Informações de localização
+Nome
+Cor do calendário
+#1037D4
+É sublocalização do
+Exibir conflitos
+Marque para exibir conflitos se mais de uma lição estiver agendada por vez para este local.
+Excluir do calendário de locais
+Incluir endereço
+Endereço
+Cidade
+Estado / Província
+CEP / Código Postal
+  
+
+
+
+
 # SupportTicketSuite
+
+
+
 
 This project was generated using [Nx](https://nx.dev).
 

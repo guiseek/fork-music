@@ -1,1 +1,10 @@
-<p>zipcode-form works!</p>
+<mat-form-field>
+  <input type="text" matInput name="zip" placeholder="CEP" autocomplete="off" [formControl]="parentControl" #zip>
+  <button matSuffix type="button" mat-icon-button [disabled]="parentControl.pending || parentControl.invalid" (click)="findAddressByZip(zip.value)">
+    <mat-icon>search</mat-icon>
+  </button>
+  <mat-error *ngIf="parentControl.errors as error">
+    <span *ngIf="error.minlength">CEP inválido</span>
+    <span *ngIf="error.notFound">{{error.notFound}}</span>
+  </mat-error>
+</mat-form-field>

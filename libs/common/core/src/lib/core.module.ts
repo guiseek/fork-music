@@ -1,10 +1,12 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { WINDOW, _window } from './providers/window.token';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   providers: [
     { provide: WINDOW, useFactory: _window }

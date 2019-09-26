@@ -15,29 +15,46 @@ import { ToolbarModule } from '@suite/nav/toolbar';
 import { SidenavModule } from '@suite/nav/sidenav';
 
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatGridListModule, MatMenuModule, MatIconModule, MatCardModule, MatButtonModule, MatSidenavModule } from '@angular/material';
+import { MatGridListModule, MatMenuModule, MatIconModule, MatCardModule, MatButtonModule, MatSidenavModule, MatTableModule, MatPaginatorModule, MatSortModule, MatDialogModule, MatProgressSpinnerModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { NavigatorModule } from '@suite/nav/navigator';
+import { AddressFormModule } from '@suite/common/forms/address-form';
 
 import { dashboardMenu, adminMenu } from '@suite/data';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BillingModule } from '@suite/modules/billing';
+import { TableBackendModule } from '@suite/common/tables/table-backend';
+
+import { WageTiersComponent } from './wage-tiers/wage-tiers.component';
 
 const modules = [
   LayoutModule,
   MatGridListModule,
   MatSidenavModule,
+  MatFormFieldModule,
+  MatInputModule,
   MatMenuModule,
   MatIconModule,
   MatCardModule,
   MatButtonModule,
+  MatDialogModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatProgressSpinnerModule,
   FlexLayoutModule
 ]
 
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     ...modules,
     ToolbarModule,
     SidenavModule,
+    AddressFormModule,
+    BillingModule,
+    TableBackendModule,
     NavigatorModule.forRoot(adminMenu),
     RouterModule.forChild([
       /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
@@ -48,10 +65,13 @@ const modules = [
         { path: 'servicos', component: ServicesComponent },
         { path: 'equipe', component: TeamComponent },
         { path: 'conta', component: AccountComponent },
-        { path: 'configuracoes', component: SettingsComponent }
+        { path: 'configuracoes', component: SettingsComponent },
+        { path: 'niveis-salariais', component: WageTiersComponent }
       ] }
     ])
   ],
-  declarations: [AdminLayoutComponent, OverviewComponent, NotificationsComponent, TeamComponent, ServicesComponent, CalendarComponent, AccountComponent, SettingsComponent, CustomersComponent]
+  declarations: [AdminLayoutComponent, OverviewComponent, NotificationsComponent, TeamComponent, ServicesComponent, CalendarComponent, AccountComponent, SettingsComponent, CustomersComponent, WageTiersComponent]
 })
-export class WorkdeskAdminModule {}
+export class WorkdeskAdminModule {
+
+}

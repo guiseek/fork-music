@@ -5,7 +5,7 @@ import {
   ManyToOne,
   JoinColumn
 } from 'typeorm';
-import { State } from '../lib/state.entity';
+import { State } from './state.entity';
 
 @Entity('cities')
 export class City {
@@ -37,7 +37,7 @@ export class City {
   })
   capital: boolean;
 
-  @ManyToOne(type => State, state => state.cities)
+  @ManyToOne(type => State)
   @JoinColumn()
   state: State;
 

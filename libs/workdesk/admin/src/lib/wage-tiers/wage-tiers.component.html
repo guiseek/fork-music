@@ -1,0 +1,59 @@
+<suite-table-backend endpoint="/api/wage-tiers" [columns]="columns"></suite-table-backend>
+
+<!-- <div class="container mat-elevation-z8">
+  <button
+    class="action-button"
+    type="button"
+    color="primary"
+    mat-fab
+    (click)="add()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+  <div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    <div class="rate-limit-reached" *ngIf="isRateLimitReached">
+      GitHub's API rate limit has been reached. It will be reset in one minute.
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table
+      mat-table
+      [dataSource]="data"
+      class="table"
+      matSort
+      matSortActive="id"
+      matSortDisableClear
+      matSortDirection="desc"
+    >
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
+        <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">
+          Ações
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns"></tr>
+    </table>
+  </div>
+
+  <mat-paginator [length]="resultsLength" [pageSize]="2"></mat-paginator>
+</div>
+
+<ng-template #formTemplate let-data let-dialog="dialog">
+  <suite-wage [parentForm]="wageForm"></suite-wage>
+  <button type="button" mat-button [mat-dialog-close]="wageForm.value">
+    Salvar
+  </button>
+</ng-template> -->

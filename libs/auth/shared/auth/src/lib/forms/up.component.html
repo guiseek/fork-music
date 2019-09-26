@@ -15,8 +15,9 @@
         mode="indeterminate"
       ></mat-spinner>
     </span>
-    <mat-error *ngIf="email.invalid && email.dirty">
-      {{ email.hasError('duplicated') ? 'Email em uso' : 'Email inválido' }}
+    <mat-error *ngIf="email.errors as error">
+      <!-- <pre>{{error | json}}</pre> -->
+      {{ email.hasError('Conflict') ? error.Conflict : 'Email inválido' }}
     </mat-error>
   </mat-form-field>
 

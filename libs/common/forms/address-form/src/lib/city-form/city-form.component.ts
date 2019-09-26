@@ -12,6 +12,7 @@ import { MatAutocompleteSelectedEvent, MatAutocomplete, MatAutocompleteTrigger }
   styleUrls: ['./city-form.component.scss']
 })
 export class CityFormComponent implements OnInit {
+  @Input() placeholder = 'Buscar cidade'
   @Input() parentControl: FormControl
   @Output() valueChange = new EventEmitter<LocationCity>()
 
@@ -24,6 +25,9 @@ export class CityFormComponent implements OnInit {
     }
     this.filteredOptions = this.parentControl.valueChanges
       .pipe(
+        tap((change) => {
+          console.log('change: ', change)
+        }),
         startWith(''),
         filter(value => value.length > 2),
         debounceTime(600),
