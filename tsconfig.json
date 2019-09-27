@@ -10,72 +10,162 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2017", "dom"],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@suite/backend": ["libs/backend/src/index.ts"],
-      "@suite/account-ui": ["libs/account-ui/src/index.ts"],
-      "@suite/profile-settings-ui": ["libs/profile-settings-ui/src/index.ts"],
-      "@suite/ticket-list-ui": ["libs/ticket-list-ui/src/index.ts"],
+      "@suite/backend": [
+        "libs/backend/src/index.ts"
+      ],
+      "@suite/account-ui": [
+        "libs/account-ui/src/index.ts"
+      ],
+      "@suite/profile-settings-ui": [
+        "libs/profile-settings-ui/src/index.ts"
+      ],
+      "@suite/ticket-list-ui": [
+        "libs/ticket-list-ui/src/index.ts"
+      ],
       "@suite/reporting/ui/stat-dashboard-ui": [
         "libs/reporting/ui/stat-dashboard-ui/src/index.ts"
       ],
-      "auth/api": ["libs/auth/api/src"],
-      "auth/api/*": ["libs/auth/api/src/*"],
-      "@suite/auth/lazy/sign": ["libs/auth/lazy/sign/src/index.ts"],
-      "auth/backend/auth": ["libs/auth/backend/auth/src"],
-      "auth/backend/auth/*": ["libs/auth/backend/auth/src/*"],
-      "auth/backend/users": ["libs/auth/backend/users/src"],
-      "auth/backend/users/*": ["libs/auth/backend/users/src/*"],
-      "@suite/auth/shared/auth": ["libs/auth/shared/auth/src/index.ts"],
-      "@suite/entities": ["libs/entities/src/index.ts"],
-      "@suite/entities/*": ["libs/entities/src/*"],
-      "backend/location": ["libs/common/backend/location/src"],
-      "backend/location/*": ["libs/common/backend/location/src/*"],
-      "common/backend/typeorm": ["libs/common/backend/typeorm/src"],
-      "common/backend/typeorm/*": ["libs/common/backend/typeorm/src/*"],
-      "@suite/interfaces": ["libs/interfaces/src/index.ts"],
-      "@suite/dashboard": ["libs/dashboard/src/index.ts"],
-      "@suite/ui-kit": ["libs/ui-kit/src/index.ts"],
-      "@suite/utils": ["libs/utils/src/index.ts"],
-      "@suite/data": ["libs/data/src/index.ts"],
-      "@suite/nav/toolbar": ["libs/nav/toolbar/src/index.ts"],
-      "@suite/nav/sidenav": ["libs/nav/sidenav/src/index.ts"],
-      "@suite/auth/lazy/manager": ["libs/auth/lazy/manager/src/index.ts"],
+      "auth/api": [
+        "libs/auth/api/src"
+      ],
+      "auth/api/*": [
+        "libs/auth/api/src/*"
+      ],
+      "@suite/auth/lazy/sign": [
+        "libs/auth/lazy/sign/src/index.ts"
+      ],
+      "auth/backend/auth": [
+        "libs/auth/backend/auth/src"
+      ],
+      "auth/backend/auth/*": [
+        "libs/auth/backend/auth/src/*"
+      ],
+      "auth/backend/users": [
+        "libs/auth/backend/users/src"
+      ],
+      "auth/backend/users/*": [
+        "libs/auth/backend/users/src/*"
+      ],
+      "@suite/auth/shared/auth": [
+        "libs/auth/shared/auth/src/index.ts"
+      ],
+      "@suite/entities": [
+        "libs/entities/src/index.ts"
+      ],
+      "@suite/entities/*": [
+        "libs/entities/src/*"
+      ],
+      "backend/location": [
+        "libs/common/backend/location/src"
+      ],
+      "backend/location/*": [
+        "libs/common/backend/location/src/*"
+      ],
+      "common/backend/typeorm": [
+        "libs/common/backend/typeorm/src"
+      ],
+      "common/backend/typeorm/*": [
+        "libs/common/backend/typeorm/src/*"
+      ],
+      "@suite/interfaces": [
+        "libs/interfaces/src/index.ts"
+      ],
+      "@suite/dashboard": [
+        "libs/dashboard/src/index.ts"
+      ],
+      "@suite/ui-kit": [
+        "libs/ui-kit/src/index.ts"
+      ],
+      "@suite/utils": [
+        "libs/utils/src/index.ts"
+      ],
+      "@suite/data": [
+        "libs/data/src/index.ts"
+      ],
+      "@suite/nav/toolbar": [
+        "libs/nav/toolbar/src/index.ts"
+      ],
+      "@suite/nav/sidenav": [
+        "libs/nav/sidenav/src/index.ts"
+      ],
+      "@suite/auth/lazy/manager": [
+        "libs/auth/lazy/manager/src/index.ts"
+      ],
       "@suite/common/forms/resources": [
         "libs/common/forms/resources/index.ts"
       ],
       "@suite/common/forms/address-form": [
         "libs/common/forms/address-form/src/index.ts"
       ],
-      "@suite/nav/navigator": ["libs/nav/navigator/src/index.ts"],
-      "@suite/common/core": ["libs/common/core/src/index.ts"],
-      "@suite/workdesk/admin": ["libs/workdesk/admin/src/index.ts"],
-      "@suite/workdesk/teacher": ["libs/workdesk/teacher/src/index.ts"],
+      "@suite/nav/navigator": [
+        "libs/nav/navigator/src/index.ts"
+      ],
+      "@suite/common/core": [
+        "libs/common/core/src/index.ts"
+      ],
+      "@suite/workdesk/admin": [
+        "libs/workdesk/admin/src/index.ts"
+      ],
+      "@suite/workdesk/teacher": [
+        "libs/workdesk/teacher/src/index.ts"
+      ],
       "@suite/common/forms/account-form": [
         "libs/common/forms/account-form/src/index.ts"
       ],
-      "backend/address": ["libs/common/backend/address/src"],
-      "backend/address/*": ["libs/common/backend/address/src/*"],
-      "backend/wage-tiers": ["libs/common/backend/wage-tiers/src"],
-      "backend/wage-tiers/*": ["libs/common/backend/wage-tiers/src/*"],
-      "@suite/modules/billing": ["libs/modules/billing/src/index.ts"],
+      "backend/address": [
+        "libs/common/backend/address/src"
+      ],
+      "backend/address/*": [
+        "libs/common/backend/address/src/*"
+      ],
+      "backend/wage-tiers": [
+        "libs/common/backend/wage-tiers/src"
+      ],
+      "backend/wage-tiers/*": [
+        "libs/common/backend/wage-tiers/src/*"
+      ],
+      "@suite/modules/billing": [
+        "libs/modules/billing/src/index.ts"
+      ],
       "@suite/common/tables/table-backend": [
         "libs/common/tables/table-backend/src/index.ts"
       ],
-      "backend/employess": ["libs/common/backend/employess/src"],
-      "backend/employess/*": ["libs/common/backend/employess/src/*"],
+      "backend/employess": [
+        "libs/common/backend/employess/src"
+      ],
+      "backend/employess/*": [
+        "libs/common/backend/employess/src/*"
+      ],
       "@suite/common/forms/team-form": [
         "libs/common/forms/team-form/src/index.ts"
       ],
-      "@suite/cdk/dialog": ["libs/cdk/dialog/src/index.ts"],
+      "@suite/cdk/dialog": [
+        "libs/cdk/dialog/src/index.ts"
+      ],
       "@suite/common/forms/dynamic-form": [
         "libs/common/forms/dynamic-form/src/index.ts"
+      ],
+      "backend/subjects": [
+        "libs/common/backend/subjects/src"
+      ],
+      "backend/subjects/*": [
+        "libs/common/backend/subjects/src/*"
       ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

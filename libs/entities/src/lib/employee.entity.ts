@@ -1,9 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, ManyToMany, JoinTable } from 'typeorm';
 import { IsString, IsNotEmpty, IsEnum, IsBoolean, MaxLength, IsEmail, IsDate, IsDateString, IsMobilePhone, MinLength, IsOptional } from 'class-validator';
 import { EmployeeType, EmployeeStatus } from '@suite/interfaces';
 import { WageTier } from './entities';
 import { ApiModelPropertyOptional, ApiModelProperty } from '@nestjs/swagger';
 import { CrudValidationGroups } from '@nestjsx/crud';
+import { Subject } from './subject.entity';
 
 const { CREATE, UPDATE } = CrudValidationGroups;
 
@@ -168,5 +169,9 @@ export class Employee {
   @ManyToOne(() => WageTier, (wage_tier: WageTier) => wage_tier.employees, { nullable: true, onDelete: 'NO ACTION', onUpdate: 'NO ACTION' })
   @JoinColumn()
   wageTier: WageTier | null;
+
+  @ManyToMany(type => Subject)
+  @JoinTable()
+  subjects: Subject[]
 
 }
