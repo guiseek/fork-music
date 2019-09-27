@@ -1,2 +1,6 @@
 <p>services works!</p>
-<suite-dynamic-form [questions]="questions"></suite-dynamic-form>
+<suite-dynamic-form [fields]="regConfig" (submit)="submit($event)">
+</suite-dynamic-form>
+<div class="margin-top">
+  {{ form.value | json }}
+</div>

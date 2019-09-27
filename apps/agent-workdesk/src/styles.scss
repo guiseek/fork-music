@@ -5,6 +5,8 @@
 
 // Plus imports for other components in your app.
 @import './../../../libs/nav/sidenav/src/lib/sidenav.component-theme.scss';
+@import './../../../libs/cdk/dialog/src/lib/dialog.component.theme.scss';
+
 
 $custom-typography: mat-typography-config(
   $font-family: 'sofia-pro'
@@ -31,6 +33,7 @@ $ts-theme: mat-light-theme(
 @include angular-material-theme($ts-theme);
 
 @include suite-sidenav-component-theme($ts-theme);
+@include suite-dialog-theme($ts-theme);
 /* You can add global styles to this file, and also import other style files */
 
 $background: map-get($ts-theme, background);
@@ -86,6 +89,23 @@ a {
 }
 .justify-around {
   justify-content: space-around;  
+}
+.margin-top {
+  margin-top: 15px;
+}
+.margin-left {
+  margin-left: 10px;
+}
+.radio-label-padding {
+  padding-right: 10px;
+  color: grey;
+}
+.form {
+  margin-left: 10px;
+  border: 2px solid lightgray;
+  width: 600px;
+  padding-left: 5px;
+  margin-top: 10px;
 }
 // html, body { height: 100%; }
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

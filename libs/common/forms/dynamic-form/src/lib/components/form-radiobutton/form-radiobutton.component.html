@@ -1,0 +1,8 @@
+<div class="w-full margin-top" [formGroup]="group">
+  <label *ngIf="field.label" class="radio-label-padding">{{ field.label }}</label>
+  <mat-radio-group class="flex-row gap" [formControlName]="field.name">
+    <mat-radio-button *ngFor="let item of options" [value]="item.value">{{
+      item.viewValue
+    }}</mat-radio-button>
+  </mat-radio-group>
+</div>

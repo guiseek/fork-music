@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeBr from '@angular/common/locales/pt';
+import localeBrExtra from '@angular/common/locales/extra/br';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import {
@@ -10,6 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptor, AuthGuard, AuthService } from '@suite/auth/shared/auth';
 import { CoreModule } from '@suite/common/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+
+registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
 
 @NgModule({
   declarations: [AppComponent],
@@ -69,6 +74,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
     // AuthService,
     // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor }
   ],

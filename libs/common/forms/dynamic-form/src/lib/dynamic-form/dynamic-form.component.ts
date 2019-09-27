@@ -1,26 +1,78 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { QuestionControlService } from '../question-control.service';
-import { FormGroup } from '@angular/forms';
-import { QuestionBase } from '../question-base';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output
+} from "@angular/core";
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl
+} from "@angular/forms";
+import { FormField } from '../interfaces/form-field.interface';
 
 @Component({
   selector: 'suite-dynamic-form',
   templateUrl: './dynamic-form.component.html',
-  styleUrls: ['./dynamic-form.component.scss'],
-  providers: [QuestionControlService]
+  styleUrls: ['./dynamic-form.component.scss']
 })
 export class DynamicFormComponent implements OnInit {
-  @Input() questions: QuestionBase<any>[] = [];
-  form: FormGroup;
-  payLoad = '';
+  @Input() fields: FormField[] = [];
 
-  constructor(private qcs: QuestionControlService) { }
+  @Output() submit: EventEmitter<any> = new EventEmitter<any>();
+
+  form: FormGroup;
+
+  get value() {
+    return this.form.value;
+  }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.form = this.qcs.toFormGroup(this.questions);
+    this.form = this.createControl();
   }
 
-  onSubmit() {
-    this.payLoad = JSON.stringify(this.form.value);
+  onSubmit(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (this.form.valid) {
+      this.submit.emit(this.form.value);
+    } else {
+      this.validateAllFormFields(this.form);
+    }
+  }
+
+  createControl() {
+    const group = this.fb.group({});
+    this.fields.forEach(field => {
+      if (field.type === "button") return;
+      const control = this.fb.control(
+        field.value,
+        this.bindValidations(field.validations || [])
+      );
+      group.addControl(field.name, control);
+    });
+    return group;
+  }
+
+  bindValidations(validations: any) {
+    if (validations.length > 0) {
+      const validList = [];
+      validations.forEach(valid => {
+        validList.push(valid.validator);
+      });
+      return Validators.compose(validList);
+    }
+    return null;
+  }
+
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      control.markAsTouched({ onlySelf: true });
+    });
   }
 }

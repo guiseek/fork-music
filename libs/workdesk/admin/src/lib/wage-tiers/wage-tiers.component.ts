@@ -1,10 +1,13 @@
 import { Component, OnInit, ViewChild, AfterViewInit, TemplateRef } from '@angular/core';
 import { HttpDatabaseService } from '@suite/common/core';
 import { IWageTier } from '@suite/interfaces';
-import { MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 import { merge, of, Subject, BehaviorSubject } from 'rxjs';
 import { startWith, switchMap, map, catchError } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { DialogService } from '@suite/cdk/dialog';
+import { DialogFormComponent } from '@suite/ui-kit';
+import { wageTierFormFields } from '@suite/common/forms/resources';
 
 const ENDPOINT = '/api/wage-tiers'
 
@@ -30,6 +33,8 @@ export class WageTiersComponent implements AfterViewInit {
   constructor(
     private database: HttpDatabaseService,
     private dialog: MatDialog,
+    private dialogService: DialogService,
+    private snack: MatSnackBar,
     private _fb: FormBuilder
   ) {
     this.wageForm = this._fb.group({
@@ -45,15 +50,36 @@ export class WageTiersComponent implements AfterViewInit {
     console.table(data)
   }
   add() {
+    const ref = this.dialogService.open(
+      DialogFormComponent, {
+        data: wageTierFormFields,
+        header: {
+          title: 'Faixa salarial',
+          subtitle: 'Agrupe despesas com salários em faixas',
+        },
+        draggable: true,
+        hasBackdrop: true
+      }
+    )
+    const sub = ref.afterClosed().subscribe((result) => {
+      if (result) {
+        const save$ = this.database.post(ENDPOINT, result)
+          .subscribe((response) => {
+            this.openSnack('Salvo!')
+            save$.unsubscribe()
+          })
+        sub.unsubscribe()
+      }
+    })
   }
   openForm(data?) {
     this.wageForm.patchValue(data || {})
     const ref = this.dialog.open(
       this.dialogForm, {
-        data: {
-          title: data ? 'Alterar' : 'Adicionar'
-        }
+      data: {
+        title: data ? 'Alterar' : 'Adicionar'
       }
+    }
     )
     const sub = ref.afterClosed().subscribe((value) => {
       console.log(value)
@@ -66,6 +92,13 @@ export class WageTiersComponent implements AfterViewInit {
       sub.unsubscribe()
     })
 
+  }
+  openSnack(message: string) {
+    const ref = this.snack.open(message, 'Recarregar', { duration: 5000 })
+    const sub = ref.onAction().subscribe(() => {
+      this.refresh.next(true)
+      sub.unsubscribe()
+    })
   }
   ngAfterViewInit() {
     console.log('dialogForm: ', this.dialogForm)

@@ -11,7 +11,7 @@ export const database: TypeOrmModuleOptions = {
   database: 'ticket-system',
   // database: 'db-system',
   entities: [...USER_ENTITIES, ...ENTITIES],
-  synchronize: false
+  synchronize: true
 }
 export const environment = {
   production: false

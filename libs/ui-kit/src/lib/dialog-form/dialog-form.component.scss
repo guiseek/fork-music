@@ -1,0 +1,27 @@
+:host {
+  padding-top: 16px;
+  padding-bottom: 32px;
+  display: block;
+}
+::ng-deep suite-dynamic-form {
+  display: flex;
+  height: 100%;
+  & > form {
+    flex: 1;
+  }
+  suite-form-button:last-child {
+    position: absolute;
+    // width: 100%;
+    bottom: 0;
+    right: 0;
+    button {
+      padding: 8px 24px;
+      border-radius: 16px 0 0;
+      opacity: 0.6;
+      transition: opacity 200ms ease-in-out;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

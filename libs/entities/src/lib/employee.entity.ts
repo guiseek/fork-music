@@ -1,8 +1,11 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { IsString, IsNotEmpty, IsEnum, IsBoolean, MaxLength, IsEmail, IsDate, IsDateString, IsMobilePhone } from 'class-validator';
-import { EmployeeType } from '@suite/interfaces';
+import { IsString, IsNotEmpty, IsEnum, IsBoolean, MaxLength, IsEmail, IsDate, IsDateString, IsMobilePhone, MinLength, IsOptional } from 'class-validator';
+import { EmployeeType, EmployeeStatus } from '@suite/interfaces';
 import { WageTier } from './entities';
 import { ApiModelPropertyOptional, ApiModelProperty } from '@nestjs/swagger';
+import { CrudValidationGroups } from '@nestjsx/crud';
+
+const { CREATE, UPDATE } = CrudValidationGroups;
 
 @Entity('employees')
 // @Index('fk_employees_wage_tiers_idx', ['wageTier',])
@@ -61,24 +64,25 @@ export class Employee {
   })
   lastName: string;
 
-
   @IsEmail({ require_tld: true }, { message: 'Email inválido' })
   @IsNotEmpty({ message: 'Email obrigatório' })
   @MaxLength(100, { message: 'Máximo de 100 caracteres' })
   @Column({
     type: 'varchar',
     nullable: false,
-    // unique: true,
+    unique: true,
     length: 100,
     name: 'email'
   })
   email: string;
 
-  @IsMobilePhone('pt-BR', {
-    message: 'número inválido'
-  })
+  // @IsMobilePhone('pt-BR', {
+  //   message: 'número inválido'
+  // })
+  @IsOptional({ groups: [UPDATE] })
   @IsNotEmpty({ message: 'Celular obrigatório' })
-  @MaxLength(15, { message: 'Máximo de 15 caracteres' })
+  @MinLength(9, { message: 'Mínimo de 9 digitos' })
+  @MaxLength(15, { message: 'Máximo de 15 digitos' })
   @Column({
     type: 'varchar',
     nullable: true,
@@ -87,26 +91,30 @@ export class Employee {
   })
   mobilePhone: string;
 
-
-  @MaxLength(15, { message: 'Máximo de 15 caracteres' })
+  // @MinLength(8, { message: 'Mínimo de 8 digitos', always: false })
+  @MaxLength(15, { message: 'Máximo de 15 digitos' })
+  @IsOptional({ groups: [CREATE, UPDATE] })
   @Column({
     type: 'varchar',
     nullable: true,
+    default: '',
     length: 15,
     name: 'home_phone'
   })
-  homePhone: string;
+  homePhone: string | null;
 
 
+  @IsOptional({ groups: [CREATE, UPDATE] })
   @IsDateString({ message: 'Data inválida' })
   @Column({
     type: 'datetime',
     nullable: true,
     name: 'birth_date'
   })
-  birthDate: Date;
+  birthDate: Date | null;
 
 
+  @IsOptional({ groups: [UPDATE] })
   @IsDateString({ message: 'Data inválida' })
   @Column({
     type: 'datetime',
@@ -126,10 +134,10 @@ export class Employee {
     type: 'enum',
     nullable: true,
     default: 'Active',
-    enum: ['Active', 'Inactive', 'Prospective'],
+    enum: EmployeeStatus,
     name: 'status'
   })
-  status: string;
+  status: string | EmployeeStatus;
 
 
   @Column({

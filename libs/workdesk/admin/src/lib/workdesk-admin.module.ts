@@ -15,7 +15,7 @@ import { ToolbarModule } from '@suite/nav/toolbar';
 import { SidenavModule } from '@suite/nav/sidenav';
 
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatGridListModule, MatMenuModule, MatIconModule, MatCardModule, MatButtonModule, MatSidenavModule, MatTableModule, MatPaginatorModule, MatSortModule, MatDialogModule, MatProgressSpinnerModule, MatFormFieldModule, MatInputModule, MatToolbarModule } from '@angular/material';
+import { MatGridListModule, MatMenuModule, MatIconModule, MatCardModule, MatButtonModule, MatSidenavModule, MatTableModule, MatPaginatorModule, MatSortModule, MatDialogModule, MatProgressSpinnerModule, MatFormFieldModule, MatInputModule, MatToolbarModule, MatSnackBarModule } from '@angular/material';
 import { NavigatorModule } from '@suite/nav/navigator';
 import { AddressFormModule } from '@suite/common/forms/address-form';
 import { DialogModule } from '@suite/cdk/dialog';
@@ -30,6 +30,7 @@ import { WageTiersComponent } from './wage-tiers/wage-tiers.component';
 import { EmployeeResolverService, CoreModule } from '@suite/common/core';
 import { HttpClientModule } from '@angular/common/http';
 import { DynamicFormModule } from '@suite/common/forms/dynamic-form';
+import { UiKitModule } from '@suite/ui-kit';
 
 const modules = [
   LayoutModule,
@@ -44,6 +45,7 @@ const modules = [
   MatButtonModule,
   MatDialogModule,
   MatTableModule,
+  MatSnackBarModule,
   MatPaginatorModule,
   MatSortModule,
   MatProgressSpinnerModule,
@@ -61,6 +63,7 @@ const modules = [
     AddressFormModule,
     BillingModule,
     DialogModule,
+    UiKitModule,
     DynamicFormModule,
     TableBackendModule,
     NavigatorModule.forRoot(adminMenu),
