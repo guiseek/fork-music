@@ -14,6 +14,7 @@ export class TableBackendDataSource<T = any> extends DataSource<T> {
   private dataSubject = new BehaviorSubject<T[]>([]);
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
+  public data
   public loading$ = this.loadingSubject.asObservable();
   public resultsLength = 0
   constructor(
@@ -39,8 +40,6 @@ export class TableBackendDataSource<T = any> extends DataSource<T> {
     // filter?: Subject<string>,
     mutations: FilterMutations = {}
   ) {
-    console.log('paginator: ', paginator)
-    console.log('sort: ', sort)
     // const mutations = []
     let { filter, refresh } = mutations
     // if (filter) {
@@ -66,10 +65,19 @@ export class TableBackendDataSource<T = any> extends DataSource<T> {
   request(endpoint: string, params: HttpParams) {
     this.loadingSubject.next(true)
     return this.http.get(endpoint, { params }).pipe(
-      map((response: { data: any[], total: number }) => {
+      // map((response: { data: any[], total: number }) => {
+      map((response: any) => {
         this.loadingSubject.next(false)
-        this.resultsLength = response.total
-        return response.data
+        // this.resultsLength = response.total
+        const { data, total } = response
+        if (data && total) {
+          this.data = data
+          this.resultsLength = response.total
+          return data
+        }
+        console.table(response)
+        this.data = response
+        return response
       }),
       catchError((error) => {
         this.loadingSubject.next(false)

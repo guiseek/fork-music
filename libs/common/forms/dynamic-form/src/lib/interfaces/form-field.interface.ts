@@ -11,6 +11,11 @@ export interface FormField {
   name?: string;
   inputType?: string;
   options?: string[] | FormFieldOption[];
+  asyncOptions?: {
+    endpoint: string;
+    value: string;
+    viewValue: string;
+  }
   collections?: any;
   type: string;
   value?: any;

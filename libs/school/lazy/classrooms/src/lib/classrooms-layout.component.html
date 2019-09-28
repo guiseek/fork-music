@@ -1,0 +1,34 @@
+<mat-toolbar class="mat-elevation-z1">
+  Salas de aulas
+  <div fxFlex fxFill></div>
+  <button mat-button type="button" (click)="openTypes()">
+    Abrir tipos de classe
+  </button>
+  <!-- <a mat-fab routerLink="novo">
+    <mat-icon>add</mat-icon>
+  </a> -->
+</mat-toolbar>
+<div fxLayout="row" fxLayoutGap="4px">
+  <div fxFlex>
+    <router-outlet></router-outlet>
+
+    <!-- <ng-container *ngIf="(types$ | async) as options">
+      <suite-dynamic-form
+        [fields]="options"
+        (submit)="onSubmit($event)"
+      ></suite-dynamic-form>
+    </ng-container> -->
+  </div>
+  <div fxFlex="300px">
+    <mat-card>
+      <button mat-button type="button" (click)="addClassType()">
+        Adicionar tipo de classe
+      </button>
+      <suite-table-backend
+        endpoint="/api/school/classroom-types"
+        [columns]="columns"
+        [refresh]="refresh"
+      ></suite-table-backend>
+    </mat-card>
+  </div>
+</div>

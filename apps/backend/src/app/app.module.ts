@@ -11,6 +11,8 @@ import { AddressModule } from 'backend/address';
 import { WageTiersModule } from 'backend/wage-tiers';
 import { EmployeesModule } from 'backend/employess';
 import { SubjectsModule } from 'backend/subjects';
+import { SchoolModule } from 'backend/school';
+
 
 // ticket-system
 @Module({
@@ -22,7 +24,8 @@ import { SubjectsModule } from 'backend/subjects';
     LocationModule,
     WageTiersModule,
     EmployeesModule,
-    SubjectsModule
+    SubjectsModule,
+    SchoolModule
   ],
   controllers: [AppController],
   providers: [AppService],

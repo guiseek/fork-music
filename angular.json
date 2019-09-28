@@ -1204,6 +1204,37 @@
         }
       },
       "schematics": {}
+    },
+    "school-lazy-classrooms": {
+      "projectType": "library",
+      "root": "libs/school/lazy/classrooms",
+      "sourceRoot": "libs/school/lazy/classrooms/src",
+      "prefix": "school",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/school/lazy/classrooms/tsconfig.lib.json",
+              "libs/school/lazy/classrooms/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/school/lazy/classrooms/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/school/lazy/classrooms/jest.config.js",
+            "tsConfig": "libs/school/lazy/classrooms/tsconfig.spec.json",
+            "setupFile": "libs/school/lazy/classrooms/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

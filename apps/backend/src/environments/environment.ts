@@ -1,5 +1,5 @@
 import { USER_ENTITIES } from 'auth/backend/users';
-import { ENTITIES } from '@suite/entities';
+import { ENTITIES, SCHOOL_ENTITIES } from '@suite/entities';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 export const database: TypeOrmModuleOptions = {
@@ -8,9 +8,9 @@ export const database: TypeOrmModuleOptions = {
   port: 3306,
   username: 'root',
   password: 'root',
-  database: 'ticket-system',
-  // database: 'db-system',
-  entities: [...USER_ENTITIES, ...ENTITIES],
+  // database: 'ticket-system',
+  database: 'myschool',
+  entities: [...USER_ENTITIES, ...ENTITIES, ...SCHOOL_ENTITIES],
   synchronize: true
 }
 export const environment = {

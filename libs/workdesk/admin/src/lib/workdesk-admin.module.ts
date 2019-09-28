@@ -15,7 +15,23 @@ import { ToolbarModule } from '@suite/nav/toolbar';
 import { SidenavModule } from '@suite/nav/sidenav';
 
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatGridListModule, MatMenuModule, MatIconModule, MatCardModule, MatButtonModule, MatSidenavModule, MatTableModule, MatPaginatorModule, MatSortModule, MatDialogModule, MatProgressSpinnerModule, MatFormFieldModule, MatInputModule, MatToolbarModule, MatSnackBarModule } from '@angular/material';
+import {
+  MatGridListModule,
+  MatMenuModule,
+  MatIconModule,
+  MatCardModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatDialogModule,
+  MatProgressSpinnerModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatToolbarModule,
+  MatSnackBarModule
+} from '@angular/material';
 import { NavigatorModule } from '@suite/nav/navigator';
 import { AddressFormModule } from '@suite/common/forms/address-form';
 import { DialogModule } from '@suite/cdk/dialog';
@@ -50,7 +66,7 @@ const modules = [
   MatSortModule,
   MatProgressSpinnerModule,
   FlexLayoutModule
-]
+];
 
 @NgModule({
   imports: [
@@ -70,7 +86,9 @@ const modules = [
     RouterModule.forChild([
       /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
       {
-        path: '', component: AdminLayoutComponent, children: [
+        path: '',
+        component: AdminLayoutComponent,
+        children: [
           { path: '', component: OverviewComponent },
           { path: 'calendario', component: CalendarComponent },
           { path: 'notificacoes', component: NotificationsComponent },
@@ -81,18 +99,37 @@ const modules = [
           { path: 'niveis-salariais', component: WageTiersComponent },
           {
             path: 'equipe/:id',
-            loadChildren: () => import('./team/employee-page/employee-page.module').then(m => m.EmployeePageModule),
+            loadChildren: () =>
+              import('./team/employee-page/employee-page.module').then(
+                m => m.EmployeePageModule
+              ),
             resolve: {
               employee: EmployeeResolverService
             }
+          },
+          {
+            path: 'salas',
+            loadChildren: () =>
+              import('@suite/school/lazy/classrooms').then(
+                module => module.ClassroomsModule
+              )
           }
         ]
       }
     ])
   ],
   providers: [EmployeeResolverService],
-  declarations: [AdminLayoutComponent, OverviewComponent, NotificationsComponent, TeamComponent, ServicesComponent, CalendarComponent, AccountComponent, SettingsComponent, CustomersComponent, WageTiersComponent]
+  declarations: [
+    AdminLayoutComponent,
+    OverviewComponent,
+    NotificationsComponent,
+    TeamComponent,
+    ServicesComponent,
+    CalendarComponent,
+    AccountComponent,
+    SettingsComponent,
+    CustomersComponent,
+    WageTiersComponent
+  ]
 })
-export class WorkdeskAdminModule {
-
-}
+export class WorkdeskAdminModule {}

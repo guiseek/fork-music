@@ -5,3 +5,24 @@
     }}</mat-option>
   </mat-select>
 </mat-form-field>
+
+<!-- <mat-form-field class="w-full margin-top" [formGroup]="group">
+  <mat-select [placeholder]="field.label" [formControlName]="field.name">
+    <ng-container *ngIf="field.asyncOptions; else syncOptions">
+      <ng-container
+        *ngIf="(getAsyncOptions(field.asyncOptions) | async) as aoptions"
+      >
+        <mat-option *ngFor="let item of aoptions" [value]="item.value">{{
+          item.viewValue
+        }}</mat-option>
+      </ng-container>
+    </ng-container>
+  </mat-select>
+</mat-form-field>
+<ng-template #syncOptions>
+  <mat-option
+    *ngFor="let item of getOptions(field.options)"
+    [value]="item.value"
+    >{{ item.viewValue }}</mat-option
+  >
+</ng-template> -->

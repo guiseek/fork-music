@@ -106,6 +106,9 @@
     },
     "common-forms-dynamic-form": {
       "tags": ["shared-module"]
+    },
+    "school-lazy-classrooms": {
+      "tags": []
     }
   }
 }

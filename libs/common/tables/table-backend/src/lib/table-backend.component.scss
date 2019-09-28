@@ -9,6 +9,13 @@ table {
     opacity: 1;
   }
 }
+
+.mat-column-select {
+  max-width: 40px;
+}
+.mat-column-id {
+  max-width: 50px;
+}
 .mat-column-delete {
   max-width: 30px;
 }

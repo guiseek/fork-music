@@ -1,22 +1,29 @@
-import { Component, OnInit, ViewChild, AfterViewInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input, EventEmitter, Output, OnDestroy } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { HttpClient } from '@angular/common/http';
 import { TableBackendDataSource } from './table-backend-data-source';
-import { merge, BehaviorSubject, Subject } from 'rxjs';
-import { startWith } from 'rxjs/operators';
+import { BehaviorSubject, Subject, Subscription } from 'rxjs';
+import { SelectionModel } from '@angular/cdk/collections';
+import { map, debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'suite-table-backend',
   templateUrl: './table-backend.component.html',
   styleUrls: ['./table-backend.component.scss']
 })
-export class TableBackendComponent implements OnInit, AfterViewInit {
+export class TableBackendComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
+  selection = new SelectionModel<any>(true, []);
+
   @Input() filter: BehaviorSubject<string>
   @Input() refresh: Subject<boolean>
+
+  @Input() selectable: boolean
+  @Output() selectionChanged = new EventEmitter()
+
   @Input() editable: boolean
   @Output() edit = new EventEmitter()
 
@@ -29,14 +36,12 @@ export class TableBackendComponent implements OnInit, AfterViewInit {
   @Input() columns
   displayedColumns = [];
 
-  // columns = ['id', 'name', 'actions']
   dataSource: TableBackendDataSource
-  resultsLength
+
+  subscriptions: Subscription[] = []
   constructor(
     private http: HttpClient
-  ) { 
-    console.log('columns: ', this.columns)
-  }
+  ) { }
 
   editClicked(data) {
     console.table(data)
@@ -46,10 +51,11 @@ export class TableBackendComponent implements OnInit, AfterViewInit {
     if (!this.filter) {
       this.filter = new BehaviorSubject<string>('')
     }
-    console.log('columns: ', this.columns)
-    console.log('endpoint: ', this.endpoint)
     this.displayedColumns = this.columns.map(c => c.columnDef);
-    console.log('this.edit: ', this.edit)
+
+    if (this.selectable) {
+      this.displayedColumns.unshift('select')
+    }
     if (this.editable) {
       this.displayedColumns.push('edit')
     }
@@ -59,8 +65,6 @@ export class TableBackendComponent implements OnInit, AfterViewInit {
     this.dataSource = new TableBackendDataSource(this.http)
   }
   ngAfterViewInit() {
-    // console.log('endpoint: ', this.endpoint)
-    // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0)
     const mutations = {
       refresh: this.refresh,
       // filter: this.filter
@@ -71,12 +75,39 @@ export class TableBackendComponent implements OnInit, AfterViewInit {
       this.sort,
       mutations
     )
-    // this.dataSource.load('', 'id')
-    // merge(
-    //   this.sort.sortChange,
-    //   this.paginator.page
-    // ).pipe(
-    //   startWith({})
-    // )
+
+    console.log('this.selectable: ', this.selectable)
+    if (this.selectable) {
+      const sub = this.selection.changed.pipe(
+        debounceTime(1000)
+      ).subscribe((v) => this.selectionChanged.emit(v))
+
+      this.subscriptions.push(
+        sub
+      )
+    }
+  }
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data && this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: any): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+  }
+  ngOnDestroy() {
+    return this.subscriptions && this.subscriptions.map(s => s.unsubscribe())
   }
 }

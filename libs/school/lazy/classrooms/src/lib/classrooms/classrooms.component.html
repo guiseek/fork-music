@@ -1,0 +1,12 @@
+<button mat-button (click)="addClassroom()">
+  Adicionar
+</button>
+<mat-card>
+  <suite-table-backend
+    endpoint="/api/school/classrooms"
+    [columns]="columns"
+    [refresh]="refresh"
+    selectable="true"
+    (selectionChanged)="onSelection($event)"
+  ></suite-table-backend>
+</mat-card>
