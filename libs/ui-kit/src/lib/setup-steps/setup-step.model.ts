@@ -4,4 +4,5 @@ export class SetupStep {
   hasError = false
   label: string
   optional: boolean
+  data?: any
 }

@@ -1,0 +1,93 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async) === false"
+  >
+    <mat-toolbar>Menu</mat-toolbar>
+    <ui-setup-steps></ui-setup-steps>
+    <!-- <mat-nav-list>
+      <a mat-list-item href="#">Link 1</a>
+      <a mat-list-item href="#">Link 2</a>
+      <a mat-list-item href="#">Link 3</a>
+    </mat-nav-list> -->
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>quick-start-admin</span>
+    </mat-toolbar>
+
+    <ui-setup-steps #stepper linear (selectionChange)="changeStep($event)">
+      <cdk-step>
+        <suite-dynamic-form [fields]="steps[0].data" (submit)="onSubmit($event)"></suite-dynamic-form>
+      </cdk-step>
+      <cdk-step>
+        <suite-table-backend
+          [endpoint]="steps[1].data.endpoint"
+          [columns]="steps[1].data.columns"
+        ></suite-table-backend>
+        <!-- <suite-dynamic-form [fields]="steps[0].data"></suite-dynamic-form> -->
+      </cdk-step>
+      <!-- <cdk-step *ngFor="let step of steps">
+        <suite-dynamic-form [fields]="step.data"></suite-dynamic-form>
+      </cdk-step> -->
+      <cdk-step> <p>This is any content of "Step 2"</p> </cdk-step>
+    </ui-setup-steps>
+    <!-- <mat-horizontal-stepper #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Fill out your name</ng-template>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Last name, First name"
+              formControlName="firstCtrl"
+              required
+            />
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Fill out your address</ng-template>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Address"
+              formControlName="secondCtrl"
+              required
+            />
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done.
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper> -->
+    <!-- Add Content Here -->
+    <!-- <router-outlet></router-outlet> -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -79,7 +79,8 @@
       "backend/school/*": ["libs/common/backend/school/src/*"],
       "@suite/school/lazy/classrooms": [
         "libs/school/lazy/classrooms/src/index.ts"
-      ]
+      ],
+      "@suite/quick-start/admin": ["libs/quick-start/admin/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

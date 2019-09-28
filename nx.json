@@ -109,6 +109,9 @@
     },
     "school-lazy-classrooms": {
       "tags": []
+    },
+    "quick-start-admin": {
+      "tags": ["private-module"]
     }
   }
 }

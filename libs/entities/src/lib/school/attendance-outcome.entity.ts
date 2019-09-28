@@ -14,6 +14,10 @@ export class AttendanceOutcome {
   })
   id: number;
 
+  /**
+   * Um conjunto de valores possíveis é:
+   * "em andamento", "concluído com êxito", "concluído parcialmente" e "não concluiu a aula".
+   */
   @Column({
     type: 'varchar',
     nullable: false,

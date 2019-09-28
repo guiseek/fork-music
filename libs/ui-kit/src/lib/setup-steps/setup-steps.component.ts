@@ -6,11 +6,13 @@ import { SetupStep } from './setup-step.model';
   selector: 'ui-setup-steps',
   templateUrl: './setup-steps.component.html',
   styleUrls: ['./setup-steps.component.scss'],
-  providers: [{ provide: CdkStepper, useExisting: SetupSteps }]
+  // providers: []
+  providers: [
+    { provide: CdkStepper, useExisting: SetupSteps }
+  ]
 })
 export class SetupSteps extends CdkStepper {
-  
-  @Input() setupSteps: SetupStep[] = []
+  // @Input() setupSteps: SetupStep[] = []
 
   onClick(index: number): void {
     this.selectedIndex = index

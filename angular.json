@@ -1235,6 +1235,37 @@
           "styleext": "scss"
         }
       }
+    },
+    "quick-start-admin": {
+      "projectType": "library",
+      "root": "libs/quick-start/admin",
+      "sourceRoot": "libs/quick-start/admin/src",
+      "prefix": "quick-start",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/quick-start/admin/tsconfig.lib.json",
+              "libs/quick-start/admin/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/quick-start/admin/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/quick-start/admin/jest.config.js",
+            "tsConfig": "libs/quick-start/admin/tsconfig.spec.json",
+            "setupFile": "libs/quick-start/admin/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

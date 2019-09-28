@@ -19,6 +19,7 @@ import { ClassroomTypesService } from './services/classroom-types.service';
 import { ClassroomSchedulesService } from './services/classroom-schedules.service';
 import { ClassroomTypesController } from './controllers/classrooms/classroom-types.controller';
 import { ClassroomSchedulesController } from './controllers/classrooms/classroom-schedules.controller';
+import { CategoriesController } from './controllers/categories.controller';
 
 @Module({
   imports: [
@@ -58,7 +59,8 @@ import { ClassroomSchedulesController } from './controllers/classrooms/classroom
     StudentsController,
     ContactPersonsController,
     ClassroomTypesController,
-    ClassroomSchedulesController
+    ClassroomSchedulesController,
+    CategoriesController
   ],
 })
 export class SchoolModule {}

@@ -4,9 +4,13 @@
 @import url('https://use.typekit.net/jnq3uxd.css');
 
 // Plus imports for other components in your app.
+@import './../../../libs/ui-styles/_breakpoints.scss';
+@import './../../../libs/ui-styles/helpers';
 @import './../../../libs/nav/sidenav/src/lib/sidenav.component-theme.scss';
 @import './../../../libs/cdk/dialog/src/lib/dialog.component.theme.scss';
-
+@import './../../../libs/workdesk/admin/src/lib/quick-features/quick-features.component.scss';
+@import './../../../libs/ui-styles/material.theme';
+@import './../../../libs/ui-styles/cards.theme';
 
 $custom-typography: mat-typography-config(
   $font-family: 'sofia-pro'
@@ -34,6 +38,10 @@ $ts-theme: mat-light-theme(
 
 @include suite-sidenav-component-theme($ts-theme);
 @include suite-dialog-theme($ts-theme);
+
+@include suite-material-theme($ts-theme);
+@include suite-cards-theme($ts-theme);
+
 /* You can add global styles to this file, and also import other style files */
 
 $background: map-get($ts-theme, background);

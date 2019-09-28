@@ -113,9 +113,18 @@ const modules = [
               import('@suite/school/lazy/classrooms').then(
                 module => module.ClassroomsModule
               )
-          }
+          },
+          { path: 'recursos', loadChildren: () => import('./quick-features/quick-features.module').then(m => m.QuickFeaturesModule) },
         ]
+      },
+      {
+        path: 'quick-start',
+        loadChildren: () =>
+          import('@suite/quick-start/admin').then(
+            module => module.QuickStartAdminModule
+          )
       }
+      
     ])
   ],
   providers: [EmployeeResolverService],
