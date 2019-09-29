@@ -8,22 +8,18 @@ export class TableBackendFormatCellPipe implements PipeTransform {
     private currencyPipe: CurrencyPipe
   ) {}
   transform(value: any, format: string) {
-    console.log('format', format)
-    console.log('value', value)
-    if (!value) {
-      return 'not available';
+    // console.log(`%c${value == 'null'}`, 'color: red')
+    if (this.isNull(value)) {
+      return '';
     }
-
-    if (value === undefined) {
-      return 'not available';
-    }
-    // const fmt = format && format.split(':')[0]
-    // console.log('fmt: ', fmt)
     switch (format) {
       case 'date': return this.datePipe.transform(value)
       case 'currency': return Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
       // case 'currency': return this.currencyPipe.transform(value, 'BRL')
     }
     return value;
+  }
+  isNull(value: any) {
+    return value === undefined || value === null || value === 'null'
   }
 }

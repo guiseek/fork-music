@@ -1,7 +1,12 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { ContactPersonStudent } from './contact-person-student.entity';
 
-
+/**
+ * @param typeName = representa o grau parentesco do aluno.
+ * Único atributo obrigatório: `typeName`.
+ * Exemplos de valores armazenados nesta tabela são:
+ * "mãe", "pai", "irmão", "irmã" ou "tio".
+ */
 @Entity('contact_person_type')
 export class ContactPersonType {
   @PrimaryGeneratedColumn({

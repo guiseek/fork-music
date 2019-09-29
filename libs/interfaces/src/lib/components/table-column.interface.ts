@@ -3,4 +3,5 @@ export interface TableColumn {
   cell: Function
   header?: string
   format?: string
+  onClick?: Function
 }

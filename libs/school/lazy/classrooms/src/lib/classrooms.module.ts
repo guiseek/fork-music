@@ -8,8 +8,9 @@ import { ClassroomScheduleComponent } from './classroom-schedule/classroom-sched
 import { TableBackendModule } from '@suite/common/tables/table-backend';
 import { DynamicFormModule } from '@suite/common/forms/dynamic-form';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatCardModule, MatButtonModule, MatSnackBarModule, MatToolbarModule, MatIconModule, MatListModule } from '@angular/material';
+import { MatCardModule, MatButtonModule, MatSnackBarModule, MatToolbarModule, MatIconModule, MatListModule, MatMenuModule, MatTabsModule } from '@angular/material';
 import { DialogModule } from '@suite/cdk/dialog';
+import { ClassroomResolverService } from '@suite/common/core';
 
 const modules = [
   MatCardModule,
@@ -17,7 +18,9 @@ const modules = [
   MatSnackBarModule,
   MatToolbarModule,
   MatListModule,
-  MatIconModule
+  MatMenuModule,
+  MatIconModule,
+  MatTabsModule
 ]
 
 @NgModule({
@@ -32,7 +35,7 @@ const modules = [
       /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
       { path: '', component: ClassroomsLayoutComponent, children: [
         { path: '', component: ClassroomsComponent },
-        { path: ':id', component: ClassroomComponent },
+        { path: ':id', component: ClassroomComponent, resolve: { classroom: ClassroomResolverService } },
         { path: ':id/schedule', component: ClassroomScheduleComponent }
       ] }
     ])

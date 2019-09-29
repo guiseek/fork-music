@@ -4,10 +4,14 @@
   </button>
   <mat-card>
     <suite-table-backend
-      endpoint="/api/school/classrooms"
-      [columns]="columns"
-      [refresh]="refresh"
-      selectable="true"
+      [endpoint]="table.endpoint"
+      [columns]="table.columns"
+      [refresh]="table.refresh"
+      [selectable]="table.selectable"
+      [editable]="table.editable"
+      (edit)="onEdit($event)"
+      [clickable]="table.clickable"
+      (clicked)="onClick($event)"
       (selectionChanged)="onSelection($event)"
     ></suite-table-backend>
   </mat-card>

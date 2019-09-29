@@ -39,6 +39,9 @@ export class TableBackendComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() deletable: boolean
   @Output() delete = new EventEmitter()
 
+  @Input() clickable: boolean
+  @Output() clicked = new EventEmitter()
+
   @Input() select: boolean
 
   @Input() endpoint: string
@@ -55,7 +58,7 @@ export class TableBackendComponent implements OnInit, AfterViewInit, OnDestroy {
   ) { }
 
   editClicked(data) {
-    console.table(data)
+    // console.table(data)
     this.edit.emit(data)
   }
   ngOnInit() {
@@ -106,6 +109,9 @@ export class TableBackendComponent implements OnInit, AfterViewInit, OnDestroy {
         sub
       )
     }
+  }
+  onClick(row) {
+    this.clicked.emit(row)
   }
   isAllSelected() {
     const numSelected = this.selection.selected.length;

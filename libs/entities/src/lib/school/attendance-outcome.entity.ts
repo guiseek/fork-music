@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Attend } from './attend.entity';
+import { OutcomeText } from '@suite/interfaces';
 
 /**
  * Contém descrições sobre a atividade do aluno em um determinado curso.
@@ -24,7 +25,7 @@ export class AttendanceOutcome {
     length: 256,
     name: 'outcome_text'
   })
-  outcomeText: string;
+  outcomeText: OutcomeText;
 
   @OneToMany(() => Attend, attend => attend.attendanceOutcome, { onDelete: 'NO ACTION', onUpdate: 'NO ACTION' })
   attends: Attend[];

@@ -1,13 +1,16 @@
 @import '../colors/blue';
+// @import '../colors/orange';
 
-$color__sidenav-list: mat-color($custom-blue, 'contrast-300');
+$sidenav-color: $custom-blue;
 
-$background-color__sidenav-toolbar: mat-color($custom-blue, 500);
+$color__sidenav-list: mat-color($sidenav-color, 'contrast-300');
 
-$background-color__sidenav-list: mat-color($custom-blue, 500);
+$background-color__sidenav-toolbar: mat-color($sidenav-color, 500);
+
+$background-color__sidenav-list: mat-color($sidenav-color, 500);
 $background-color__sidenav-list__hover: darken($background-color__sidenav-list, 2);
 $background-color__sidenav-list__active: $background-color__sidenav-list__hover;
-$color__sidenav-list__active: mat-color($custom-blue, 'contrast-300');
+$color__sidenav-list__active: mat-color($sidenav-color, 'contrast-300');
 
 $background-color__sidenav-list__level1: darken($background-color__sidenav-list, 2.5);
 $background-color__sidenav-list__level1__hover: darken($background-color__sidenav-list__level1, 1.5);

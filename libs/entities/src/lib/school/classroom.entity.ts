@@ -5,7 +5,6 @@ import { ClassroomSchedule } from './classroom-schedule.entity';
 import { Teach } from './teach.entity';
 
 
-
 /**
  * A tabela de classes é um catálogo que contém detalhes sobre todas as classes.
  * Podemos ter várias instâncias de cada tipo de classe.

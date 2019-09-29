@@ -1,11 +1,13 @@
 @import '~@angular/material/theming';
 @import './styles/colors/blue';
+// @import './styles/colors/orange';
 
 @import url('https://use.typekit.net/jnq3uxd.css');
 
 // Plus imports for other components in your app.
 @import './../../../libs/ui-styles/_breakpoints.scss';
 @import './../../../libs/ui-styles/helpers';
+// @import './../../../libs/ui-styles/colors';
 @import './../../../libs/nav/sidenav/src/lib/sidenav.component-theme.scss';
 @import './../../../libs/cdk/dialog/src/lib/dialog.component.theme.scss';
 @import './../../../libs/workdesk/admin/src/lib/quick-features/quick-features.component.scss';
@@ -31,6 +33,12 @@ $ts-theme: mat-light-theme(
   $ts-accent,
   $ts-warn
 );
+
+// $custom_palettes: (
+//   suite-blue: $custom-blue,
+//   suite-orange: $custom-orange
+// );
+// @include suite-color-classes($custom_palettes);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component

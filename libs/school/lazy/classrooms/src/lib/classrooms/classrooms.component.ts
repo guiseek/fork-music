@@ -10,6 +10,7 @@ import { switchMap, map, finalize, tap } from 'rxjs/operators';
 import { FormFieldOption, FormField } from '@suite/common/forms/dynamic-form';
 import { DialogFormComponent } from '@suite/ui-kit';
 import { classroomResources } from '@suite/data';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'school-classrooms',
@@ -17,17 +18,25 @@ import { classroomResources } from '@suite/data';
   styleUrls: ['./classrooms.component.scss']
 })
 export class ClassroomsComponent implements OnInit {
-  public columns = [
-    { columnDef: 'id', header: '#', format: 'currency', cell: (element: any) => `${element.id}` },
-    { columnDef: 'name', header: 'Nome', cell: (element: any) => `${element.name}` },
-    { columnDef: 'startDate', header: 'Inicio', cell: (element: any) => `${element.startDate}`, format: 'date' },
-    { columnDef: 'endDate', header: 'Término', cell: (element: any) => `${element.endDate}`, format: 'date' }
-  ];
-  refresh = new Subject
+  public resources = classroomResources
+  public table = classroomResources.table
+  public dialog = classroomResources.dialog
+  public form = classroomResources.form
+  public page = classroomResources.page
+
+  // public columns = [
+  //   { columnDef: 'id', header: '#', format: 'currency', cell: (element: any) => `${element.id}` },
+  //   { columnDef: 'name', header: 'Nome', cell: (element: any) => `${element.name}` },
+  //   { columnDef: 'startDate', header: 'Inicio', cell: (element: any) => `${element.startDate}`, format: 'date' },
+  //   { columnDef: 'endDate', header: 'Término', cell: (element: any) => `${element.endDate}`, format: 'date' }
+  // ];
+  // refresh = new Subject
   types$: Observable<FormField[]>
   fields: FormField[]
   options: FormField[]
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private dialogService: DialogService,
     private database: HttpDatabaseService,
     private snack: MatSnackBar
@@ -57,12 +66,19 @@ export class ClassroomsComponent implements OnInit {
     console.log(data)
     return data
   }
-  openClassroomForm() {
+  onClick(data) {
+    console.table(data)
+    this.router.navigate([data.id], { relativeTo: this.route })
+  }
+  onEdit(data) {
+    console.log('edit:', data)
+  }
+  openClassroomForm(value = null) {
     return this.dialogService.open(
       DialogFormComponent, {
       data: {
         fields: this.fields,
-        model: null
+        model: value
       }, header: {
         title: 'Criar turma'
       },
@@ -70,6 +86,7 @@ export class ClassroomsComponent implements OnInit {
       hasBackdrop: true
     })
   }
+
   async addClassroom() {
     if (!this.fields) {
       await this.getTypes().toPromise()
@@ -84,7 +101,8 @@ export class ClassroomsComponent implements OnInit {
           ).subscribe((result) => {
             if (result) {
               console.log(result)
-              this.refresh.next(true)
+              // this.refresh.next(true)
+              this.table.refresh.next(true)
               this.snack.open(
                 `${result.name} cadastrado`,
                 'Fechar', { duration: 3000 }

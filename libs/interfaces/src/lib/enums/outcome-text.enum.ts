@@ -1,4 +1,4 @@
-export enum AttendanceOutcomeText {
+export enum OutcomeText {
   InProgress = 'InProgress',
   CompletedSuccessfully = 'CompletedSuccessfully',
   CompletedPartially = 'CompletedPartially',

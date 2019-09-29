@@ -77,9 +77,9 @@ const navTeam = {
   link: 'equipe',
 }
 const navRooms = {
-  name: 'Salas',
+  name: 'Cursos / turmas',
   icon: 'account_tree',
-  link: 'salas',
+  link: 'cursos',
 }
 const navAccount = {
   name: 'Conta',

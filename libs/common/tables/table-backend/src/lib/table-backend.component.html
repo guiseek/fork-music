@@ -33,7 +33,7 @@
     [cdkColumnDef]="column.columnDef"
   >
     <th *cdkHeaderCellDef mat-sort-header>{{ column.header }}</th>
-    <td *cdkCellDef="let row">
+    <td *cdkCellDef="let row" (click)="onClick(row)">
       {{ column.cell(row) | formatCell: column.format }}
     </td>
   </ng-container>

@@ -108,7 +108,7 @@ const modules = [
             }
           },
           {
-            path: 'salas',
+            path: 'cursos',
             loadChildren: () =>
               import('@suite/school/lazy/classrooms').then(
                 module => module.ClassroomsModule

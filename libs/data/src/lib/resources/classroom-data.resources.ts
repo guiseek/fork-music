@@ -2,7 +2,8 @@ import { Validators } from '@angular/forms';
 import { FormField } from '@suite/common/forms/dynamic-form';
 import { DialogHeader, DialogConfig } from '@suite/cdk/dialog';
 import { Subject } from 'rxjs';
-import { CardFeature } from '@suite/interfaces';
+import { CardFeature, TableConfig } from '@suite/interfaces';
+// import { fn } from 'moment';
 
 export const classroomEndpoint = '/api/school/classrooms'
 
@@ -12,6 +13,15 @@ export const classroomBackend = {
   fields: [],
   params: {
     per_page: 10
+  }
+}
+
+export const classroomPage = {
+  toolbar: {
+    text: 'Cursos',
+    actions: [
+      // { label: 'Adicionar', click: fn. }
+    ]
   }
 }
 
@@ -114,15 +124,21 @@ export const classroomDialogConfig: Partial<DialogConfig> = {
 export const classroomTable = {
   endpoint: classroomEndpoint,
   columns: [
-    { columnDef: 'id', header: '#', cell: (element: any) => `${element.id}` },
-    { columnDef: 'name', header: 'Nome', cell: (element: any) => `${element.name}` }
+    { columnDef: 'id', header: '#', format: 'currency', cell: (element: any) => `${element.id}` },
+    { columnDef: 'name', header: 'Nome', cell: (element: any) => `${element.name}`, onClick: (fn) => fn.bind(this) },
+    { columnDef: 'startDate', header: 'Inicio', cell: (element: any) => `${element.startDate}`, format: 'date' },
+    { columnDef: 'endDate', header: 'Término', cell: (element: any) => `${element.endDate}`, format: 'date' }
+    // { columnDef: 'id', header: '#', cell: (element: any) => `${element.id}` },
+    // { columnDef: 'name', header: 'Nome', cell: (element: any) => `${element.name}` }
   ],
+  refresh: new Subject,
   config: {
     paginator: {
       hidePageSize: true,
       showFirstLastButtons: false
     }
   },
+  clickable: true,
   editable: true,
   deletable: true,
   selectable: true
@@ -152,10 +168,12 @@ export const classroomHelper = {
 }
 
 export const classroomResources = {
+  endpoint: classroomEndpoint,
   backend: classroomBackend,
   card: classroomCard,
   form: classroomFormFields,
   dialog: classroomDialogConfig,
   table: classroomTable,
-  helper: classroomHelper
+  helper: classroomHelper,
+  page: classroomPage
 }

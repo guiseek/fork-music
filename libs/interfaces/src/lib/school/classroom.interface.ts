@@ -1,4 +1,7 @@
 import { IClassroomType } from './classroom-type.interface';
+import { IClassroomSchedule } from './classroom-schedule.interface';
+import { IAttend } from './attend.interface';
+import { ITeach } from './teach.interface';
 
 export interface IClassroom {
   id?: number;
@@ -8,7 +11,7 @@ export interface IClassroom {
   startDate: Date;
   endDate?: Date | null;
   completed?: boolean;
-  // attends?: Attend[];
-  // classroomSchedules: ClassroomSchedule[];
-  // teachs: Teach[];
+  attends?: IAttend[];
+  classroomSchedules: IClassroomSchedule[];
+  teachs: ITeach[];
 }
