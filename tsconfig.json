@@ -80,7 +80,8 @@
       "@suite/school/lazy/classrooms": [
         "libs/school/lazy/classrooms/src/index.ts"
       ],
-      "@suite/quick-start/admin": ["libs/quick-start/admin/src/index.ts"]
+      "@suite/quick-start/admin": ["libs/quick-start/admin/src/index.ts"],
+      "@suite/common/cards": ["libs/common/cards/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

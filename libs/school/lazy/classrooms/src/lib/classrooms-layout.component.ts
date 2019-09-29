@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { HttpDatabaseService } from '@suite/common/core';
 import { DialogService } from '@suite/cdk/dialog';
 import { DialogFormComponent, DialogTableBackendComponent } from '@suite/ui-kit';
 import { createClassroomTypeFormFields, createClassroomFormFields } from '@suite/common/forms/resources';
+import { classroomResources, classroomDialogHeader, classroomHelper } from '@suite/data';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
@@ -13,6 +14,8 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./classrooms-layout.component.scss']
 })
 export class ClassroomsLayoutComponent implements OnInit {
+  public resources = classroomResources
+  @ViewChild('classroomHelper', { static: true }) classroomHelper: TemplateRef<any>
   public columns = [
     { columnDef: 'id', header: '#', cell: (element: any) => `${element.id}` },
     { columnDef: 'name', header: 'Nome', cell: (element: any) => `${element.name}` },
@@ -28,6 +31,13 @@ export class ClassroomsLayoutComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+  }
+  openHelper() {
+    this.dialogService.open(
+      this.classroomHelper, {
+      header: classroomDialogHeader,
+      data: classroomHelper.model,
+    })
   }
   onSubmit(data) {
     console.table(data)

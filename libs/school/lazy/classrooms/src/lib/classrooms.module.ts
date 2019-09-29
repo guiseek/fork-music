@@ -8,7 +8,7 @@ import { ClassroomScheduleComponent } from './classroom-schedule/classroom-sched
 import { TableBackendModule } from '@suite/common/tables/table-backend';
 import { DynamicFormModule } from '@suite/common/forms/dynamic-form';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatCardModule, MatButtonModule, MatSnackBarModule, MatToolbarModule, MatIconModule } from '@angular/material';
+import { MatCardModule, MatButtonModule, MatSnackBarModule, MatToolbarModule, MatIconModule, MatListModule } from '@angular/material';
 import { DialogModule } from '@suite/cdk/dialog';
 
 const modules = [
@@ -16,6 +16,7 @@ const modules = [
   MatButtonModule,
   MatSnackBarModule,
   MatToolbarModule,
+  MatListModule,
   MatIconModule
 ]
 

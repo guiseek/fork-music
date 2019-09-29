@@ -34,7 +34,9 @@ export class TeamComponent implements OnInit {
   openDialogForm() {
     const ref = this.dialogService.open(
       DialogFormComponent, {
-      data: createEmployeeFormFields,
+      data: {
+        fields: createEmployeeFormFields
+      },
       header: {
         title: 'Grupos',
         subtitle: 'Agrupe usuários com permissões para conteúdos',

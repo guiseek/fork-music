@@ -5,10 +5,19 @@ import { HttpClient } from '@angular/common/http';
 import { TableBackendDataSource } from './table-backend-data-source';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
-import { map, debounceTime } from 'rxjs/operators';
+import { debounceTime } from 'rxjs/operators';
+import { TableConfig } from '@suite/interfaces';
 
+const DEFAULT_CONFIG = {
+  paginator: {
+    color: 'primary',
+    hidePageSize: false,
+    showFirstLastButtons: true
+  }
+}
 @Component({
   selector: 'suite-table-backend',
+  exportAs: 'tableBackend',
   templateUrl: './table-backend.component.html',
   styleUrls: ['./table-backend.component.scss']
 })
@@ -36,6 +45,8 @@ export class TableBackendComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() columns
   displayedColumns = [];
 
+  @Input() config: TableConfig
+
   dataSource: TableBackendDataSource
 
   subscriptions: Subscription[] = []
@@ -48,6 +59,15 @@ export class TableBackendComponent implements OnInit, AfterViewInit, OnDestroy {
     this.edit.emit(data)
   }
   ngOnInit() {
+    this.config = Object.assign(
+      {},
+      DEFAULT_CONFIG,
+      this.config
+    )
+    if (!this.refresh) {
+      this.refresh = new Subject
+    }
+
     if (!this.filter) {
       this.filter = new BehaviorSubject<string>('')
     }

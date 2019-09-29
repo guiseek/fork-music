@@ -1,0 +1,8 @@
+.list-without-margin {
+  margin-left: -16px;
+  margin-right: -16px;
+  & > .mat-list-base .mat-list-item.mat-2-line {
+    height: 0 !important;
+    margin-bottom: 6px;
+  }
+}

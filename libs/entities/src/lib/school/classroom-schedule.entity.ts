@@ -4,8 +4,10 @@ import { InstructorPresence } from './instructor-presence.entity';
 import { StudentPresence } from './student-presence.entity';
 
 /**
- * Solve default Invalid 'end_time'
- * set @@session.explicit_defaults_for_timestamp=on;
+ * Contém horários específicos para palestras e aulas.
+ * Todos os atributos na tabela são obrigatórios.
+ * O atributo classroom (classroom_id) é uma referência à tabela de classes,
+ * enquanto start_time e end_time são os horários de início e de término dessa aula específica.
  */
 @Entity('classroom_schedule')
 @Index('classroom_schedule_classroom', ['classroom'])

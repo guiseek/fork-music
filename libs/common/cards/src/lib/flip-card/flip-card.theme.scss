@@ -1,0 +1,11 @@
+@mixin suite-flip-card-theme($theme) {
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  suite-flip-card {
+    > .suite-flip-card-front,
+    > .suite-flip-card-back {
+      background: map-get($background, card);
+    }
+  }
+}

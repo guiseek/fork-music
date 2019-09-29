@@ -29,10 +29,8 @@ export class DynamicFieldDirective implements OnInit {
     private container: ViewContainerRef
   ) { }
   ngOnInit() {
-    const fieldType = (this.field.type === 'hidden') ? 'input' : this.field.type
-    console.log(fieldType)
     const factory = this.resolver.resolveComponentFactory(
-      componentMapper[fieldType]
+      componentMapper[this.field.type]
     );
     this.componentRef = this.container.createComponent(factory);
     this.componentRef.instance.field = this.field;

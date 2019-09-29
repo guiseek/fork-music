@@ -9,6 +9,7 @@ import { IClassroomType } from '@suite/interfaces';
 import { switchMap, map, finalize, tap } from 'rxjs/operators';
 import { FormFieldOption, FormField } from '@suite/common/forms/dynamic-form';
 import { DialogFormComponent } from '@suite/ui-kit';
+import { classroomResources } from '@suite/data';
 
 @Component({
   selector: 'school-classrooms',
@@ -42,7 +43,7 @@ export class ClassroomsComponent implements OnInit {
       )
   }
   getTypeOptions(types: IClassroomType[]): FormField[] {
-    return createClassroomFormFields
+    return classroomResources.form
       .map((f) => {
         if (f.name === 'classroomType') {
           f.options = types.map(({ id, name }) => {
@@ -59,7 +60,10 @@ export class ClassroomsComponent implements OnInit {
   openClassroomForm() {
     return this.dialogService.open(
       DialogFormComponent, {
-      data: this.fields, header: {
+      data: {
+        fields: this.fields,
+        model: null
+      }, header: {
         title: 'Criar turma'
       },
       draggable: true,

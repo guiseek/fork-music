@@ -1266,6 +1266,37 @@
           "styleext": "scss"
         }
       }
+    },
+    "common-cards": {
+      "projectType": "library",
+      "root": "libs/common/cards",
+      "sourceRoot": "libs/common/cards/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/common/cards/tsconfig.lib.json",
+              "libs/common/cards/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/common/cards/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/common/cards/jest.config.js",
+            "tsConfig": "libs/common/cards/tsconfig.spec.json",
+            "setupFile": "libs/common/cards/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

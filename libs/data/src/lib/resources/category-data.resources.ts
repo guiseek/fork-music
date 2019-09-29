@@ -1,6 +1,7 @@
 import { Validators } from '@angular/forms';
 import { FormField } from '@suite/common/forms/dynamic-form';
 import { DialogHeader, DialogConfig } from '@suite/cdk/dialog';
+import { Subject } from 'rxjs';
 
 export const backend = {
   endpoint: '/api/school/categories',
@@ -68,9 +69,26 @@ export const tableConfig = {
   deletable: true,
   selectable: true
 }
-
+export const card = {
+  title: 'Categorias',
+  endpoint: '/api/school/categories',
+  refresh: new Subject,
+  fields: formFields,
+  columns: [
+    { columnDef: 'id', header: '#', cell: (element: any) => `${element.id}` },
+    { columnDef: 'name', header: 'Nome', cell: (element: any) => `${element.name}` }
+  ],
+  tableConfig: {
+    paginator: {
+      hidePageSize: true,
+      showFirstLastButtons: false
+    }
+  },
+  dialog: dialogConfig
+}
 export const categoryResources = {
   backend,
+  card,
   formFields,
   dialogConfig,
   tableConfig

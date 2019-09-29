@@ -53,10 +53,12 @@
       </button>
     </td>
   </ng-container>
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
 <mat-paginator
   [length]="dataSource.resultsLength"
-  [pageSize]="2"
+  [pageSize]="10"
+  [hidePageSize]="config.paginator.hidePageSize"
+  [showFirstLastButtons]="config.paginator.showFirstLastButtons"
 ></mat-paginator>

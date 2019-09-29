@@ -51,6 +51,11 @@ const navCalendar = {
   icon: 'event',
   link: 'calendario'
 }
+const navResources = {
+  name: 'Recursos',
+  icon: 'dashboard',
+  link: 'recursos',
+}
 const navDashboard = {
   name: 'Dashboard',
   icon: 'dashboard',
@@ -112,6 +117,7 @@ export const navigation = {
 
 const adminMenu: NavItem[] = [
   navDashboard,
+  navResources,
   navCalendar,
   navRooms,
   navNotifications,

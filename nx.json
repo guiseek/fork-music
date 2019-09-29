@@ -112,6 +112,9 @@
     },
     "quick-start-admin": {
       "tags": ["private-module"]
+    },
+    "common-cards": {
+      "tags": ["shared-module"]
     }
   }
 }

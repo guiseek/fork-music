@@ -10,6 +10,10 @@ export class TableBackendFormatCellPipe implements PipeTransform {
   transform(value: any, format: string) {
     console.log('format', format)
     console.log('value', value)
+    if (!value) {
+      return 'not available';
+    }
+
     if (value === undefined) {
       return 'not available';
     }

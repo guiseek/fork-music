@@ -34,7 +34,7 @@ export const createEmployeeFormFields: FormField[] = [
       },
       {
         name: 'pattern',
-        validator: Validators.pattern('^[a-zA-Z]+$'),
+        validator: Validators.pattern('^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$'),
         message: 'Apenas texto'
       }
     ]
@@ -52,7 +52,7 @@ export const createEmployeeFormFields: FormField[] = [
       },
       {
         name: 'pattern',
-        validator: Validators.pattern('^[a-zA-Z]+$'),
+        validator: Validators.pattern('^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$'),
         message: 'Apenas texto'
       }
     ]

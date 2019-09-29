@@ -7,14 +7,15 @@ import { Teach } from './teach.entity';
 
 
 /**
- * A tabela de classes é um catálogo que contém detalhes sobre todas as classes. Podemos ter várias instâncias de cada tipo de classe. Os atributos na tabela são os seguintes (todos são obrigatórios, exceto end_date):
-
-class_type_id - é uma referência ao dicionário class_type.
-nome - é um nome abreviado da classe.
-description - essa descrição é mais específica que a da tabela class_type.
-start_date - a data de início da turma.
-end_date - a data final da turma. Não é obrigatório, pois nem sempre sabemos a data exata de término de cada aula com antecedência.
-concluído - é um valor booleano que indica se todas as atividades de classe planejadas foram concluídas. Isso é útil quando atingimos o tempo final planejado para uma aula, mas outras atividades ainda precisam ser concluídas.
+ * A tabela de classes é um catálogo que contém detalhes sobre todas as classes.
+ * Podemos ter várias instâncias de cada tipo de classe.
+ * Os atributos na tabela são os seguintes (todos são obrigatórios, exceto end_date):
+ * @param classroomType é uma referência ao tipo de classse / turma
+ * @param name é um nome abreviado da classe.
+ * @param description essa descrição é mais específica que a da tabela class_type.
+ * @param start_date a data de início da turma.
+ * @param end_date a data final da turma. Não é obrigatório, pois nem sempre sabemos a data exata de término de cada aula com antecedência.
+ * @param completed é um valor booleano que indica se todas as atividades de classe planejadas foram concluídas. Isso é útil quando atingimos o tempo final planejado para uma aula, mas outras atividades ainda precisam ser concluídas.
  */
 
 @Entity('classroom')

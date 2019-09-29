@@ -4,6 +4,9 @@
   <button mat-button type="button" (click)="openTypes()">
     Abrir tipos de classe
   </button>
+  <button mat-icon-button type="button" (click)="openHelper()">
+    <mat-icon>help</mat-icon>
+  </button>
   <!-- <a mat-fab routerLink="novo">
     <mat-icon>add</mat-icon>
   </a> -->
@@ -32,3 +35,34 @@
     </mat-card>
   </div>
 </div>
+<ng-template #classroomHelper let-data let-dialog="dialog">
+  <div class="py-16">
+    <h3 class="mat-h3">{{ data.main }}</h3>
+    <mat-list class="list-without-margin">
+      <mat-list-item>
+        <h4 mat-line>Tipo de classe / turma</h4>
+        <p mat-line>{{ data.classType }}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h4 mat-line>Nome</h4>
+        <p mat-line>{{ data.name }}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h4 mat-line>Descrição</h4>
+        <p mat-line>{{ data.description }}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h4 mat-line>Inicio</h4>
+        <p mat-line>{{ data.startDate }}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h4 mat-line>Término</h4>
+        <p mat-line>{{ data.endDate }}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <h4 mat-line>Concluída</h4>
+        <p mat-line>{{ data.completed }}</p>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</ng-template>

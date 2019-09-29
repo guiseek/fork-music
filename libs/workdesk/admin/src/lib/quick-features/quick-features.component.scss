@@ -1,13 +1,106 @@
+// :host {
+//   display: block;
+//   flex-flow: column;
+// }
 .grid-container {
-  margin: 20px;
+  margin: 16px;
+}
+.cdk-drop-list {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+.cdk-drag-preview {
+  width: 100%;
+  height: 100%;
+  // box-sizing: border-box;
+  // border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+// .cdk-drag-animating {
+//   width: 100%;
+//   height: 100%;
+//   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+// }
+// .cdk-drop-list-dragging .dashboard-card:not(.cdk-drag-placeholder) {
+//   width: 100%;
+//   height: 100%;
+//   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+// }
+.card-placeholder {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  // background: #ccc;
+  // border: dotted 3px #999;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .dashboard-card {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
+  display: flex;
+  flex: 1;
+  height: 100%;
+  // position: absolute;
+  // top: 15px;
+  // left: 15px;
+  // right: 15px;
+  // bottom: 15px;
+  & > .mat-card {
+    .mat-card-header {
+      align-items: flex-end;
+      height: 48px;
+      &.cdk-drag-handle {
+        cursor: move;
+      }
+    }
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    suite-table-backend {
+      flex: 1;
+      display: flex;
+      flex-flow: column;
+      width: 100%;
+      justify-content: space-between;
+      align-items: unset;
+    }
+    .mat-paginator {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      opacity: 0.3;
+      transition: 300ms opacity ease-in-out;
+      &:hover {
+        opacity: 1;
+      }
+      // width: 100%;
+      // height: 48px;
+      display: block;
+    }
+    .dashboard-card-content {
+      flex: 1;
+      display: flex;
+      overflow: auto;
+    }
+    &.suite-flip-card-front {
+      padding: 0;
+      .dashboard-card-content {
+        // justify-content: center;
+        align-items: space-around;
+      }
+    }
+    &.suite-flip-card-back {
+      .dashboard-card-content {
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
 }
 
 .more-button {

@@ -8,8 +8,8 @@ export const database: TypeOrmModuleOptions = {
   port: 3306,
   username: 'root',
   password: 'root',
-  // database: 'ticket-system',
-  database: 'myschool',
+  database: 'ticket-system',
+  // database: 'myschool',
   entities: [...USER_ENTITIES, ...ENTITIES, ...SCHOOL_ENTITIES],
   synchronize: true
 }

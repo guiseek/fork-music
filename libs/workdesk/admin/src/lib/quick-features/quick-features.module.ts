@@ -6,11 +6,15 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatGridListModule, MatMenuModule, MatIconModule, MatCardModule, MatButtonModule } from '@angular/material';
 import { DynamicFormModule } from '@suite/common/forms/dynamic-form';
 import { TableBackendModule } from '@suite/common/tables/table-backend';
+import { CardsModule } from '@suite/common/cards';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 const modules = [
   LayoutModule,
   MatGridListModule,
+  DragDropModule,
   MatMenuModule,
   MatIconModule,
   MatCardModule,
@@ -27,6 +31,7 @@ const routes: Routes = [
     CommonModule,
     DynamicFormModule,
     TableBackendModule,
+    CardsModule,
     FlexLayoutModule,
     ...modules,
     RouterModule.forChild(routes)

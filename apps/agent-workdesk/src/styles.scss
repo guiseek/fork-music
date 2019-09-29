@@ -11,6 +11,7 @@
 @import './../../../libs/workdesk/admin/src/lib/quick-features/quick-features.component.scss';
 @import './../../../libs/ui-styles/material.theme';
 @import './../../../libs/ui-styles/cards.theme';
+@import './../../../libs/common/cards/src/lib/flip-card/flip-card.theme.scss';
 
 $custom-typography: mat-typography-config(
   $font-family: 'sofia-pro'
@@ -41,6 +42,7 @@ $ts-theme: mat-light-theme(
 
 @include suite-material-theme($ts-theme);
 @include suite-cards-theme($ts-theme);
+@include suite-flip-card-theme($ts-theme);
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -98,9 +100,30 @@ a {
 .justify-around {
   justify-content: space-around;  
 }
-.margin-top {
-  margin-top: 15px;
-}
+// .margin-top {
+//   // margin-top: 15px;
+// }
+// .m {
+//   &-t {
+//     &-16 {
+//       margin-top: 16px;
+//     }
+//     &-8 {
+//       margin-top: 8px;
+//     }
+//   }
+//   &-b {
+//     &-16 {
+//       margin-top: 16px;
+//     }
+//     &-8 {
+//       margin-top: 8px;
+//     }
+//   }
+// }
+// .m-t-16 {
+//   margin-top: 16px;
+// }
 .margin-left {
   margin-left: 10px;
 }
