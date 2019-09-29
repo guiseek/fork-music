@@ -1,6 +1,6 @@
 O modelo consiste em três áreas de assunto:
 
-# Users & groups
+- Users & groups
 - Software & plans
 - Subscriptions, plans & payments.
 - Descreveremos cada uma dessas áreas na ordem em que estão listadas.

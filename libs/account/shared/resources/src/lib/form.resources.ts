@@ -12,6 +12,7 @@ export const userAccountFormFields: FormField[] = [
     label: 'Nome',
     inputType: 'text',
     name: 'firstName',
+    appearance: 'outline',
     validations: [
       {
         name: 'required',
@@ -30,6 +31,7 @@ export const userAccountFormFields: FormField[] = [
     label: 'Último nome',
     inputType: 'text',
     name: 'lastName',
+    appearance: 'outline',
     validations: [
       {
         name: 'required',
@@ -48,6 +50,7 @@ export const userAccountFormFields: FormField[] = [
     label: 'Usuário',
     inputType: 'text',
     name: 'username',
+    appearance: 'outline',
     validations: [
       {
         name: 'required',
@@ -66,6 +69,7 @@ export const userAccountFormFields: FormField[] = [
     label: 'Senha',
     inputType: 'password',
     name: 'password',
+    appearance: 'outline',
     validations: [
       {
         name: 'required',
@@ -79,6 +83,7 @@ export const userAccountFormFields: FormField[] = [
     label: 'Email',
     inputType: 'email',
     name: 'email',
+    appearance: 'outline',
     validations: [
       {
         name: 'required',
@@ -97,6 +102,7 @@ export const userAccountFormFields: FormField[] = [
     label: 'Código de confirmação',
     inputType: 'input',
     name: 'confirmationCode',
+    appearance: 'outline',
     // validations: [
     //   {
     //     name: 'required',
@@ -104,6 +110,23 @@ export const userAccountFormFields: FormField[] = [
     //     message: 'Código de confirmação obrigatório'
     //   }
     // ]
+  }
+]
+export const createUserAccountFormFields: FormField[] = [
+  ...userAccountFormFields,
+  {
+    type: 'select',
+    label: 'Tipo de grupo',
+    name: 'userGroupType',
+    appearance: 'outline',
+    options: [],
+    validations: [
+      {
+        name: 'required',
+        validator: Validators.required,
+        message: 'Tipo obrigatório'
+      }
+    ]
   },
   {
     type: 'button',

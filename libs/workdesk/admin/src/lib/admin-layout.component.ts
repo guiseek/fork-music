@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, query, animate, style } from '@angular/animations';
+import { AccountDropdownComponent } from '@suite/account/shared/account';
 
 @Component({
   selector: 'wd-admin-layout',
@@ -35,7 +36,6 @@ import { trigger, transition, query, animate, style } from '@angular/animations'
 export class AdminLayoutComponent implements OnInit {
   sidenavOpen = true;
   sidenavMode = 'over';
-
   constructor() { }
 
   ngOnInit() {

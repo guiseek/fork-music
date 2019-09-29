@@ -1,6 +1,10 @@
 @import '~@angular/material/theming';
 @import './../../../../../../ui-styles/breakpoints';
 
+:host {
+  display: flex;
+  flex: 0 0 auto;
+}
 .user-container {
   height: 100%;
   position: relative;
@@ -40,7 +44,7 @@
     z-index: 466;
     background: white;
     position: absolute;
-    top: 56px;
+    top: 64px;
     // top: $mat-toolbar-height-desktop;
     right: 0;
     width: 100%;

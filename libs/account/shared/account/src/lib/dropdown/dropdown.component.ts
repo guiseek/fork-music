@@ -38,7 +38,7 @@ export class AccountDropdownComponent implements OnInit {
   }
 
   public logout() {
-    this.auth.signOut()
+    this.authService.signOut()
     // this.store.dispatch(new Logout());
   }
 }

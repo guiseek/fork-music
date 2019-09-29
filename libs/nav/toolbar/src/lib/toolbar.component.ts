@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ComponentRef, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { AccountDropdownComponent } from '@suite/account/shared/account';
+import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
 
 @Component({
   selector: 'suite-toolbar',
@@ -10,7 +12,7 @@ export class ToolbarComponent implements OnInit {
   @Input() title: string
   route
   constructor(
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit() {

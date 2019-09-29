@@ -5,13 +5,14 @@ import { AccountLayoutComponent } from './account-layout.component';
 import { OverviewComponent } from './overview/overview.component';
 import { TableBackendModule } from '@suite/common/tables/table-backend';
 import { DynamicFormModule } from '@suite/common/forms/dynamic-form';
-import { SharedAccountModule } from '@suite/account/shared/account';
+import { SharedAccountModule, AccountResolverService } from '@suite/account/shared/account';
 import { UiKitModule } from '@suite/ui-kit';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { MatCardModule, MatButtonModule, MatSnackBarModule, MatToolbarModule, MatIconModule, MatListModule, MatMenuModule, MatTabsModule } from '@angular/material';
+import { MatCardModule, MatButtonModule, MatSnackBarModule, MatToolbarModule, MatIconModule, MatListModule, MatMenuModule, MatTabsModule, MatProgressSpinnerModule } from '@angular/material';
 import { DialogModule } from '@suite/cdk/dialog';
+import { SignupComponent } from './signup/signup.component';
 
 const modules = [
   MatToolbarModule,
@@ -22,7 +23,8 @@ const modules = [
   MatListModule,
   MatMenuModule,
   MatIconModule,
-  MatTabsModule
+  MatTabsModule,
+  MatProgressSpinnerModule
 ]
 
 @NgModule({
@@ -37,16 +39,22 @@ const modules = [
     ...modules,
     RouterModule.forChild([
       {
-        path: '', component: AccountLayoutComponent, children: [
+        path: '',
+        component: AccountLayoutComponent,
+        children: [
           { path: '', component: OverviewComponent },
           { path: 'membros', loadChildren: () => import('./members/members.module').then(m => m.MembersModule) },
           { path: 'assinaturas', loadChildren: () => import('./subscriptions/subscriptions.module').then(m => m.SubscriptionsModule) },
-
-        ]
+        ],
+        resolve: {
+          account: AccountResolverService
+        }
       },
+      { path: '/up', component: SignupComponent },
+      
       /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
     ])
   ],
-  declarations: [AccountLayoutComponent, OverviewComponent]
+  declarations: [AccountLayoutComponent, OverviewComponent, SignupComponent]
 })
 export class AccountModule { }

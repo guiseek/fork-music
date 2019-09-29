@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ViewChildren } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { LocationCity } from '@suite/interfaces';
 import { Observable } from 'rxjs';
 import { startWith, map, filter, switchMap, debounceTime, tap } from 'rxjs/operators';
@@ -15,6 +15,8 @@ export class CityFormComponent implements OnInit {
   @Input() placeholder = 'Buscar cidade'
   @Input() parentControl: FormControl
   @Output() valueChange = new EventEmitter<LocationCity>()
+  @Input() group: FormGroup
+  @Input() field
 
   filteredOptions: Observable<LocationCity[]>;
   constructor(private http: HttpClient) { }
@@ -23,6 +25,14 @@ export class CityFormComponent implements OnInit {
     if (!this.parentControl) {
       this.parentControl = new FormControl('')
     }
+    if (this.group) {
+      console.log(this.group)
+      console.log(this.field)
+      this.parentControl = this.group.controls[
+        this.field.name
+      ] as FormControl
+    }
+    console.log('this.parentControl: ', this.parentControl)
     this.filteredOptions = this.parentControl.valueChanges
       .pipe(
         tap((change) => {

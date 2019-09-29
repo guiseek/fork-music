@@ -14,5 +14,9 @@ export const database: TypeOrmModuleOptions = {
   synchronize: false
 }
 export const environment = {
-  production: false
+  production: false,
+  api: {
+    userAccount: '/api/account/user-account',
+    groupType: '/api/account/group-type'
+  }
 };

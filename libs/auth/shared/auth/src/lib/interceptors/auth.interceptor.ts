@@ -33,7 +33,7 @@ export class AuthInterceptor implements HttpInterceptor {
   catchRedirectError(err: any): void {
     if (err instanceof HttpErrorResponse) {
       if (err.status === 401) {
-        this.router.navigateByUrl('/auth/in');
+        this.router.navigateByUrl('/auth');
       }
     }
   }

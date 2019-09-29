@@ -20,7 +20,8 @@ import { MatMenuModule } from '@angular/material';
 const modules = [
   CommonModule,
   PortalModule,
-  FlexLayoutModule.withConfig({ useColumnBasisZero: false }),
+  // FlexLayoutModule.withConfig({ useColumnBasisZero: false }),
+  FlexLayoutModule,
   RouterModule,
   ReactiveFormsModule,
   MatToolbarModule,

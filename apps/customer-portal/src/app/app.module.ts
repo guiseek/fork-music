@@ -7,7 +7,13 @@ import localeBrExtra from '@angular/common/locales/extra/br';
 import { CoreModule } from '@suite/common/core';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { AuthGuard } from '@suite/auth/shared/auth';
+// import { AuthGuard } from '@suite/auth/shared/auth';
+import { AccountGuard, SharedAccountAuthModule } from '@suite/account/shared/account';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from '@suite/auth/shared/auth';
+import { InComponent } from '@suite/account/shared/account';
+import { createUserAccountForm } from '@suite/account/shared/resources';
+
 
 registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
 
@@ -17,6 +23,8 @@ registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
+    SharedAccountAuthModule,
+    HttpClientModule,
     RouterModule.forRoot(
       [
         {
@@ -25,7 +33,7 @@ registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
             import('@suite/account/lazy/account').then(
               module => module.AccountModule
             ),
-          canLoad: [AuthGuard]
+          canLoad: [AccountGuard]
         },
         {
           path: 'auth',
@@ -34,6 +42,9 @@ registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
               module => module.AuthLazySignModule
             )
         },
+        { path: 'up', component: InComponent, data: {
+          createUserAccountForm
+        } },
         { path: '', pathMatch: 'full', redirectTo: 'conta' }
       ],
       { initialNavigation: 'enabled' }
@@ -41,6 +52,7 @@ registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },
+    { provide: HTTP_INTERCEPTORS, multi: true, useClass: AuthInterceptor }
   ],
 
   bootstrap: [AppComponent]

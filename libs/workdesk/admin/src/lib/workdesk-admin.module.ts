@@ -47,6 +47,7 @@ import { EmployeeResolverService, CoreModule } from '@suite/common/core';
 import { HttpClientModule } from '@angular/common/http';
 import { DynamicFormModule } from '@suite/common/forms/dynamic-form';
 import { UiKitModule } from '@suite/ui-kit';
+import { SharedAccountModule } from '@suite/account/shared/account';
 
 const modules = [
   LayoutModule,
@@ -74,6 +75,7 @@ const modules = [
     ReactiveFormsModule,
     HttpClientModule,
     ...modules,
+    SharedAccountModule,
     ToolbarModule,
     SidenavModule,
     AddressFormModule,

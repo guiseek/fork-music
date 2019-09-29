@@ -9,10 +9,10 @@ export class FetchRequestedUserGuard implements CanActivate {
   constructor(private readonly userService: UserService) { }
 
   canActivate(context: ExecutionContext): Promise<boolean> | Observable<boolean> {
+    console.log('loggedInUser: ', context)
     const request = context.switchToHttp().getRequest();
     const userId: number = Number(request.params.userId);
     const loggedInUser: User = request.user as User;
-
     return this.userService.findUserById(userId).pipe(
       map((user: User) => ((request as any).requestedUser = user)),
       switchMap((user: User) => this.userService.canAccessUser(user, loggedInUser))

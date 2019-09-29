@@ -11,7 +11,9 @@
     <suite-sidenav></suite-sidenav>
   </mat-sidenav>
   <mat-sidenav-content class="content-container" fxLayout="column">
-    <suite-toolbar title="Dashboard"></suite-toolbar>
+    <suite-toolbar title="Dashboard">
+      <account-dropdown></account-dropdown>
+    </suite-toolbar>
     <main [@fadeAnimation]="getRouterOutletState(o)">
       <router-outlet #o="outlet"></router-outlet>
     </main>

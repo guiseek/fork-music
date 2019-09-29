@@ -2,15 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '@suite/auth/shared/auth';
+import { suiteAnimations } from '@suite/ui-kit';
 
 @Component({
   selector: 'auth-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss']
+  styleUrls: ['./sign-in.component.scss'],
+  animations: [
+    suiteAnimations
+  ]
 })
 export class SignInComponent implements OnInit {
   form: FormGroup
   serverMessage: string
+  loading = false
   constructor(
     // private http: HttpClient,
     private auth: AuthService,

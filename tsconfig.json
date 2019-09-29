@@ -16,6 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@env/backend": ["apps/backend/src/environments"],
+      "@env/backend/*": ["apps/backend/src/environments/*"],
       "@suite/backend": ["libs/backend/src/index.ts"],
       "@suite/account-ui": ["libs/account-ui/src/index.ts"],
       "@suite/profile-settings-ui": ["libs/profile-settings-ui/src/index.ts"],

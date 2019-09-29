@@ -7,6 +7,7 @@ import { FormRadiobuttonComponent } from './components/form-radiobutton/form-rad
 import { FormCheckboxComponent } from './components/form-checkbox/form-checkbox.component';
 import { FormField } from './interfaces/form-field.interface';
 import { FormGroup } from '@angular/forms';
+import { CityFormComponent } from '@suite/common/forms/resources';
 
 const componentMapper = {
   input: FormInputComponent,
@@ -14,7 +15,8 @@ const componentMapper = {
   select: FormSelectComponent,
   date: FormDateComponent,
   radiobutton: FormRadiobuttonComponent,
-  checkbox: FormCheckboxComponent
+  checkbox: FormCheckboxComponent,
+  city: CityFormComponent
 };
 
 @Directive({

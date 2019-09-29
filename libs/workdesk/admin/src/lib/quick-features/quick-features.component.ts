@@ -20,12 +20,15 @@ const classroom: CardFeature = classroomResources.card
   styleUrls: ['./quick-features.component.scss']
 })
 export class QuickFeaturesComponent implements OnInit, AfterViewInit {
-  features = [
-    { ...category, match: { cols: 1, rows: 1 }, defaults: { cols: 1, rows: 1 } },
-    { ...classroomType, match: { cols: 1, rows: 1 }, defaults: { cols: 1, rows: 1 } },
-    { ...category, match: { cols: 1, rows: 1 }, defaults: { cols: 1, rows: 2 } },
-    { ...category, match: { cols: 1, rows: 1 }, defaults: { cols: 1, rows: 1 } }
-  ]
+  // features = [
+  //   { ...category, match: { cols: 1, rows: 1 }, defaults: { cols: 1, rows: 1 } },
+  //   { ...classroomType, match: { cols: 1, rows: 1 }, defaults: { cols: 1, rows: 1 } },
+  //   { ...category, match: { cols: 1, rows: 1 }, defaults: { cols: 1, rows: 2 } },
+  //   { ...category, match: { cols: 1, rows: 1 }, defaults: { cols: 1, rows: 1 } }
+  // ]
+  features = [{
+
+  }]
   cards = [
     { ...classroom, cols: 1, rows: 2 },
     { ...classroomType, cols: 1, rows: 1 },

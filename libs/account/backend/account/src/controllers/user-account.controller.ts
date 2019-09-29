@@ -1,15 +1,29 @@
-import { Controller, UseInterceptors, Post, Get, Param, NotFoundException, BadRequestException, HttpCode, HttpStatus } from '@nestjs/common';
-import { CrudController, Crud, CrudRequest, Override, ParsedRequest, ParsedBody, CrudRequestInterceptor } from '@nestjsx/crud';
+import { Controller, UseInterceptors, Post, Get, Param, NotFoundException, BadRequestException, HttpCode, HttpStatus, ConflictException } from '@nestjs/common';
+import { CrudController, Crud, CrudRequest, Override, ParsedRequest, ParsedBody, CrudRequestInterceptor, GetManyDefaultResponse, Action, Feature } from '@nestjsx/crud';
 import { UserAccountService } from '../services/user-account.service';
 
 import { UserAccount } from '@suite/entities';
 import { CreateUserAccountDto } from '../dtos';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Observable, from } from 'rxjs';
 
 @Crud({
   model: {
-    type: UserAccount
+    type: UserAccount,
+  },
+  query: {
+    join: {
+      inGroup: {
+        eager: true,
+        persist: ['in-group']
+      }
+    }
   }
+  // routes: {
+  //   updateOneBase: {
+  //     allowParamsOverride: true
+  //   }
+  // },
 })
 @Controller('account/user-account')
 export class UserAccountController implements CrudController<UserAccount> {
@@ -19,8 +33,34 @@ export class UserAccountController implements CrudController<UserAccount> {
   get base(): CrudController<CreateUserAccountDto> {
     return this;
   }
+  get account(): CrudController<UserAccount> {
+    return this;
+  }
   get register(): CrudController<UserAccount> {
     return this;
+  }
+  // getManyBase(
+  //   @ParsedRequest() req: CrudRequest,
+  // ): Promise<GetManyDefaultResponse<T> | T[]>;
+
+  @Override('updateOneBase')
+  coolFunction(
+    @ParsedRequest() req: CrudRequest,
+    @ParsedBody() dto: UserAccount,
+  ) {
+    return this.base.updateOneBase(req, dto);
+  }
+
+  @Override()
+  @UseInterceptors(CrudRequestInterceptor)
+  @Feature('Read')
+  @Action('All')
+  @Get('')
+  getManyBase(
+    @ParsedRequest() req: CrudRequest
+  ): Promise<GetManyDefaultResponse<UserAccount> | UserAccount[]> {
+    console.log(req.options)
+    return this.account.getManyBase(req)
   }
   @Override()
   createOne(
@@ -39,6 +79,7 @@ export class UserAccountController implements CrudController<UserAccount> {
     //   { ...dto, confirmationCode }
     // );
   }
+
   @HttpCode(HttpStatus.ACCEPTED)
   @Get('confirmation/:code')
   // async exportSome(@ParsedRequest() req: CrudRequest) {

@@ -1,5 +1,34 @@
-<form  fxLayout="column" [formGroup]="form" (ngSubmit)="onSignUp()">
+<form fxLayout="column" [formGroup]="form" (ngSubmit)="onSignUp()">
   <!-- <div fxLayout="column"> -->
+  <div fxLayout="row" fxLayoutGap="8px">
+    <mat-form-field fxFlex [color]="firstName.valid && 'accent'">
+      <input
+        matInput
+        formControlName="firstName"
+        type="text"
+        placeholder="Nome"
+        autocomplete="off"
+      />
+      <mat-error *ngIf="firstName.errors as error">
+        <!-- <pre>{{error | json}}</pre> -->
+        {{ firstName.hasError('Conflict') ? error.Conflict : 'Email inválido' }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <input
+        matInput
+        formControlName="lastName"
+        type="text"
+        placeholder="Sobrenome"
+        autocomplete="off"
+      />
+      <mat-error *ngIf="lastName.errors as error">
+        <!-- <pre>{{error | json}}</pre> -->
+        {{ lastName.hasError('Conflict') ? error.Conflict : 'Email inválido' }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutGap="8px">
     <mat-form-field fxFlex [color]="email.valid && 'accent'">
       <input
         matInput
@@ -21,49 +50,73 @@
         {{ email.hasError('Conflict') ? error.Conflict : 'Email inválido' }}
       </mat-error>
     </mat-form-field>
+    <mat-form-field fxFlex [color]="username.valid && 'accent'">
+      <input
+        matInput
+        formControlName="username"
+        type="text"
+        placeholder="Usuário"
+        autocomplete="off"
+      />
+      <span matSuffix *ngIf="checkingEmail">
+        <mat-spinner
+          matSuffix
+          strokeWidth="2"
+          diameter="16"
+          mode="indeterminate"
+        ></mat-spinner>
+      </span>
+      <mat-error *ngIf="email.errors as error">
+        <!-- <pre>{{error | json}}</pre> -->
+        {{ email.hasError('Conflict') ? error.Conflict : 'Email inválido' }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutGap="8px">
+    <mat-form-field fxFlex [color]="email.valid && 'accent'">
+      <input
+        matInput
+        formControlName="password"
+        type="password"
+        placeholder="Password"
+        autocomplete="off"
+      />
 
-    <div fxLayout="row" fxLayoutGap="8px">
-      <mat-form-field fxFlex [color]="email.valid && 'accent'">
-        <input
-          matInput
-          formControlName="password"
-          type="password"
-          placeholder="Password"
-          autocomplete="off"
-        />
+      <mat-error *ngIf="password.invalid && password.dirty">
+        Mínimo de 6 caracteres
+      </mat-error>
+    </mat-form-field>
 
-        <mat-error *ngIf="password.invalid && password.dirty">
-          Mínimo de 6 caracteres
-        </mat-error>
-      </mat-form-field>
+    <mat-form-field fxFlex [color]="passwordDoesMatch ? 'accent' : 'warn'">
+      <input
+        matInput
+        formControlName="confirm"
+        type="password"
+        placeholder="Confirm password"
+        autocomplete="off"
+      />
 
-      <mat-form-field fxFlex [color]="passwordDoesMatch ? 'accent' : 'warn'">
-        <input
-          matInput
-          formControlName="confirm"
-          type="password"
-          placeholder="Confirm password"
-          autocomplete="off"
-        />
+      <mat-error *ngIf="passwordConfirm.dirty && !passwordDoesMatch">
+        Não confere
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <!-- <suite-state-form [parentControl]="state"></suite-state-form> -->
+  <suite-city-form
+    fxFlex
+    (valueChange)="onCityChanged($event)"
+  ></suite-city-form>
 
-        <mat-error *ngIf="passwordConfirm.dirty && !passwordDoesMatch">
-          Não confere
-        </mat-error>
-      </mat-form-field>
-    </div>
-    <!-- <suite-state-form [parentControl]="state"></suite-state-form> -->
-    <suite-city-form fxFlex (valueChange)="onCityChanged($event)"></suite-city-form>
+  <!-- <mat-error class="server-error">{{ serverMessage }}</mat-error> -->
 
-    <!-- <mat-error class="server-error">{{ serverMessage }}</mat-error> -->
-
-    <button
-      mat-raised-button
-      color="accent"
-      type="submit"
-      [disabled]="form.invalid || checkingEmail"
-    >
-      Enviar
-    </button>
+  <button
+    mat-raised-button
+    color="accent"
+    type="submit"
+    [disabled]="form.invalid || checkingEmail"
+  >
+    Enviar
+  </button>
   <!-- </div> -->
 </form>
 <!-- <pre>

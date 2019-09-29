@@ -1,0 +1,12 @@
+<div fxFlexFill fxLayoutAlign="center center">
+  <mat-card fxFlex="350px">
+    <ng-container *ngIf="(fields$ | async) as fields; else loading">
+      <!-- <pre>{{fields | json}}</pre> -->
+      <suite-dynamic-form [fields]="fields"></suite-dynamic-form>
+    </ng-container>
+  </mat-card>
+
+  <ng-template #loading>
+    <mat-spinner mode="indeterminate"></mat-spinner>
+  </ng-template>
+</div>
