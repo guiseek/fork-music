@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AddressFormModule } from '@suite/common/forms/address-form';
 
@@ -17,6 +18,7 @@ import { AuthGuard } from './guards/auth.guard';
 @NgModule({
   imports: [
     CommonModule,
+    FlexLayoutModule,
     HttpClientModule,
     ReactiveFormsModule,
     MatFormFieldModule,

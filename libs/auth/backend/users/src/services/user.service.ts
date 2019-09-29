@@ -68,7 +68,7 @@ export class UserService {
     return userCount$.pipe(
       map((count: number) => {
         if (count) {
-          throw new BadRequestException('This email is already use.');
+          throw new BadRequestException('Este email já está sendo usado.');
         }
         return this.userRepository.create(createUserDto);
       }),
@@ -110,7 +110,7 @@ export class UserService {
     return userCount$.pipe(
       map((count: number) => {
         if (count) {
-          throw new ConflictException('This email is already use.');
+          throw new ConflictException('Este email já está sendo usado.');
         }
         return null
       }),

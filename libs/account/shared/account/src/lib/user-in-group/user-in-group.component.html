@@ -1,0 +1,21 @@
+<div fxLayout="row" fxLayoutAlign="space-between">
+  <ng-container *ngIf="(features$ | async) as feature">
+    <!-- <pre>{{feature | json}}</pre> -->
+    <mat-card fxFlex>
+      <mat-list *ngFor="let ug of feature.userGroups">
+        <h3 mat-line>{{ug.customerInvoiceData}}</h3>
+      </mat-list>
+    </mat-card>
+    <mat-card fxFlex>
+      <mat-list *ngFor="let uc of feature.userAccounts">
+        <h3 mat-line>{{uc.firstName}}</h3>
+      </mat-list>
+    </mat-card>
+    <mat-card fxFlex>
+      <mat-list *ngFor="let ugt of feature.userGroupTypes">
+        <h3 mat-line>{{ugt.typeName}}</h3>
+        <p mat-line>{{ugt.membersMin}} ~ {{ugt.membersMin}}</p>
+      </mat-list>
+    </mat-card>
+  </ng-container>
+</div>

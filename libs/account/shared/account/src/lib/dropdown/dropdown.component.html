@@ -1,0 +1,52 @@
+<div class="user-container" #userButton>
+  <button
+    class="user-button"
+    mat-button
+    (click)="toggleDropdown()"
+    [class.open]="isOpen"
+  >
+    <span fxLayout="row" fxLayoutAlign="start center">
+      <!-- <img
+        class="user-avatar"
+        [src]="auth?.photoURL || 'assets/images/avatar-ghost.svg'"
+      /> -->
+      <span class="name" fxHide fxShow.gt-sm>{{
+        auth?.email || 'Fantasma da Ópera'
+      }}</span>
+      <mat-icon class="icon" fxHide fxShow.gt-sm>keyboard_arrow_down</mat-icon>
+    </span>
+  </button>
+
+  <div class="dropdown mat-elevation-z1" [class.open]="isOpen">
+    <div class="content">
+      <mat-nav-list>
+        <mat-list-item>
+          <mat-icon mat-list-icon>account_circle</mat-icon>
+          <a mat-line [routerLink]="['profile']">Perfil</a>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>settings</mat-icon>
+          <a mat-line [routerLink]="['conta']">Configurações</a>
+        </mat-list-item>
+
+        <mat-divider></mat-divider>
+
+        <mat-list-item (click)="logout()">
+          <a mat-line>Sair</a>
+          <button mat-icon-button><mat-icon>exit_to_app</mat-icon></button>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+  </div>
+</div>
+
+
+<!-- <ng-container *ngIf="auth">
+  <button mat-button [matMenuTriggerFor]="beforeMenu">
+    {{ auth.email }}
+  </button>
+  <mat-menu #beforeMenu="matMenu" xPosition="before">
+    <button mat-menu-item>Item 1</button>
+    <button mat-menu-item>Item 2</button>
+  </mat-menu>
+</ng-container> -->

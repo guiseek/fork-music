@@ -12,6 +12,7 @@ import { WageTiersModule } from 'backend/wage-tiers';
 import { EmployeesModule } from 'backend/employess';
 import { SubjectsModule } from 'backend/subjects';
 import { SchoolModule } from 'backend/school';
+import { AccountModule } from 'backend/account';
 
 
 // ticket-system
@@ -25,7 +26,8 @@ import { SchoolModule } from 'backend/school';
     WageTiersModule,
     EmployeesModule,
     SubjectsModule,
-    SchoolModule
+    SchoolModule,
+    AccountModule
   ],
   controllers: [AppController],
   providers: [AppService],

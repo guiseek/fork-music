@@ -64,6 +64,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "customer-portal:build",
+            "proxyConfig": "apps/customer-portal/proxy.conf.json",
             "port": 4201
           },
           "configurations": {
@@ -1295,6 +1296,96 @@
       "schematics": {
         "@nrwl/angular:component": {
           "styleext": "scss"
+        }
+      }
+    },
+    "account-lazy-account": {
+      "projectType": "library",
+      "root": "libs/account/lazy/account",
+      "sourceRoot": "libs/account/lazy/account/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/account/lazy/account/tsconfig.lib.json",
+              "libs/account/lazy/account/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/account/lazy/account/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/account/lazy/account/jest.config.js",
+            "tsConfig": "libs/account/lazy/account/tsconfig.spec.json",
+            "setupFile": "libs/account/lazy/account/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "account-shared-account": {
+      "projectType": "library",
+      "root": "libs/account/shared/account",
+      "sourceRoot": "libs/account/shared/account/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/account/shared/account/tsconfig.lib.json",
+              "libs/account/shared/account/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/account/shared/account/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/account/shared/account/jest.config.js",
+            "tsConfig": "libs/account/shared/account/tsconfig.spec.json",
+            "setupFile": "libs/account/shared/account/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "account-shared-resources": {
+      "root": "libs/account/shared/resources",
+      "sourceRoot": "libs/account/shared/resources/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/account/shared/resources/tsconfig.lib.json",
+              "libs/account/shared/resources/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/account/shared/resources/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/account/shared/resources/jest.config.js",
+            "tsConfig": "libs/account/shared/resources/tsconfig.spec.json"
+          }
         }
       }
     }

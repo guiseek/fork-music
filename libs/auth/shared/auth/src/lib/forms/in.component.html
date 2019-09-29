@@ -1,5 +1,5 @@
-<form [formGroup]="form" (ngSubmit)="onSignIn()">
-  <mat-form-field class="w-full" [color]="email.valid && 'accent'">
+<form fxLayout="column" [formGroup]="form" (ngSubmit)="onSignIn()">
+  <mat-form-field fxFlex [color]="email.valid && 'accent'">
     <input
       matInput
       formControlName="email"
@@ -17,7 +17,7 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field class="w-full" [color]="email.valid && 'accent'">
+  <mat-form-field fxFlex [color]="email.valid && 'accent'">
     <input
       matInput
       formControlName="password"

@@ -1,1 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@import './../../../libs/ui-styles/utils';
+@import './../../../libs/ui-styles/palettes/blue';
+@import './../../../libs/ui-styles/_breakpoints';
+@import './../../../libs/ui-styles/helpers';
+@import './../../../libs/cdk/dialog/src/lib/dialog.component.theme';
+@import './../../../libs/ui-styles/material.theme';
+@import './../../../libs/ui-styles/cards.theme';
+@import './../../../libs/common/cards/src/lib/flip-card/flip-card.theme';
+@import url('https://use.typekit.net/jnq3uxd.css');
+
+$custom-typography: mat-typography-config(
+  $font-family: 'sofia-pro'
+);
+
+@include mat-core($custom-typography);
+
+$ts-primary: mat-palette($custom-blue);
+$ts-accent: mat-palette($mat-blue, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$ts-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$ts-theme: mat-light-theme(
+  $ts-primary,
+  $ts-accent,
+  $ts-warn
+);
+
+@include angular-material-theme($ts-theme);
+@include suite-dialog-theme($ts-theme);
+
+@include suite-material-theme($ts-theme);
+@include suite-cards-theme($ts-theme);
+@include suite-flip-card-theme($ts-theme);
+
+$background: map-get($ts-theme, background);
+$foreground: map-get($ts-theme, foreground);
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: sofia-pro, sans-serif;
+  background-color: mat-color($background, background);
+}

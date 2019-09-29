@@ -1,71 +1,70 @@
-<form [formGroup]="form" (ngSubmit)="onSignUp()">
-  <mat-form-field class="w-full" [color]="email.valid && 'accent'">
-    <input
-      matInput
-      formControlName="email"
-      type="email"
-      placeholder="Email"
-      autocomplete="off"
-    />
-    <span matSuffix *ngIf="checkingEmail">
-      <mat-spinner
-        matSuffix
-        strokeWidth="2"
-        diameter="16"
-        mode="indeterminate"
-      ></mat-spinner>
-    </span>
-    <mat-error *ngIf="email.errors as error">
-      <!-- <pre>{{error | json}}</pre> -->
-      {{ email.hasError('Conflict') ? error.Conflict : 'Email inválido' }}
-    </mat-error>
-  </mat-form-field>
-
-  <div class="flex-row gap">
-    <mat-form-field class="flex-1" [color]="email.valid && 'accent'">
+<form  fxLayout="column" [formGroup]="form" (ngSubmit)="onSignUp()">
+  <!-- <div fxLayout="column"> -->
+    <mat-form-field fxFlex [color]="email.valid && 'accent'">
       <input
         matInput
-        formControlName="password"
-        type="password"
-        placeholder="Password"
+        formControlName="email"
+        type="email"
+        placeholder="Email"
         autocomplete="off"
       />
-
-      <mat-error *ngIf="password.invalid && password.dirty">
-        Mínimo de 6 caracteres
+      <span matSuffix *ngIf="checkingEmail">
+        <mat-spinner
+          matSuffix
+          strokeWidth="2"
+          diameter="16"
+          mode="indeterminate"
+        ></mat-spinner>
+      </span>
+      <mat-error *ngIf="email.errors as error">
+        <!-- <pre>{{error | json}}</pre> -->
+        {{ email.hasError('Conflict') ? error.Conflict : 'Email inválido' }}
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field
-      class="flex-1"
-      [color]="passwordDoesMatch ? 'accent' : 'warn'"
+    <div fxLayout="row" fxLayoutGap="8px">
+      <mat-form-field fxFlex [color]="email.valid && 'accent'">
+        <input
+          matInput
+          formControlName="password"
+          type="password"
+          placeholder="Password"
+          autocomplete="off"
+        />
+
+        <mat-error *ngIf="password.invalid && password.dirty">
+          Mínimo de 6 caracteres
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex [color]="passwordDoesMatch ? 'accent' : 'warn'">
+        <input
+          matInput
+          formControlName="confirm"
+          type="password"
+          placeholder="Confirm password"
+          autocomplete="off"
+        />
+
+        <mat-error *ngIf="passwordConfirm.dirty && !passwordDoesMatch">
+          Não confere
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- <suite-state-form [parentControl]="state"></suite-state-form> -->
+    <suite-city-form fxFlex (valueChange)="onCityChanged($event)"></suite-city-form>
+
+    <!-- <mat-error class="server-error">{{ serverMessage }}</mat-error> -->
+
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit"
+      [disabled]="form.invalid || checkingEmail"
     >
-      <input
-        matInput
-        formControlName="confirm"
-        type="password"
-        placeholder="Confirm password"
-        autocomplete="off"
-      />
-
-      <mat-error *ngIf="passwordConfirm.dirty && !passwordDoesMatch">
-        Não confere
-      </mat-error>
-    </mat-form-field>
-  </div>
-  <!-- <suite-state-form [parentControl]="state"></suite-state-form> -->
-  <suite-city-form (valueChange)="onCityChanged($event)"></suite-city-form>
-
-  <!-- <mat-error class="server-error">{{ serverMessage }}</mat-error> -->
-
-  <button
-    mat-raised-button
-    color="accent"
-    type="submit"
-    [disabled]="form.invalid || checkingEmail"
-  >
-    Enviar
-  </button>
+      Enviar
+    </button>
+  <!-- </div> -->
 </form>
 <!-- <pre>
   {{ form.value | json }}
