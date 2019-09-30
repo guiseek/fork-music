@@ -1,28 +1,79 @@
-<form [formGroup]="form" (ngSubmit)="onSignUp()">
-  <mat-form-field class="w-full" [color]="email.valid && 'accent'">
-    <input
-      matInput
-      formControlName="email"
-      type="email"
-      placeholder="Email"
-      autocomplete="off"
-    />
-    <span matSuffix *ngIf="checkingEmail">
-      <mat-spinner
-        matSuffix
-        strokeWidth="2"
-        diameter="16"
-        mode="indeterminate"
-      ></mat-spinner>
-    </span>
-    <mat-error *ngIf="email.errors as error">
-      <!-- <pre>{{error | json}}</pre> -->
-      {{ email.hasError('Conflict') ? error.Conflict : 'Email inválido' }}
-    </mat-error>
-  </mat-form-field>
-
-  <div class="flex-row gap">
-    <mat-form-field class="flex-1" [color]="email.valid && 'accent'">
+<form fxLayout="column" [formGroup]="form" (ngSubmit)="onSignUp()">
+  <!-- <div fxLayout="column"> -->
+  <div fxLayout="row" fxLayoutGap="8px">
+    <mat-form-field fxFlex [color]="firstName.valid && 'accent'">
+      <input
+        matInput
+        formControlName="firstName"
+        type="text"
+        placeholder="Nome"
+        autocomplete="off"
+      />
+      <mat-error *ngIf="firstName.errors as error">
+        <!-- <pre>{{error | json}}</pre> -->
+        {{ firstName.hasError('Conflict') ? error.Conflict : 'Email inválido' }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <input
+        matInput
+        formControlName="lastName"
+        type="text"
+        placeholder="Sobrenome"
+        autocomplete="off"
+      />
+      <mat-error *ngIf="lastName.errors as error">
+        <!-- <pre>{{error | json}}</pre> -->
+        {{ lastName.hasError('Conflict') ? error.Conflict : 'Email inválido' }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutGap="8px">
+    <mat-form-field fxFlex [color]="email.valid && 'accent'">
+      <input
+        matInput
+        formControlName="email"
+        type="email"
+        placeholder="Email"
+        autocomplete="off"
+      />
+      <span matSuffix *ngIf="checkingEmail">
+        <mat-spinner
+          matSuffix
+          strokeWidth="2"
+          diameter="16"
+          mode="indeterminate"
+        ></mat-spinner>
+      </span>
+      <mat-error *ngIf="email.errors as error">
+        <!-- <pre>{{error | json}}</pre> -->
+        {{ email.hasError('Conflict') ? error.Conflict : 'Email inválido' }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex [color]="username.valid && 'accent'">
+      <input
+        matInput
+        formControlName="username"
+        type="text"
+        placeholder="Usuário"
+        autocomplete="off"
+      />
+      <span matSuffix *ngIf="checkingEmail">
+        <mat-spinner
+          matSuffix
+          strokeWidth="2"
+          diameter="16"
+          mode="indeterminate"
+        ></mat-spinner>
+      </span>
+      <mat-error *ngIf="email.errors as error">
+        <!-- <pre>{{error | json}}</pre> -->
+        {{ email.hasError('Conflict') ? error.Conflict : 'Email inválido' }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutGap="8px">
+    <mat-form-field fxFlex [color]="email.valid && 'accent'">
       <input
         matInput
         formControlName="password"
@@ -36,10 +87,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field
-      class="flex-1"
-      [color]="passwordDoesMatch ? 'accent' : 'warn'"
-    >
+    <mat-form-field fxFlex [color]="passwordDoesMatch ? 'accent' : 'warn'">
       <input
         matInput
         formControlName="confirm"
@@ -54,7 +102,10 @@
     </mat-form-field>
   </div>
   <!-- <suite-state-form [parentControl]="state"></suite-state-form> -->
-  <suite-city-form (valueChange)="onCityChanged($event)"></suite-city-form>
+  <suite-city-form
+    fxFlex
+    (valueChange)="onCityChanged($event)"
+  ></suite-city-form>
 
   <!-- <mat-error class="server-error">{{ serverMessage }}</mat-error> -->
 
@@ -66,6 +117,7 @@
   >
     Enviar
   </button>
+  <!-- </div> -->
 </form>
 <!-- <pre>
   {{ form.value | json }}

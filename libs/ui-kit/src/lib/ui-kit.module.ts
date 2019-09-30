@@ -8,6 +8,7 @@ import { DynamicFormModule } from '@suite/common/forms/dynamic-form';
 import { TableBackendModule } from '@suite/common/tables/table-backend';
 
 import { DialogTableBackendComponent } from './dialog-table-backend/dialog-table-backend.component';
+import { EmptyComponent } from './empty/empty.component';
 
 @NgModule({
   imports: [
@@ -17,8 +18,8 @@ import { DialogTableBackendComponent } from './dialog-table-backend/dialog-table
     TableBackendModule,
     DynamicFormModule
   ],
-  declarations: [SetupSteps, DialogFormComponent, DialogTableBackendComponent],
-  exports: [SetupSteps, DialogFormComponent, DialogTableBackendComponent],
+  declarations: [SetupSteps, DialogFormComponent, DialogTableBackendComponent, EmptyComponent],
+  exports: [SetupSteps, DialogFormComponent, DialogTableBackendComponent, EmptyComponent],
   entryComponents: [DialogFormComponent, DialogTableBackendComponent]
 })
 export class UiKitModule {}

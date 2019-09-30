@@ -1,0 +1,16 @@
+<mat-form-field
+  class="w-full"
+  [appearance]="field.appearance"
+  [formGroup]="group"
+>
+  <mat-label>{{ field.label }}</mat-label>
+  <ng-container *ngIf="field.asyncConfig as cfg">
+    <mat-select [placeholder]="field.label" [formControlName]="field.name">
+      <mat-option
+        *ngFor="let item of (field.options$ | async)"
+        [value]="item[cfg.value]"
+        >{{ item[cfg.viewValue] }}</mat-option
+      >
+    </mat-select>
+  </ng-container>
+</mat-form-field>

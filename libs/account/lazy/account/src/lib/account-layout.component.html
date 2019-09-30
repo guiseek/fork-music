@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+  <span>Conta</span>
+  <span fxFlex></span>
+  <button mat-button [matMenuTriggerFor]="menuMembers">Membros</button>
+  <mat-menu #menuMembers="matMenu">
+    <a mat-menu-item routerLink="membros/usuarios">Usuários</a>
+    <a mat-menu-item routerLink="membros/grupos">Grupos</a>
+  </mat-menu>
+  <span fxFlex></span>
+  <!-- <a routerLink="membros" mat-button>
+    Membros
+  </a>
+  <a routerLink="membros" mat-button>
+    Membros
+  </a> -->
+  <account-dropdown></account-dropdown>
+</mat-toolbar>
+<router-outlet></router-outlet>

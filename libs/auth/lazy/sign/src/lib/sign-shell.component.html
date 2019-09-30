@@ -1,13 +1,8 @@
-<mat-card *ngIf="(authState | async) as user">
-  <mat-card-title>
-    {{ user | json }}
-  </mat-card-title>
-</mat-card>
-<mat-card>
-  <mat-tab-group mat-stretch-tabs dynamicHeight>
+<!-- <mat-card>
+  <mat-tab-group mat-stretch-tabs dynamicHeight #tabGroup>
     <mat-tab>
       <ng-template mat-tab-label> Login </ng-template>
-      <auth-in (in)="onSignIn($event)"></auth-in>
+      <auth-in [form]="form" (in)="onSignIn($event)"></auth-in>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
@@ -16,8 +11,8 @@
       <auth-up (up)="onSignUp($event)"></auth-up>
     </mat-tab>
   </mat-tab-group>
-</mat-card>
-
+</mat-card> -->
+<router-outlet></router-outlet>
 <!-- <mat-card>
   <nav mat-tab-nav-bar mat-stretch-tabs>
     <a
@@ -31,10 +26,9 @@
       {{ link.label }}
     </a>
   </nav>
-  <div [@routeAnimations]="prepareRoute(outlet)">
-    <router-outlet #outlet="outlet"></router-outlet>
-  </div>
-  <router-outlet></router-outlet>
+  <main [@fadeAnimation]="getRouterOutletState(o)">
+    <router-outlet #o="outlet"></router-outlet>
+  </main>
 </mat-card> -->
 
 <!-- <mat-sidenav-container class="sidenav-container">

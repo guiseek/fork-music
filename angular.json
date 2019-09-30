@@ -64,6 +64,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "customer-portal:build",
+            "proxyConfig": "apps/customer-portal/proxy.conf.json",
             "port": 4201
           },
           "configurations": {
@@ -1289,6 +1290,130 @@
             "jestConfig": "libs/common/cards/jest.config.js",
             "tsConfig": "libs/common/cards/tsconfig.spec.json",
             "setupFile": "libs/common/cards/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "account-lazy-account": {
+      "projectType": "library",
+      "root": "libs/account/lazy/account",
+      "sourceRoot": "libs/account/lazy/account/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/account/lazy/account/tsconfig.lib.json",
+              "libs/account/lazy/account/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/account/lazy/account/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/account/lazy/account/jest.config.js",
+            "tsConfig": "libs/account/lazy/account/tsconfig.spec.json",
+            "setupFile": "libs/account/lazy/account/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "account-shared-account": {
+      "projectType": "library",
+      "root": "libs/account/shared/account",
+      "sourceRoot": "libs/account/shared/account/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/account/shared/account/tsconfig.lib.json",
+              "libs/account/shared/account/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/account/shared/account/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/account/shared/account/jest.config.js",
+            "tsConfig": "libs/account/shared/account/tsconfig.spec.json",
+            "setupFile": "libs/account/shared/account/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "account-shared-resources": {
+      "root": "libs/account/shared/resources",
+      "sourceRoot": "libs/account/shared/resources/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/account/shared/resources/tsconfig.lib.json",
+              "libs/account/shared/resources/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/account/shared/resources/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/account/shared/resources/jest.config.js",
+            "tsConfig": "libs/account/shared/resources/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "common-forms-form-backend": {
+      "projectType": "library",
+      "root": "libs/common/forms/form-backend",
+      "sourceRoot": "libs/common/forms/form-backend/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/common/forms/form-backend/tsconfig.lib.json",
+              "libs/common/forms/form-backend/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/common/forms/form-backend/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/common/forms/form-backend/jest.config.js",
+            "tsConfig": "libs/common/forms/form-backend/tsconfig.spec.json",
+            "setupFile": "libs/common/forms/form-backend/src/test-setup.ts"
           }
         }
       },

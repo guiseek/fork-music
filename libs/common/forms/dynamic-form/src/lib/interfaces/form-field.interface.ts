@@ -1,4 +1,5 @@
 import { FormValidator } from './form-validator.interface';
+import { Observable } from 'rxjs';
 
 export interface FormFieldOption {
   value: any;
@@ -11,11 +12,12 @@ export interface FormField {
   name?: string;
   inputType?: string;
   options?: string[] | FormFieldOption[];
-  asyncOptions?: {
+  asyncConfig?: {
     endpoint: string;
     value: string;
     viewValue: string;
   }
+  options$?: Observable<any>
   collections?: any;
   type: string;
   value?: any;

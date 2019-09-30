@@ -4,6 +4,9 @@
     suiteDynamicField
     [field]="field"
     [group]="form"
+    [config]="config"
   >
   </ng-container>
 </form>
+<pre>{{form.value | json}}</pre>
+<pre>{{form.errors | json}}</pre>

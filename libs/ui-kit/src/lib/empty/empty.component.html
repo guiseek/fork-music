@@ -1,0 +1,18 @@
+<div>
+  <img [src]="imageURL" alt="Empty" />
+  <ng-container
+    *ngTemplateOutlet="
+      contentTemplate ? contentTemplate : defaultContentTemplate
+    "
+  ></ng-container>
+  <ng-container
+    *ngTemplateOutlet="footerTemplate ? footerTemplate : defaultFooterTemplate"
+  ></ng-container>
+</div>
+
+<ng-template #defaultContentTemplate>
+  <h3>Nada por aqui...</h3>
+</ng-template>
+<ng-template #defaultFooterTemplate>
+  <button mat-button color="primary" (click)="onInit()">Comece agora</button>
+</ng-template>

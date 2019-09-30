@@ -7,6 +7,12 @@ import { DialogRef, DIALOG_DATA } from '@suite/cdk/dialog';
   styleUrls: ['./dialog-table-backend.component.scss']
 })
 export class DialogTableBackendComponent implements OnInit {
+  config = {
+    paginator: {
+      hidePageSize: true,
+      showFirstLastButtons: false
+    }
+  }
   constructor(
     private dialogRef: DialogRef<string>,
     @Optional() @Inject(DIALOG_DATA) public data?: any

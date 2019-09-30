@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, throwError, EMPTY, of } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
+import { AuthJwtPayload } from '@suite/interfaces';
 
 const API = '/api/auth'
 
@@ -19,7 +20,12 @@ export class AuthService {
   signUp(data) {
     return this.http.post(API + '/signup', data)
       .pipe(
-        catchError((response) => throwError(response.error))
+        map((user: any) => {
+          console.log(user)
+          return user
+        }),
+        catchError((response) => throwError(response.error)),
+        // tap((auth: any) => this.setAuth(auth)),
       )
   }
   signIn(data) {
@@ -40,13 +46,13 @@ export class AuthService {
     this.token = auth.access_token;
     this._authState.next(auth)
   }
-  set auth(payload: any) {
+  set auth(payload: AuthJwtPayload) {
     window.localStorage.setItem(
       this.AUTH_KEY,
       JSON.stringify(payload)
     );
   }
-  get auth() {
+  get auth(): AuthJwtPayload {
     return JSON.parse(
       window.localStorage.getItem(this.AUTH_KEY)
     );

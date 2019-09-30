@@ -35,6 +35,7 @@ export class UserController {
     @Param('id') id: number,
     // @Res() res: Response
   ) {
+    console.log(loggedInUser)
     return user
     // return res.send(user);
   }

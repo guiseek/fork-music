@@ -21,6 +21,9 @@ import { SignShellComponent } from './sign-shell.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AuthModule } from '@suite/auth/shared/auth';
+import { LockScreenComponent } from './lock-screen/lock-screen.component';
+import { ConfirmationCodeComponent } from './confirmation-code/confirmation-code.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const components = [
   SignShellComponent, SignUpComponent, SignInComponent
@@ -70,13 +73,31 @@ const modules = [
             path: 'up',
             component: SignUpComponent,
             data: { animation: 'SignUp' }
+          },
+          {
+            path: 'confirm/:code',
+            component: ConfirmationCodeComponent,
+            data: { animation: 'SignUp' }
+          },
+          {
+            path: 'forgot',
+            component: ForgotPasswordComponent,
+            data: { animation: 'SignUp' }
+          },
+          {
+            path: 'lock',
+            component: LockScreenComponent,
+            data: { animation: 'SignUp' }
           }
         ]
       }
     ])
   ],
   declarations: [
-    ...components
+    ...components,
+    LockScreenComponent,
+    ConfirmationCodeComponent,
+    ForgotPasswordComponent
   ]
 })
 export class AuthLazySignModule {}

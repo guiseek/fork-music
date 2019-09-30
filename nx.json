@@ -115,6 +115,18 @@
     },
     "common-cards": {
       "tags": ["shared-module"]
+    },
+    "account-lazy-account": {
+      "tags": ["account:lazy"]
+    },
+    "account-shared-account": {
+      "tags": ["account:shared"]
+    },
+    "account-shared-resources": {
+      "tags": ["account:shared"]
+    },
+    "common-forms-form-backend": {
+      "tags": ["shared-module"]
     }
   }
 }

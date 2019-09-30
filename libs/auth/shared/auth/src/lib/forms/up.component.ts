@@ -21,6 +21,18 @@ export class UpComponent implements OnInit {
     private authService: AuthService
   ) {
     this.form = this._fb.group({
+      firstName: ['', [
+        Validators.required,
+        Validators.maxLength(64)
+      ]],
+      lastName: ['', [
+        Validators.required,
+        Validators.maxLength(64)
+      ]],
+      username: ['', [
+        Validators.required,
+        Validators.maxLength(64)
+      ]],
       email: ['', [
         Validators.email,
         Validators.required
@@ -30,6 +42,15 @@ export class UpComponent implements OnInit {
       state: [],
       city: []
     })
+  }
+  get firstName() {
+    return this.form.get('firstName');
+  }
+  get lastName() {
+    return this.form.get('lastName');
+  }
+  get username() {
+    return this.form.get('username');
   }
   get email(): FormControl {
     return this.form.get('email') as FormControl;

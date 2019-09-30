@@ -1,0 +1,8 @@
+<button mat-button (click)="getUserGroupTypes()">
+  Ver tipos
+</button>
+<button mat-button (click)="createUserGroupType()">
+  Criar tipo
+</button>
+
+<suite-table-backend [endpoint]="resources.endpoint" [columns]="resources.columns" [refresh]="resources.refresh" [config]="resources.config"></suite-table-backend>

@@ -1,5 +1,11 @@
 <div class="w-full margin-top" [formGroup]="group">
-  <button type="submit" mat-raised-button [disabled]="group.invalid" color="primary">
+  <!-- <button type="submit" mat-raised-button [disabled]="group.invalid" color="primary"> -->
+  <button
+    type="submit"
+    mat-raised-button
+    [disabled]="group.invalid && !config?.actions.disableInvalid"
+    color="primary"
+  >
     {{ field.label }}
   </button>
 </div>

@@ -16,6 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@env/backend": ["apps/backend/src/environments"],
+      "@env/backend/*": ["apps/backend/src/environments/*"],
       "@suite/backend": ["libs/backend/src/index.ts"],
       "@suite/account-ui": ["libs/account-ui/src/index.ts"],
       "@suite/profile-settings-ui": ["libs/profile-settings-ui/src/index.ts"],
@@ -81,7 +83,19 @@
         "libs/school/lazy/classrooms/src/index.ts"
       ],
       "@suite/quick-start/admin": ["libs/quick-start/admin/src/index.ts"],
-      "@suite/common/cards": ["libs/common/cards/src/index.ts"]
+      "@suite/common/cards": ["libs/common/cards/src/index.ts"],
+      "@suite/account/lazy/account": ["libs/account/lazy/account/src/index.ts"],
+      "backend/account": ["libs/account/backend/account/src"],
+      "backend/account/*": ["libs/account/backend/account/src/*"],
+      "@suite/account/shared/account": [
+        "libs/account/shared/account/src/index.ts"
+      ],
+      "@suite/account/shared/resources": [
+        "libs/account/shared/resources/src/index.ts"
+      ],
+      "@suite/common/forms/form-backend": [
+        "libs/common/forms/form-backend/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

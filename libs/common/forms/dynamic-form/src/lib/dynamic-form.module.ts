@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddressFormModule, CityFormComponent } from '@suite/common/forms/resources';
 
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import {
@@ -28,6 +29,8 @@ import { FormCheckboxComponent } from './components/form-checkbox/form-checkbox.
 import { FormRadiobuttonComponent } from './components/form-radiobutton/form-radiobutton.component';
 import { FormButtonComponent } from './components/form-button/form-button.component';
 import { DynamicFieldDirective } from './dynamic-field.directive';
+import { FormSelectAsyncComponent } from './components/form-select-async/form-select-async.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const modules = [
   MatButtonModule,
@@ -52,13 +55,16 @@ const components = [
   FormCheckboxComponent,
   FormRadiobuttonComponent,
   FormButtonComponent,
+  FormSelectAsyncComponent
 ]
 
 @NgModule({
   imports: [
     CommonModule,
+    HttpClientModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+    AddressFormModule,
     ...modules
   ],
   declarations: [
@@ -75,7 +81,8 @@ const components = [
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }
   ],
   entryComponents: [
-    ...components
+    ...components,
+    CityFormComponent
   ]
 })
 export class DynamicFormModule {}
