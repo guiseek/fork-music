@@ -92,6 +92,9 @@
       ],
       "@suite/account/shared/resources": [
         "libs/account/shared/resources/src/index.ts"
+      ],
+      "@suite/common/forms/form-backend": [
+        "libs/common/forms/form-backend/src/index.ts"
       ]
     }
   },

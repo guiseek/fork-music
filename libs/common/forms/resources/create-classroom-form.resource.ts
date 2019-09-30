@@ -77,7 +77,7 @@ export const createClassroomFormFields: FormField[] = [
     name: 'classroomType',
     value: '',
     options: [],
-    asyncOptions: {
+    asyncConfig: {
       endpoint: '/api/school/classroom-types',
       value: 'id',
       viewValue: 'name'

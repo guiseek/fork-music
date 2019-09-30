@@ -11,21 +11,22 @@ A Users & groups área de assunto armazena informações sobre todos os usuário
 ![user_and_groups](https://www.vertabelo.com/blog/a-saas-subscription-data-model/users-and-groups.png)
 
 
-A tabela mais importante aqui é a user_accounttabela. Vamos usá-lo para armazenar todos os detalhes relacionados às contas de usuário. Esses são:
+A tabela mais importante aqui é a `user_account`. Vamos usá-lo para armazenar todos os detalhes relacionados às contas de usuário. Esses são:
 
-- first_name & last_name- O nome e o sobrenome do usuário. Observe que cada usuário armazenado aqui é um indivíduo particular.
-- username - Um nome de usuário (escolhido pelo usuário).
-- password- Um valor de hash da senha do usuário. (Os usuários definem suas próprias senhas.)
-- email - O endereço de email do usuário, definido durante o processo de registro.
-- confirmation_code - O código usado durante o processo de confirmação por email.
-- confirmation_time - Quando o registro / confirmação foi concluído.
-- insert_ts - O registro de data e hora em que este registro foi inserido inicialmente.
+- `first_name` & `last_name` - O nome e o sobrenome do usuário. Observe que cada usuário armazenado aqui é um indivíduo particular.
+- `username` - Um nome de usuário (escolhido pelo usuário).
+- `password` - Um valor de hash da senha do usuário. (Os usuários definem suas próprias senhas.)
+- `email` - O endereço de email do usuário, definido durante o processo de registro.
+- `confirmation_code` - O código usado durante o processo de confirmação por email.
+- `confirmation_time` - Quando o registro / confirmação foi concluído.
+- `insert_ts` - O registro de data e hora em que este registro foi inserido inicialmente.
 
-Os usuários podem criar grupos; grupos têm tipos predefinidos. Uma lista de todos os tipos de grupos possíveis é armazenada na user_group_typetabela. Cada tipo é definido EXCLUSIVAMENTE por seus type_name. Também definiremos o número mínimo e máximo de membros do grupo permitido para cada tipo de grupo. Esse intervalo é definido com dois valores - members_min(o limite inferior) e members_max(o limite superior).
+Os usuários podem criar grupos; grupos têm tipos predefinidos. Uma lista de todos os tipos de grupos possíveis é armazenada na tabela `user_group_type`.
+Cada tipo é definido EXCLUSIVAMENTE por seus `type_name`. Também definiremos o número mínimo e máximo de membros do grupo permitido para cada tipo de grupo. Esse intervalo é definido com dois valores - `members_min` (o limite inferior) e `members_max` (o limite superior).
 
-Ao criar uma nova conta, os usuários também selecionam seu grupo de usuários. Isso criará um novo registro na user_grouptabela referenciando o tipo de grupo selecionado e armazenando o registro de data e hora ( insert_ts) quando esse registro foi inserido. O customer_invoice_dataatributo é uma descrição textual do que imprimiremos na fatura desse grupo de usuários.
+Ao criar uma nova conta, os usuários também selecionam seu grupo de usuários. Isso criará um novo registro na tabela `user_group` referenciando o tipo de grupo selecionado e armazenando o registro de data e hora (insert_ts) quando esse registro foi inserido. O atributo `customer_invoice_data` é uma descrição textual do que imprimiremos na fatura desse grupo de usuários.
 
-A última tabela nesta área de assunto é a in_grouptabela. Para cada grupo, armazenaremos uma lista de todos os seus membros. Além das referências ao grupo de usuários ( user_group_id) e conta de usuário ( user_account_id), também armazenaremos o registro de data e hora quando um usuário foi adicionado ao grupo ( time_added) ou removido do grupo ( time_removedque só conterá um valor se o usuário tiver sido removido ) Também teremos um sinalizador para indicar se o usuário é group_adminou não. Os administradores do grupo podem atualizar os membros do grupo e adicionar novos membros.
+A última tabela nesta área de assunto é a tabela `in_group`. Para cada grupo, armazenaremos uma lista de todos os seus membros. Além das referências ao grupo de usuários (`user_group_id`) e conta de usuário (`user_account_id`), também armazenaremos o registro de data e hora quando um usuário foi adicionado ao grupo (`time_added`) ou removido do grupo (`time_removed` que só conterá um valor se o usuário tiver sido removido ) Também teremos um sinalizador para indicar se o usuário é `group_admin` ou não. Os administradores do grupo podem atualizar os membros do grupo e adicionar novos membros.
 
 ## Seção 2: Software e planos
 Em seguida, precisamos definir tudo o que ofereceremos aos nossos (potenciais) clientes. Podemos oferecer apenas um tipo de software, mas há uma grande possibilidade de termos várias ofertas diferentes. Um exemplo comum desse caso é ter uma ferramenta SaaS separada de seu aplicativo de análise, por exemplo, Stripe e Stripe Sigma. Abordaremos esses casos em nosso modelo de dados.
@@ -34,17 +35,17 @@ Em seguida, precisamos definir tudo o que ofereceremos aos nossos (potenciais) c
 
 Vamos começar com a softwaremesa. Neste dicionário, armazenaremos uma lista de todas as nossas ofertas de SaaS. Para cada um, armazenaremos:
 
-- software_name - Um nome de software exclusivo.
-- details - Todos os detalhes que descrevem esse software.
-- access_link - Um local ou link onde podemos acessar esse software.
+- `software_name` - Um nome de software exclusivo.
+- `details` - Todos os detalhes que descrevem esse software.
+- `access_link` - Um local ou link onde podemos acessar esse software.
 Deveríamos poder oferecer nossas soluções SaaS em um ou mais planos diferentes. Cada plano contém várias opções. Por exemplo, poderíamos ter um plano premium que inclua todas as opções que oferecemos e um plano básico que inclua apenas o essencial. Armazenaremos todos os planos distintos na plantabela. Para cada plano, definiremos:
 
-- plan_name- O nome que selecionamos para este plano. Juntamente com a referência ao software ( software_id), isso forma a chave alternativa / UNIQUE desta tabela.
-- user_group_type_id- Uma referência que indica o tipo do grupo que pode usar este plano. Pode ser um grupo de usuário único ou um grupo padrão. Essa referência também define o número máximo de membros do grupo para esse plano - por exemplo, se nosso plano permitir cinco contas diferentes em uma assinatura, devemos fazer referência ao apropriado user_group_type.
-- current_price - O preço atual para este plano.
-- insert_ts - O registro de data e hora em que esse registro foi inserido.
-- active - Uma bandeira indicando se este plano está ativo ou não.
-Já mencionamos que os planos para o mesmo software virão com opções diferentes. Uma lista de todas as opções distintas é armazenada no optiondicionário. Cada opção é definida EXCLUSIVAMENTE por seus option_name.
+- `plan_name` - O nome que selecionamos para este plano. Juntamente com a referência ao software (`software_id`), isso forma a chave alternativa / **UNIQUE** desta tabela.
+- `user_group_type_id` - Uma referência que indica o tipo do grupo que pode usar este plano. Pode ser um grupo de usuário único ou um grupo padrão. Essa referência também define o número máximo de membros do grupo para esse plano - por exemplo, se nosso plano permitir cinco contas diferentes em uma assinatura, devemos fazer referência ao apropriado user_group_type.
+- `current_price` - O preço atual para este plano.
+- `insert_ts` - O registro de data e hora em que esse registro foi inserido.
+- `active` - Uma bandeira indicando se este plano está ativo ou não.
+Já mencionamos que os planos para o mesmo software virão com opções diferentes. Uma lista de todas as opções distintas é armazenada no optiondicionário. Cada opção é definida EXCLUSIVAMENTE por seus `option_name`.
 
 Para atribuir opções a diferentes planos, usaremos a option_includedtabela. Ele armazena referências ao plano relacionado ( plan_id) e opção ( option_id). Este par, junto com o date_addedatributo, forma a chave UNIQUE desta tabela. O date_removedatributo conterá um valor apenas se decidirmos remover uma determinada opção de um plano. Isso pode acontecer quando criamos uma nova opção para substituir a antiga ou decidimos não ter mais uma opção, porque poucas pessoas a usam.
 

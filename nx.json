@@ -124,6 +124,9 @@
     },
     "account-shared-resources": {
       "tags": ["account:shared"]
+    },
+    "common-forms-form-backend": {
+      "tags": ["shared-module"]
     }
   }
 }

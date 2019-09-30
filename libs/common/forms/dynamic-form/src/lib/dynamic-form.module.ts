@@ -29,6 +29,8 @@ import { FormCheckboxComponent } from './components/form-checkbox/form-checkbox.
 import { FormRadiobuttonComponent } from './components/form-radiobutton/form-radiobutton.component';
 import { FormButtonComponent } from './components/form-button/form-button.component';
 import { DynamicFieldDirective } from './dynamic-field.directive';
+import { FormSelectAsyncComponent } from './components/form-select-async/form-select-async.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const modules = [
   MatButtonModule,
@@ -52,12 +54,14 @@ const components = [
   FormDateComponent,
   FormCheckboxComponent,
   FormRadiobuttonComponent,
-  FormButtonComponent
+  FormButtonComponent,
+  FormSelectAsyncComponent
 ]
 
 @NgModule({
   imports: [
     CommonModule,
+    HttpClientModule,
     ReactiveFormsModule,
     FlexLayoutModule,
     AddressFormModule,

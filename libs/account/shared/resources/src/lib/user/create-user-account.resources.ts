@@ -1,5 +1,8 @@
-import { FormField } from '@suite/common/forms/dynamic-form'
+import { FormField, FormBackendConfig } from '@suite/common/forms/dynamic-form'
 import { Validators } from '@angular/forms'
+// import { FormBackendConfig } from '@suite/common/forms/form-backend'
+import { Router } from '@angular/router'
+import { MatSnackBar } from '@angular/material'
 
 export const createUserAccountForm: FormField[] = [
   // {
@@ -13,18 +16,18 @@ export const createUserAccountForm: FormField[] = [
     inputType: 'text',
     name: 'firstName',
     appearance: 'outline',
-    validations: [
-      {
-        name: 'required',
-        validator: Validators.required,
-        message: 'Nome obrigatório'
-      },
-      {
-        name: 'maxlength',
-        validator: Validators.maxLength(64),
-        message: 'Máximo de 64 caracteres'
-      }
-    ]
+    // validations: [
+    //   {
+    //     name: 'required',
+    //     validator: Validators.required,
+    //     message: 'Nome obrigatório'
+    //   },
+    //   {
+    //     name: 'maxlength',
+    //     validator: Validators.maxLength(64),
+    //     message: 'Máximo de 64 caracteres'
+    //   }
+    // ]
   },
   {
     type: 'input',
@@ -98,6 +101,16 @@ export const createUserAccountForm: FormField[] = [
     ]
   },
   {
+    type: 'selectAsync',
+    label: 'Async',
+    name: 'groupType',
+    asyncConfig: {
+      endpoint: '/api/account/user-group-type',
+      value: 'id',
+      viewValue: 'typeName'
+    }
+  },
+  {
     type: 'city',
     label: 'Cidade',
     name: 'city',
@@ -110,8 +123,47 @@ export const createUserAccountForm: FormField[] = [
         message: 'Cidade obrigatória'
       }
     ]
+  },
+  {
+    type: 'button',
+    label: 'Salvar'
   }
 ]
+export const createUserAccountFormBackend: FormBackendConfig = {
+  fields: createUserAccountForm,
+  endpoint: '/api/account/user-account'
+}
+export const createUserAccountPage = {
+  fx: {
+    layout: 'column',
+    align: 'center center'
+  },
+  title: 'Criar conta',
+  subtitle: 'Preencha o formulário e vamos começar',
+  form: createUserAccountFormBackend,
+  then: (res, router: Router) => {
+    console.log('res: ', res)
+    router.navigate(['/confirm', res.confirmationCode])
+  },
+  catch: (error, snack: MatSnackBar) => {
+    console.log('error: ', error)
+    const errors = Object.keys(
+      error.message.reduce((previous, current) => {
+        previous[current.property] = Object.values(current.constraints)
+        return previous
+      }, {})
+    ).join(', ')
+    snack.open(
+      errors
+    )
+  },
+  onResponse: (res, router?: Router) => {
+    if (router) {
+      router.navigate(['/confirm', res.confirmationCode])
+    }
+  }
+
+}
 export const confirmationCodeOfUserAccountForm: FormField[] = [
   {
     type: 'input',

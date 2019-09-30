@@ -1388,6 +1388,40 @@
           }
         }
       }
+    },
+    "common-forms-form-backend": {
+      "projectType": "library",
+      "root": "libs/common/forms/form-backend",
+      "sourceRoot": "libs/common/forms/form-backend/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/common/forms/form-backend/tsconfig.lib.json",
+              "libs/common/forms/form-backend/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/common/forms/form-backend/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/common/forms/form-backend/jest.config.js",
+            "tsConfig": "libs/common/forms/form-backend/tsconfig.spec.json",
+            "setupFile": "libs/common/forms/form-backend/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

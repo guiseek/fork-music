@@ -7,3 +7,5 @@ export * from './lib/services/account.service';
 
 export * from './lib/auth/auth.module';
 export * from './lib/auth/in/in.component';
+export * from './lib/auth/up/up.component';
+export * from './lib/auth/confirm/confirm.component';

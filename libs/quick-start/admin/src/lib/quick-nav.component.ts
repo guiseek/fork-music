@@ -6,7 +6,8 @@ import { SetupStep } from '@suite/ui-kit';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpDatabaseService } from '@suite/common/core';
 import { categoryResources } from '@suite/data';
-import { SetupSteps } from 'libs/ui-kit/src/lib/setup-steps/setup-steps.component';
+import { SetupSteps } from '@suite/ui-kit';
+// import { SetupSteps } from 'libs/ui-kit/src/lib/setup-steps/setup-steps.component';
 
 @Component({
   selector: 'quick-nav',

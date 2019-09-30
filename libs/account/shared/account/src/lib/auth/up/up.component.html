@@ -1,0 +1,13 @@
+<div [fxLayout]="resource.fx.layout" [fxLayoutAlign]="resource.fx.align">
+  <mat-card>
+    <mat-card-title>{{ resource.title }}</mat-card-title>
+    <mat-card-subtitle>{{ resource.subtitle }}</mat-card-subtitle>
+    <suite-dynamic-form
+      [fields]="resource.form.fields"
+      (submit)="onSubmit($event)"
+    ></suite-dynamic-form>
+  </mat-card>
+</div>
+
+<p>up works!</p>
+<!-- <pre>{{resource | json}}</pre> -->

@@ -13,6 +13,7 @@ import {
   FormControl
 } from "@angular/forms";
 import { FormField } from '../interfaces/form-field.interface';
+import { FormConfig } from '../interfaces/form-config.interface';
 
 @Component({
   selector: 'suite-dynamic-form',
@@ -21,6 +22,7 @@ import { FormField } from '../interfaces/form-field.interface';
 })
 export class DynamicFormComponent implements OnInit {
   @Input() fields: FormField[] = [];
+  @Input() config: FormConfig;
 
   @Output() submit: EventEmitter<any> = new EventEmitter<any>();
 
@@ -32,7 +34,13 @@ export class DynamicFormComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.form = this.createControl();
+
+    this.form = this.createControl(
+      Object.assign(
+        {}, { updateOn: 'change' }, this.config
+      )
+    );
+    console.log('this.config: ', this.config)
   }
 
   onSubmit(event: Event) {
@@ -45,8 +53,9 @@ export class DynamicFormComponent implements OnInit {
     }
   }
 
-  createControl() {
-    const group = this.fb.group({});
+  createControl({ updateOn }) {
+    console.log('updateOn: ', { updateOn })
+    const group = this.fb.group({}, { updateOn } );
     this.fields.forEach(field => {
       if (field.type === "button") return;
       const control = this.fb.control(

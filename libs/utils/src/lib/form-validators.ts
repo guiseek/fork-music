@@ -1,7 +1,18 @@
 import { ValidatorFn, ValidationErrors, FormGroup } from '@angular/forms';
+import { capitalize } from './text-capitalize';
 
-const URL_REGEXP = /^(http?|https):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/
+const URL_REGEXP = /^(http?|https):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|web|app|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/
 const NUMBER_REGEXP = /^-?[\d.]+(?:e-?\d+)?$/
+
+export interface ValidationObject {
+  [key: string]:
+  { value: string, constraints: string[] } | ValidationObject
+}
+
+export const regex = {
+  URL_REGEXP,
+  NUMBER_REGEXP
+}
 
 export class FormValidators {
   // Validates URL
@@ -49,5 +60,21 @@ export class FormValidators {
       return !group.get(c).value
     })
     return group.controls && isInvalid ? { every: true } : null
+  }
+  static validationErrorToObject(ve: ValidationErrors): ValidationObject {
+    return ve.reduce((p, c: ValidationErrors): ValidationObject => {
+      if (!c.children || !c.children.length) {
+        p[c.property] = {
+          value: c.value,
+          constraints: Object.keys(c.constraints)
+            .map(key => {
+              return capitalize(c.constraints[key]) + ".\u00a0";
+            })
+        }
+      } else {
+        p[c.property] = FormValidators.validationErrorToObject(c.children);
+      }
+      return p;
+    }, {} as ValidationObject);
   }
 }

@@ -33,13 +33,13 @@ export class AccountResolverService implements Resolve<IUserAccount> {
         map((account) => {
           console.log('account: ', !!account)
           if (!!account) {
-            this.router.navigate(['/conta/up'])
+            this.router.navigate(['/up'])
             return account
           }
         })
       )
     } else {
-      this.router.navigate(['/conta/up'])
+      this.router.navigate(['/up'])
       return EMPTY
     }
   }
