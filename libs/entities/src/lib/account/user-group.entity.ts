@@ -1,4 +1,4 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
 import { UserGroupType } from './user-group-type.entity';
 import { InGroup } from './in-group.entity';
 import { Subscription } from './subscription.entity';
@@ -6,7 +6,7 @@ import { Subscription } from './subscription.entity';
 
 @Entity('user_group')
 @Index('user_group_user_group_type', ['userGroupType',])
-export class UserGroup {
+export class UserGroup extends BaseEntity {
 
   @PrimaryGeneratedColumn({
     type: 'int',

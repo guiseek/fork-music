@@ -394,7 +394,7 @@ blockquote {
 </ul>
 <h2 id="se%C3%A7%C3%A3o-1-usu%C3%A1rios-e-grupos">Seção 1: Usuários e Grupos</h2>
 <p>A Users &amp; groups área de assunto armazena informações sobre todos os usuários do nosso aplicativo. Assumiremos que os usuários podem ser agrupados, por exemplo, quando uma empresa deseja comprar licenças para vários funcionários. Criaremos um grupo mesmo quando apenas um usuário pertencer a ele. Isso nos dará a flexibilidade de adicionar mais tarde novos membros a esse grupo.</p>
-<p><img src="https://www.vertabelo.com/blog/a-saas-subscription-data-model/users-and-groups.png" alt="user_and_groups"></p>
+<!-- ![user_and_groups](https://www.vertabelo.com/blog/a-saas-subscription-data-model/users-and-groups.png) -->
 <p>A tabela mais importante aqui é a <code>user_account</code>. Vamos usá-lo para armazenar todos os detalhes relacionados às contas de usuário. Esses são:</p>
 <ul>
 <li><code>first_name</code> &amp; <code>last_name</code> - O nome e o sobrenome do usuário. Observe que cada usuário armazenado aqui é um indivíduo particular.</li>
@@ -409,8 +409,10 @@ blockquote {
 </ul>
 <p>Os usuários podem criar grupos; grupos têm tipos predefinidos. Uma lista de todos os tipos de grupos possíveis é armazenada na tabela <code>user_group_type</code>.
 Cada tipo é definido EXCLUSIVAMENTE por seus <code>type_name</code>. Também definiremos o número mínimo e máximo de membros do grupo permitido para cada tipo de grupo. Esse intervalo é definido com dois valores - <code>members_min</code> (o limite inferior) e <code>members_max</code> (o limite superior).</p>
+<h2 id="criando-uma-conta">Criando uma conta</h2>
 <p>Ao criar uma nova conta, os usuários também selecionam seu grupo de usuários. Isso criará um novo registro na tabela <code>user_group</code> referenciando o tipo de grupo selecionado e armazenando o registro de data e hora (insert_ts) quando esse registro foi inserido. O atributo <code>customer_invoice_data</code> é uma descrição textual do que imprimiremos na fatura desse grupo de usuários.</p>
 <p>A última tabela nesta área de assunto é a tabela <code>in_group</code>. Para cada grupo, armazenaremos uma lista de todos os seus membros. Além das referências ao grupo de usuários (<code>user_group_id</code>) e conta de usuário (<code>user_account_id</code>), também armazenaremos o registro de data e hora quando um usuário foi adicionado ao grupo (<code>time_added</code>) ou removido do grupo (<code>time_removed</code> que só conterá um valor se o usuário tiver sido removido ) Também teremos um sinalizador para indicar se o usuário é <code>group_admin</code> ou não. Os administradores do grupo podem atualizar os membros do grupo e adicionar novos membros.</p>
+<p><img src="https://www.vertabelo.com/blog/a-saas-subscription-data-model/users-and-groups.png" alt="user_and_groups"></p>
 <h2 id="se%C3%A7%C3%A3o-2-software-e-planos">Seção 2: Software e planos</h2>
 <p>Em seguida, precisamos definir tudo o que ofereceremos aos nossos (potenciais) clientes. Podemos oferecer apenas um tipo de software, mas há uma grande possibilidade de termos várias ofertas diferentes. Um exemplo comum desse caso é ter uma ferramenta SaaS separada de seu aplicativo de análise, por exemplo, Stripe e Stripe Sigma. Abordaremos esses casos em nosso modelo de dados.</p>
 <p><img src="https://www.vertabelo.com/blog/a-saas-subscription-data-model/software-and-plans.png" alt="software_and_plans"></p>

@@ -1,4 +1,11 @@
-<mat-horizontal-stepper linear #stepper>
+<mat-horizontal-stepper #stepper>
+  <ng-container *ngFor="let step of forms">
+    <mat-step [label]="step.label">
+      <suite-form-backend [config]="step.form" (saved)="onSaved($event)"></suite-form-backend>
+    </mat-step>
+  </ng-container>
+</mat-horizontal-stepper>
+<!-- <mat-horizontal-stepper #stepper>
   <mat-step [stepControl]="userAccountFormGroup">
     <form [formGroup]="userAccountFormGroup" (ngSubmit)="onSubmitUserAccount()">
       <ng-template matStepLabel>Sua conta</ng-template>
@@ -45,6 +52,7 @@
               <span *ngIf="errors.required">Email obrigatório</span>
               <span *ngIf="errors.email">Email inválido</span>
               <span *ngIf="errors.email">Máximo de 128 caracteres</span>
+              <span *ngIf="errors.Conflict">{{ errors.Conflict }}</span>
             </mat-error>
           </mat-form-field>
           <mat-form-field fxFlex>
@@ -62,21 +70,86 @@
           <p>O código de verificação será enviado para este email.</p>
         </mat-card-content>
         <mat-card-actions [align]="'end'">
-          <button mat-button [disabled]="userAccountFormGroup.invalid">Confirmar</button>
+          <button mat-button [disabled]="userAccountFormGroup.invalid">
+            Confirmar
+          </button>
         </mat-card-actions>
       </mat-card>
     </form>
   </mat-step>
+  <mat-step [stepControl]="userAccountGroupFormGroup">
+    <form
+      [formGroup]="userAccountGroupFormGroup"
+      (ngSubmit)="onSubmitUserGroup()"
+    >
+      <ng-template matStepLabel>Grupo</ng-template>
+      <mat-card>
+        <div fxLayout="column" fxLayoutGap="16px">
+          <mat-form-field fxFlex appearance="outline" class="big">
+            <mat-select formControlName="userGroupType">
+              <mat-option
+                *ngFor="let groupType of (groupTypes$ | async)"
+                [value]="groupType"
+              >
+                {{ groupType.typeName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex appearance="outline" class="big">
+            <input
+              matInput
+              formControlName="customerInvoiceData"
+              placeholder="Inscrição"
+              required
+            />
+          </mat-form-field>
+          <mat-card-content>
+            <pre>{{userAccountGroupFormGroup.value | json}}</pre>
+          </mat-card-content>
+          <mat-card-actions>
+            <button
+              mat-button
+              fxFlex
+              [disabled]="confirmationCodeFormGroup.invalid"
+            >
+              Verificar
+            </button>
+          </mat-card-actions>
+        </div>
+      </mat-card>
+    </form>
+  </mat-step>
   <mat-step [stepControl]="confirmationCodeFormGroup">
-    <form [formGroup]="confirmationCodeFormGroup">
+    <form
+      [formGroup]="confirmationCodeFormGroup"
+      (ngSubmit)="onSubmitConfirmationCode()"
+    >
       <ng-template matStepLabel>Código de confirmação</ng-template>
-      <!-- <mat-form-field>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
-      </mat-form-field> -->
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
+      <mat-card>
+        <div fxLayout="column" fxLayoutGap="16px">
+          <mat-form-field fxFlex appearance="outline" class="big">
+            <input
+              matInput
+              formControlName="confirmationCode"
+              placeholder="Código de confirmação"
+              required
+            />
+            <mat-icon matSuffix>check</mat-icon>
+            <mat-error *ngIf="confirmationCode.errors as errors">
+              <span *ngIf="errors.required">Insira o código</span>
+            </mat-error>
+          </mat-form-field>
+          <mat-card-actions>
+            <button
+              mat-button
+              fxFlex
+              [disabled]="confirmationCodeFormGroup.invalid"
+            >
+              Verificar
+            </button>
+          </mat-card-actions>
+        </div>
+      </mat-card>
     </form>
   </mat-step>
   <mat-step>
@@ -87,4 +160,4 @@
       <button mat-button (click)="stepper.reset()">Reset</button>
     </div>
   </mat-step>
-</mat-horizontal-stepper>
+</mat-horizontal-stepper> -->

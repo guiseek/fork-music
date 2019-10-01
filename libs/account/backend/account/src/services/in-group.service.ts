@@ -8,9 +8,10 @@ import { InGroup } from '@suite/entities';
 @Injectable()
 export class InGroupService extends TypeOrmCrudService<InGroup> {
   constructor(
-    @InjectRepository(InGroup) repo: Repository<InGroup>
+    @InjectRepository(InGroup) repo: Repository<InGroup>,
   ) {
     super(repo)
   }
+  createUserAccountGroup() {}
 }
 

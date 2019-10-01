@@ -23,6 +23,11 @@ export class AccountService {
   ) {
     // const env = environment
   }
+  getGroupTypes() {
+    return this.database.get(
+      '/api/account/user-group-type', {}
+    )
+  }
   up(data: IUserAccount) {
     return this.database.send<IUserAccount>(
       accountBackend.endpoints.userAccount,
@@ -39,14 +44,25 @@ export class AccountService {
       })
     )
   }
-  register(userAccount: IUserAccount) {
-    return this.database.post<IUserAccount>('/api/auth/register', userAccount)
+  verifyEmail(email) {
+    return this.database.post(
+      '/api/auth/email', { email }
+    )
+  }
+  confirm(code: string | number) {
+    return this.database.get(
+      `${accountBackend.endpoints.userAccount}/confirmation/${code}`,
+      { }
+    )
+  }
+  sign(data: IUserAccount) {
+    return this.database.send(
+      '/api/auth', data
+    )
   }
   in(data: IUserAccount) {
-
     return this.database.send<IUserAccount>(
       `${accountBackend.endpoints.userAccount}`,
-      // '/api/account/in-user-account',
       data
     ).pipe(
       catchError(({ error }) => throwError(error)),

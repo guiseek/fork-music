@@ -12,5 +12,10 @@ export const resources = {
     table: userGroupTable,
     form: userGroupFormFields,
     dialogForm: userGroupDialogFormConfig
+  },
+  inGroup: {
+    table: {},
+    form: {},
+    dialogForm: {}
   }
 }

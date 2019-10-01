@@ -17,6 +17,7 @@ export class AuthService {
   constructor(
     private http: HttpClient
   ) { }
+
   signUp(data) {
     return this.http.post(API + '/signup', data)
       .pipe(
@@ -26,6 +27,18 @@ export class AuthService {
         }),
         catchError((response) => throwError(response.error)),
         // tap((auth: any) => this.setAuth(auth)),
+      )
+  }
+  in(data) {
+    return this.http.post(API + '/login', data)
+      .pipe(
+        map((auth: any) => {
+          console.log(auth)
+          return auth
+        }),
+        map((auth: any) => this.setAuth(auth)),
+        catchError((response) => throwError(response.error)),
+        // tap(auth => this._authState.next(auth))
       )
   }
   signIn(data) {
@@ -42,7 +55,7 @@ export class AuthService {
   }
   setAuth(auth: any) {
     if (!auth) return;
-    this.auth = auth.payload;
+    this.auth = auth.payload ? auth.payload : {};
     this.token = auth.access_token;
     this._authState.next(auth)
   }

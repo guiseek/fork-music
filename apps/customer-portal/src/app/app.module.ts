@@ -16,15 +16,15 @@ import {
 } from '@suite/account/shared/account';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from '@suite/auth/shared/auth';
-import { InComponent } from '@suite/account/shared/account';
-import {
-  createUserAccountForm,
-  createSoftwareForm,
-  createSoftwareFormBackend,
-  createUserAccountFormBackend,
-  loginUserAccountForm,
-  createUserAccountPage
-} from '@suite/account/shared/resources';
+// import { InComponent } from '@suite/account/shared/account';
+// import {
+//   createUserAccountForm,
+//   createSoftwareForm,
+//   createSoftwareFormBackend,
+//   createUserAccountFormBackend,
+//   loginUserAccountForm,
+//   createUserAccountPage
+// } from '@suite/account/shared/resources';
 
 registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
 
@@ -79,13 +79,13 @@ registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
           loadChildren: () =>
             import('@suite/account/lazy/auth').then(module => module.AuthModule)
         },
-        {
-          path: 'software',
-          component: InComponent,
-          data: {
-            resource: createSoftwareFormBackend
-          }
-        },
+        // {
+        //   path: 'software',
+        //   component: InComponent,
+        //   data: {
+        //     resource: createSoftwareFormBackend
+        //   }
+        // },
         { path: '', pathMatch: 'full', redirectTo: 'conta' },
       ],
       { initialNavigation: 'enabled' }

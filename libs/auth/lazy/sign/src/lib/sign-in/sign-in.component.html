@@ -3,7 +3,7 @@
   [@animate]="{ value: '*', params: { duration: '300ms', y: '100px' } }"
 >
   <mat-card>
-    <auth-in></auth-in>
+    <auth-in [form]="form" (in)="onSignIn($event)"></auth-in>
   </mat-card>
   <a routerLink="../up" mat-button>Up</a>
 </div>

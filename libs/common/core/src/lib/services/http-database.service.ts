@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 import { HttpQueryParams, HttpDatabaseParams } from '../interfaces/http-query-params.interface';
 
 import { RequestQueryBuilder, CondOperator, QueryFilter, CreateQueryParams } from '@nestjsx/crud-request';
@@ -47,6 +47,9 @@ export class HttpDatabaseService {
     return this._http.get<T>(
       path, { params }
     )
+  }
+  request<T = any>(req: HttpRequest<T>) {
+    return this._http.request<T>(req)
   }
   post<T = any>(path: string, data: T) {
     return this._http.post<T>(path, data)

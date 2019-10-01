@@ -1,6 +1,7 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { UserAccountService } from './user-account.service';
 import { UserAccount } from '@suite/entities';
+import { FindOneOptions } from 'typeorm';
 
 @Injectable()
 export class InUserAccountService {
@@ -36,7 +37,9 @@ export class InUserAccountService {
     //   select: ['email', 'password']
     // })
   }
-
+  async findOne(options: FindOneOptions) {
+    return await this.userAccountService.findOne(options)
+  }
   async findByEmailWithPassword(email: string): Promise<UserAccount> | null {
     return await this.userAccountService.findOne({
       email

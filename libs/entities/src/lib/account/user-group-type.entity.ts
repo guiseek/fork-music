@@ -1,11 +1,11 @@
-import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
 import { Plan } from './plan.entity';
 import { UserGroup } from './user-group.entity';
 
 
 @Entity('user_group_type')
 @Index('user_group_type_ak_1', ['typeName'], { unique: true })
-export class UserGroupType {
+export class UserGroupType extends BaseEntity {
 
   @PrimaryGeneratedColumn({
     type: 'int',
