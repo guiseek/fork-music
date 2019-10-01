@@ -1,0 +1,17 @@
+:host {
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+}
+.mat-stepper-horizontal {
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+}
+::ng-deep .mat-horizontal-content-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}

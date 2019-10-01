@@ -39,6 +39,27 @@ export class AccountService {
       })
     )
   }
+  register(userAccount: IUserAccount) {
+    return this.database.post<IUserAccount>('/api/auth/register', userAccount)
+  }
+  in(data: IUserAccount) {
+
+    return this.database.send<IUserAccount>(
+      `${accountBackend.endpoints.userAccount}`,
+      // '/api/account/in-user-account',
+      data
+    ).pipe(
+      catchError(({ error }) => throwError(error)),
+      map((response) => {
+        console.log(response)
+        return response
+        // this.router.navigate(['/auth','confirm', response])
+      }),
+      // tap(({ confirmationCode }) => {
+      //   this.router.navigate(['/auth', 'confirm', confirmationCode])
+      // })
+    )
+  }
   getAccount(auth: AuthJwtPayload) {
     return this.http.get<IUserAccount>(
       accountBackend.endpoints.userAccount,

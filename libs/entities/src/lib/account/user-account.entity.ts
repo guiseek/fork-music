@@ -4,7 +4,7 @@ import { InGroup } from './in-group.entity';
 
 
 @Entity('user_account')
-@Index('user_account_ak_1', ['username'], { unique: true })
+// @Index('user_account_ak_1', ['username'], { unique: true })
 @Index('user_account_ak_2', ['email'], { unique: true })
 export class UserAccount extends BaseEntity {
 
@@ -33,14 +33,14 @@ export class UserAccount extends BaseEntity {
   lastName: string;
 
 
-  @Column({
-    type: 'varchar',
-    nullable: false,
-    unique: true,
-    length: 64,
-    name: 'username'
-  })
-  username: string;
+  // @Column({
+  //   type: 'varchar',
+  //   nullable: false,
+  //   unique: true,
+  //   length: 64,
+  //   name: 'username'
+  // })
+  // username: string;
 
 
   @Column({
@@ -90,9 +90,9 @@ export class UserAccount extends BaseEntity {
   inGroups: InGroup[];
 
   @BeforeInsert()
-  hashPassword() {
+  createPassword() {
     if (this.password) {
-      this.password = crypto.createHmac('sha256', this.password).digest('hex');
+      this.password = this.hashPassword(this.password);
     }
   }
   @BeforeInsert()
@@ -100,5 +100,11 @@ export class UserAccount extends BaseEntity {
     if (!this.confirmationCode) {
       this.confirmationCode = ("" + Math.random()).substring(2, 7);
     }
+  }
+  hashPassword(password: string) {
+    return crypto.createHmac('sha256', password).digest('hex');
+  }
+  validatePassword(password: string) {
+    return this.hashPassword(password) === this.password;
   }
 }

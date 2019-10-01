@@ -14,7 +14,7 @@ A Users & groups área de assunto armazena informações sobre todos os usuário
 A tabela mais importante aqui é a `user_account`. Vamos usá-lo para armazenar todos os detalhes relacionados às contas de usuário. Esses são:
 
 - `first_name` & `last_name` - O nome e o sobrenome do usuário. Observe que cada usuário armazenado aqui é um indivíduo particular.
-- `username` - Um nome de usuário (escolhido pelo usuário).
+<!-- - `username` - Um nome de usuário (escolhido pelo usuário). -->
 - `password` - Um valor de hash da senha do usuário. (Os usuários definem suas próprias senhas.)
 - `email` - O endereço de email do usuário, definido durante o processo de registro.
 - `confirmation_code` - O código usado durante o processo de confirmação por email.

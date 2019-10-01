@@ -7,6 +7,7 @@ import { TableBackendModule } from '@suite/common/tables/table-backend';
 import { DynamicFormModule } from '@suite/common/forms/dynamic-form';
 import { SharedAccountModule, AccountResolverService } from '@suite/account/shared/account';
 import { UiKitModule } from '@suite/ui-kit';
+import { EduHelperModule } from '@suite/nav/edu-helper';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -35,6 +36,7 @@ const modules = [
     DynamicFormModule,
     DialogModule,
     UiKitModule,
+    EduHelperModule.forRoot(),
     FlexLayoutModule,
     ...modules,
     RouterModule.forChild([

@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { UserAccount } from '@suite/entities';
 import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { CreateUserAccountDto } from '../dtos';
 
 @Injectable()
 export class UserAccountService extends TypeOrmCrudService<UserAccount> {
@@ -14,6 +15,9 @@ export class UserAccountService extends TypeOrmCrudService<UserAccount> {
     super(repo)
   }
 
+  async register(userAccount: UserAccount) {
+    return await this.repo.save<UserAccount>(userAccount)
+  }
   verifyEmail(email: string): Observable<UserAccount> {
     const userCount$: Observable<number> = from(
       this.repo.count({

@@ -3,31 +3,22 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AuthModule } from 'auth/backend/auth';
-import { UsersModule } from 'auth/backend/users';
 import { database } from '../environments/environment';
-import { LocationModule } from 'backend/location';
 import { AddressModule } from 'backend/address';
-import { WageTiersModule } from 'backend/wage-tiers';
-import { EmployeesModule } from 'backend/employess';
-import { SubjectsModule } from 'backend/subjects';
 import { SchoolModule } from 'backend/school';
+import { AuthModule } from 'backend/auth';
 import { AccountModule } from 'backend/account';
+
 
 
 // ticket-system
 @Module({
   imports: [
     TypeOrmModule.forRoot(database),
-    AuthModule,
-    UsersModule,
     AddressModule,
-    LocationModule,
-    WageTiersModule,
-    EmployeesModule,
-    SubjectsModule,
+    AuthModule,
+    AccountModule,
     SchoolModule,
-    AccountModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -14,11 +14,11 @@ export class CreateUserAccountDto {
   @ApiModelProperty()
   lastName: string;
 
-  @IsString({ always: true, message: 'Deve ser texto' })
-  @IsNotEmpty({ message: 'Usuário brigatório' })
-  @MaxLength(64, { message: 'Máximo de 64 caracteres' })
-  @ApiModelProperty()
-  username: string;
+  // @IsString({ always: true, message: 'Deve ser texto' })
+  // @IsNotEmpty({ message: 'Usuário brigatório' })
+  // @MaxLength(64, { message: 'Máximo de 64 caracteres' })
+  // @ApiModelProperty()
+  // username: string;
 
   @IsNotEmpty({ message: 'Senha brigatória' })
   @ApiModelProperty()

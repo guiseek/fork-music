@@ -8,12 +8,23 @@ import { CoreModule } from '@suite/common/core';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 // import { AuthGuard } from '@suite/auth/shared/auth';
-import { AccountGuard, SharedAccountAuthModule, UpComponent, ConfirmComponent } from '@suite/account/shared/account';
+import {
+  AccountGuard,
+  SharedAccountAuthModule,
+  UpComponent,
+  ConfirmComponent
+} from '@suite/account/shared/account';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from '@suite/auth/shared/auth';
 import { InComponent } from '@suite/account/shared/account';
-import { createUserAccountForm, createSoftwareForm, createSoftwareFormBackend, createUserAccountFormBackend, loginUserAccountForm, createUserAccountPage } from '@suite/account/shared/resources';
-
+import {
+  createUserAccountForm,
+  createSoftwareForm,
+  createSoftwareFormBackend,
+  createUserAccountFormBackend,
+  loginUserAccountForm,
+  createUserAccountPage
+} from '@suite/account/shared/resources';
 
 registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
 
@@ -35,34 +46,47 @@ registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
             ),
           canLoad: [AccountGuard]
         },
+        // // {
+        // //   path: 'auth',
+        // //   loadChildren: () =>
+        // //     import('@suite/auth/lazy/sign').then(
+        // //       module => module.AuthLazySignModule
+        // //     )
+        // // },
+        // {
+        //   path: 'up',
+        //   component: UpComponent,
+        //   data: {
+        //     resource: createUserAccountPage
+        //   }
+        // },
+        // {
+        //   path: 'in',
+        //   component: InComponent,
+        //   data: {
+        //     resource: loginUserAccountForm
+        //   }
+        // },
+        // {
+        //   path: 'confirm/:code',
+        //   component: ConfirmComponent,
+        //   data: {
+        //     resource: createUserAccountFormBackend
+        //   }
+        // },
         {
           path: 'auth',
           loadChildren: () =>
-            import('@suite/auth/lazy/sign').then(
-              module => module.AuthLazySignModule
-            )
+            import('@suite/account/lazy/auth').then(module => module.AuthModule)
         },
         {
-          path: 'up', component: UpComponent, data: {
-            resource: createUserAccountPage
-          }
-        },
-        {
-          path: 'in', component: InComponent, data: {
-            resource: loginUserAccountForm
-          }
-        },
-        {
-          path: 'confirm/:code', component: ConfirmComponent, data: {
-            resource: createUserAccountFormBackend
-          }
-        },
-        {
-          path: 'software', component: InComponent, data: {
+          path: 'software',
+          component: InComponent,
+          data: {
             resource: createSoftwareFormBackend
           }
         },
-        { path: '', pathMatch: 'full', redirectTo: 'conta' }
+        { path: '', pathMatch: 'full', redirectTo: 'conta' },
       ],
       { initialNavigation: 'enabled' }
     )

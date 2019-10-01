@@ -27,7 +27,7 @@ export class AccountGuard implements CanLoad {
   canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
     const { auth } = this.authService
     if (!auth) {
-      this.router.navigate(['/up'])
+      this.router.navigate(['/auth'])
       return false
     }
     return this.accountService.getAccount(

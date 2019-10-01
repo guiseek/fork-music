@@ -1422,6 +1422,68 @@
           "styleext": "scss"
         }
       }
+    },
+    "nav-edu-helper": {
+      "projectType": "library",
+      "root": "libs/nav/edu-helper",
+      "sourceRoot": "libs/nav/edu-helper/src",
+      "prefix": "edu",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/nav/edu-helper/tsconfig.lib.json",
+              "libs/nav/edu-helper/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/nav/edu-helper/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/nav/edu-helper/jest.config.js",
+            "tsConfig": "libs/nav/edu-helper/tsconfig.spec.json",
+            "setupFile": "libs/nav/edu-helper/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "account-lazy-auth": {
+      "projectType": "library",
+      "root": "libs/account/lazy/auth",
+      "sourceRoot": "libs/account/lazy/auth/src",
+      "prefix": "suite",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/account/lazy/auth/tsconfig.lib.json",
+              "libs/account/lazy/auth/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/account/lazy/auth/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/account/lazy/auth/jest.config.js",
+            "tsConfig": "libs/account/lazy/auth/tsconfig.spec.json",
+            "setupFile": "libs/account/lazy/auth/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

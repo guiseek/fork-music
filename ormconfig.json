@@ -4,7 +4,14 @@
   "port": 3306,
   "username": "root",
   "password": "root",
-  "database": "ticket-system",
-  "entities": ["libs/entities/src/lib/**.entity{.ts,.js}"],
-  "synchronize": true
+  "database": "myschool",
+  "synchronize": true,
+  "logging": false,
+  "migrations": [
+    "apps/backend/src/migration/**/*.ts"
+  ],
+  "cli": {
+    "entitiesDir": "libs/entities/src/lib",
+    "migrationsDir": "apps/backend/src/migration"
+  }
 }

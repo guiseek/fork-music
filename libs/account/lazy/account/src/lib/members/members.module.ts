@@ -9,6 +9,7 @@ import { MatButtonModule, MatCardModule, MatListModule, MatIconModule } from '@a
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TableBackendModule } from '@suite/common/tables/table-backend';
 import { SharedAccountModule } from '@suite/account/shared/account';
+import { EduHelperModule } from '@suite/nav/edu-helper';
 
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const modules = [
     FlexLayoutModule,
     TableBackendModule,
     SharedAccountModule,
+    EduHelperModule,
     DialogModule,
     ...modules,
     RouterModule.forChild(routes)

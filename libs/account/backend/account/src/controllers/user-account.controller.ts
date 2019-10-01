@@ -1,11 +1,13 @@
-import { Controller, UseInterceptors, Post, Get, Param, NotFoundException, BadRequestException, HttpCode, HttpStatus, ConflictException } from '@nestjs/common';
+import { Controller, UseInterceptors, Post, Get, Param, NotFoundException, BadRequestException, HttpCode, HttpStatus, ConflictException, Body, UseGuards } from '@nestjs/common';
 import { CrudController, Crud, CrudRequest, Override, ParsedRequest, ParsedBody, CrudRequestInterceptor, GetManyDefaultResponse, Action, Feature } from '@nestjsx/crud';
 import { UserAccountService } from '../services/user-account.service';
 
 import { UserAccount } from '@suite/entities';
 import { CreateUserAccountDto } from '../dtos';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Observable, from } from 'rxjs';
+// import { HttpErrorResponse } from '@angular/common/http';
+// import { Observable, from } from 'rxjs';
+// import { AuthGuard } from '@nestjs/passport';
+// import { RoleGuard } from '../guards/role.guard';
 
 @Crud({
   model: {
@@ -25,7 +27,18 @@ import { Observable, from } from 'rxjs';
   //   }
   // },
 })
+
 @Controller('account/user-account')
+// @UseGuards(
+//   AuthGuard('jwt'),
+//   new RoleGuard({
+//     readAllRoles: ['admin'],
+//     readOneRoles: ['admin'],
+//     createOneRoles: ['admin'],
+//     updateOneRoles: ['admin'],
+//     deleteOneRoles: ['admin']
+//   })
+// )
 export class UserAccountController implements CrudController<UserAccount> {
   constructor(
     public service: UserAccountService
@@ -43,25 +56,51 @@ export class UserAccountController implements CrudController<UserAccount> {
   //   @ParsedRequest() req: CrudRequest,
   // ): Promise<GetManyDefaultResponse<T> | T[]>;
 
-  @Override('updateOneBase')
-  coolFunction(
-    @ParsedRequest() req: CrudRequest,
-    @ParsedBody() dto: UserAccount,
-  ) {
-    return this.base.updateOneBase(req, dto);
-  }
+  // @Post('in')
+  // async in(@Body() credential) {
+  //   console.log(credential)
+  //   const { email, password } = credential
+  //   try {
+  //     const find = await this.service.findOne({
+  //       email
+  //     })
+  //     // find.
+  //     const user = new UserAccount()
+  //     const auth = Object.assign(
+  //       find, user, { password }
+  //     )
+  //     console.log(user)
+  //     console.log(auth)
+  //     // auth.hashPassword()
+  //     if (!!find && (password === auth.password)) {
+        
+  //     }
+  //     console.log(auth)
+  //     return user
+  //   } catch (error) {
+  //     return new BadRequestException('Credenciais inválidas')
+  //   }
 
-  @Override()
-  @UseInterceptors(CrudRequestInterceptor)
-  @Feature('Read')
-  @Action('All')
-  @Get('')
-  getManyBase(
-    @ParsedRequest() req: CrudRequest
-  ): Promise<GetManyDefaultResponse<UserAccount> | UserAccount[]> {
-    console.log(req.options)
-    return this.account.getManyBase(req)
-  }
+  // }
+  // @Override('updateOneBase')
+  // coolFunction(
+  //   @ParsedRequest() req: CrudRequest,
+  //   @ParsedBody() dto: UserAccount,
+  // ) {
+  //   return this.base.updateOneBase(req, dto);
+  // }
+
+  // @Override()
+  // @UseInterceptors(CrudRequestInterceptor)
+  // @Feature('Read')
+  // @Action('All')
+  // @Get('')
+  // getManyBase(
+  //   @ParsedRequest() req: CrudRequest
+  // ): Promise<GetManyDefaultResponse<UserAccount> | UserAccount[]> {
+  //   console.log(req.options)
+  //   return this.account.getManyBase(req)
+  // }
   @Override()
   createOne(
     @ParsedRequest() req: CrudRequest,

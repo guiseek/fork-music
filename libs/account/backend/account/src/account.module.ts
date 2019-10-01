@@ -28,9 +28,23 @@ import { UserGroupTypeController } from './controllers/user-group-type.controlle
 import { UserGroupController } from './controllers/user-group.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ACCOUNT_ENTITIES } from '@suite/entities';
+// import { PassportModule } from '@nestjs/passport';
+// import { JwtModule } from '@nestjs/jwt';
+import { InUserAccountController } from './controllers/in-user-account.controller';
+import { InUserAccountService } from './services/in-user-account.service';
 
 @Module({
   imports: [
+    // PassportModule.register({ defaultStrategy: 'jwt' }),
+    // JwtModule.register({
+    //   secret: 'secret',
+    //   signOptions: { expiresIn: '60s' }
+    // }),
+    // PassportModule,
+    // JwtModule.register({
+    //   secret: 'mySecret',
+    //   signOptions: { expiresIn: '60s' }
+    // }),
     TypeOrmModule.forFeature([
       ...ACCOUNT_ENTITIES
     ])
@@ -49,7 +63,8 @@ import { ACCOUNT_ENTITIES } from '@suite/entities';
     SoftwareService,
     SubscriptionService,
     UserGroupTypeService,
-    UserGroupService
+    UserGroupService,
+    InUserAccountService
   ],
   exports: [
     AccountService,
@@ -65,7 +80,8 @@ import { ACCOUNT_ENTITIES } from '@suite/entities';
     SoftwareService,
     SubscriptionService,
     UserGroupTypeService,
-    UserGroupService
+    UserGroupService,
+    InUserAccountService
   ],
   controllers: [
     InGroupController,
@@ -80,7 +96,8 @@ import { ACCOUNT_ENTITIES } from '@suite/entities';
     SubscriptionController,
     UserAccountController,
     UserGroupTypeController,
-    UserGroupController
+    UserGroupController,
+    InUserAccountController
   ],
 })
 export class AccountModule {}

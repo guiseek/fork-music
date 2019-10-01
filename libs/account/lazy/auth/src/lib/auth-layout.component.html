@@ -1,0 +1,90 @@
+<mat-horizontal-stepper linear #stepper>
+  <mat-step [stepControl]="userAccountFormGroup">
+    <form [formGroup]="userAccountFormGroup" (ngSubmit)="onSubmitUserAccount()">
+      <ng-template matStepLabel>Sua conta</ng-template>
+      <mat-card>
+        <div fxLayout="row" fxLayoutGap="16px">
+          <mat-form-field fxFlex>
+            <mat-label>Nome</mat-label>
+            <input
+              matInput
+              formControlName="firstName"
+              placeholder="Seu primeiro nome"
+              required
+            />
+            <mat-error *ngIf="uafg('firstName').errors as errors">
+              <span *ngIf="errors.required">Nome obrigatório</span>
+              <span *ngIf="errors.maxlength">Máximo de 64 letras</span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>Sobrenome</mat-label>
+            <input
+              matInput
+              formControlName="lastName"
+              placeholder="Seu último nome"
+              required
+            />
+            <mat-error *ngIf="uafg('lastName').errors as errors">
+              <span *ngIf="errors.required">Sobrenome obrigatório</span>
+              <span *ngIf="errors.maxlength">Máximo de 64 letras</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="16px">
+          <mat-form-field fxFlex>
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              type="email"
+              formControlName="email"
+              placeholder="Seu endereço de email"
+              required
+            />
+            <mat-error *ngIf="uafg('email').errors as errors">
+              <span *ngIf="errors.required">Email obrigatório</span>
+              <span *ngIf="errors.email">Email inválido</span>
+              <span *ngIf="errors.email">Máximo de 128 caracteres</span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>Senha</mat-label>
+            <input
+              matInput
+              type="password"
+              formControlName="password"
+              required
+            />
+            <mat-error>Senha obrigatória</mat-error>
+          </mat-form-field>
+        </div>
+        <mat-card-content>
+          <p>O código de verificação será enviado para este email.</p>
+        </mat-card-content>
+        <mat-card-actions [align]="'end'">
+          <button mat-button [disabled]="userAccountFormGroup.invalid">Confirmar</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="confirmationCodeFormGroup">
+    <form [formGroup]="confirmationCodeFormGroup">
+      <ng-template matStepLabel>Código de confirmação</ng-template>
+      <!-- <mat-form-field>
+        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+      </mat-form-field> -->
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

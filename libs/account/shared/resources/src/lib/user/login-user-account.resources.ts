@@ -12,7 +12,7 @@ export const loginUserAccountForm: FormField[] = [
     appearance: 'outline',
     validations: [
       {
-        name: 'required',
+       name: 'required',
         validator: Validators.required,
         message: 'Nome obrigatório'
       },

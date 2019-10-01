@@ -95,7 +95,11 @@
       ],
       "@suite/common/forms/form-backend": [
         "libs/common/forms/form-backend/src/index.ts"
-      ]
+      ],
+      "@suite/nav/edu-helper": ["libs/nav/edu-helper/src/index.ts"],
+      "backend/auth": ["libs/account/backend/auth/src"],
+      "backend/auth/*": ["libs/account/backend/auth/src/*"],
+      "@suite/account/lazy/auth": ["libs/account/lazy/auth/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

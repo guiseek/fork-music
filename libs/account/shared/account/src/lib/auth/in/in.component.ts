@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormField } from '@suite/common/forms/dynamic-form';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'account-auth-in',
@@ -21,10 +22,12 @@ export class InComponent implements OnInit {
   }]
   resource = this.route.snapshot.data.resource
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private account: AccountService
   ) { }
 
   ngOnInit() {
+    console.log(this.resource)
     // const { fields } = this.route.snapshot.data
     // console.log('data: ', this.route.snapshot.data)
     // fields.push({
@@ -36,5 +39,8 @@ export class InComponent implements OnInit {
   }
   onSubmit(value) {
     console.log(value)
+    this.account.in(value).subscribe((res) => {
+      console.log(res)
+    })
   }
 }

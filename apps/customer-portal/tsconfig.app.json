@@ -5,6 +5,10 @@
     "types": []
   },
   "files": ["src/main.ts", "src/polyfills.ts"],
-  "include": ["**/*.ts", "../../libs/account/lazy/account/src/index.ts"],
+  "include": [
+    "**/*.ts",
+    "../../libs/account/lazy/account/src/index.ts",
+    "../../libs/account/lazy/auth/src/index.ts"
+  ],
   "exclude": ["src/test-setup.ts", "**/*.spec.ts"]
 }

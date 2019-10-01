@@ -127,6 +127,12 @@
     },
     "common-forms-form-backend": {
       "tags": ["shared-module"]
+    },
+    "nav-edu-helper": {
+      "tags": ["nav:helper"]
+    },
+    "account-lazy-auth": {
+      "tags": ["account:auth"]
     }
   }
 }
