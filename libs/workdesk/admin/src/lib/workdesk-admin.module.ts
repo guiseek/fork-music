@@ -27,8 +27,6 @@ import {
   MatSortModule,
   MatDialogModule,
   MatProgressSpinnerModule,
-  MatFormFieldModule,
-  MatInputModule,
   MatToolbarModule,
   MatSnackBarModule
 } from '@angular/material';
@@ -44,18 +42,17 @@ import { TableBackendModule } from '@suite/common/tables/table-backend';
 
 import { WageTiersComponent } from './wage-tiers/wage-tiers.component';
 import { EmployeeResolverService, CoreModule } from '@suite/common/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DynamicFormModule } from '@suite/common/forms/dynamic-form';
-import { UiKitModule } from '@suite/ui-kit';
+import { UiKitModule, SharedMaterialFormModule } from '@suite/ui-kit';
 import { SharedAccountModule } from '@suite/account/shared/account';
+import { SharedAuthModule, TokenInterceptor } from '@suite/account/shared/auth';
 
 const modules = [
   LayoutModule,
   MatToolbarModule,
   MatGridListModule,
   MatSidenavModule,
-  MatFormFieldModule,
-  MatInputModule,
   MatMenuModule,
   MatIconModule,
   MatCardModule,
@@ -72,10 +69,11 @@ const modules = [
 @NgModule({
   imports: [
     CommonModule,
+    SharedAuthModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ...modules,
     SharedAccountModule,
+    SharedMaterialFormModule,
     ToolbarModule,
     SidenavModule,
     AddressFormModule,
@@ -84,6 +82,7 @@ const modules = [
     UiKitModule,
     DynamicFormModule,
     TableBackendModule,
+    ...modules,
     NavigatorModule.forRoot(adminMenu),
     RouterModule.forChild([
       /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
@@ -119,17 +118,20 @@ const modules = [
           { path: 'recursos', loadChildren: () => import('./quick-features/quick-features.module').then(m => m.QuickFeaturesModule) },
         ]
       },
-      {
-        path: 'quick-start',
-        loadChildren: () =>
-          import('@suite/quick-start/admin').then(
-            module => module.QuickStartAdminModule
-          )
-      }
+      // {
+      //   path: 'quick-start',
+      //   loadChildren: () =>
+      //     import('@suite/quick-start/admin').then(
+      //       module => module.QuickStartAdminModule
+      //     )
+      // }
       
     ])
   ],
-  providers: [EmployeeResolverService],
+  providers: [
+    EmployeeResolverService,
+    { provide: HTTP_INTERCEPTORS, multi: true, useClass: TokenInterceptor }
+  ],
   declarations: [
     AdminLayoutComponent,
     OverviewComponent,

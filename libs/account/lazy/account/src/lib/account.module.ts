@@ -14,6 +14,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule, MatButtonModule, MatSnackBarModule, MatToolbarModule, MatIconModule, MatListModule, MatMenuModule, MatTabsModule, MatProgressSpinnerModule } from '@angular/material';
 import { DialogModule } from '@suite/cdk/dialog';
 import { SignupComponent } from './signup/signup.component';
+import { SharedAuthModule, TokenInterceptor } from '@suite/account/shared/auth';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 const modules = [
   MatToolbarModule,
@@ -31,6 +33,7 @@ const modules = [
 @NgModule({
   imports: [
     CommonModule,
+    SharedAuthModule,
     SharedAccountModule,
     TableBackendModule,
     DynamicFormModule,
@@ -48,15 +51,18 @@ const modules = [
           { path: 'membros', loadChildren: () => import('./members/members.module').then(m => m.MembersModule) },
           { path: 'assinaturas', loadChildren: () => import('./subscriptions/subscriptions.module').then(m => m.SubscriptionsModule) },
         ],
-        resolve: {
-          account: AccountResolverService
-        }
+        // resolve: {
+        //   account: AccountResolverService
+        // }
       },
       { path: '/up', component: SignupComponent },
       
       /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
     ])
   ],
-  declarations: [AccountLayoutComponent, OverviewComponent, SignupComponent]
+  declarations: [AccountLayoutComponent, OverviewComponent, SignupComponent],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, multi: true, useClass: TokenInterceptor }
+  ]
 })
 export class AccountModule { }

@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpDatabaseService } from '@suite/common/core';
-import { catchError } from 'rxjs/operators';
+import { catchError, filter } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
 import { FormBackendConfig } from '@suite/interfaces';
 import { FormField } from '@suite/common/forms/dynamic-form';
+import { HttpHeaders, HttpRequest, HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'suite-form-backend',
@@ -14,6 +15,7 @@ import { FormField } from '@suite/common/forms/dynamic-form';
 export class FormBackendComponent implements OnInit {
   @Input() config: FormBackendConfig
   fields: FormField[]
+  @Output() saved = new EventEmitter<any>()
   serverError = []
   constructor(
     private database: HttpDatabaseService,
@@ -32,24 +34,38 @@ export class FormBackendComponent implements OnInit {
     console.log('fields: ', this.config)
   }
   onSubmit(data) {
-    const sub = this.database.send(
-      this.config.endpoint, data
+    // const sub = this.database.send(
+    //   this.config.endpoint, data
+    // )
+    const req = new HttpRequest(
+      this.config.method,
+      this.config.endpoint,
+      data
     )
+    const sub = this.database.request(req)
       .pipe(
+        filter((response) => response.type === HttpEventType.Response),
         catchError(({ error }: any) => {
-          const errors = error.message.reduce((previous, current) => {
-            previous[current.property] = Object.values(current.constraints)
-            return previous
-          }, {})
-          this.serverError = []
-          Object.keys(errors).map((k) => {
-            this.serverError.push(
-              errors[k]
-            )
-          })
-          // this.serverError.join(', ')
-          this.openSnack(this.serverError.join(', '))
-          return throwError(errors)
+          if (typeof error.message === 'string') {
+            this.openSnack(error.message)
+            return throwError(error)
+          }
+          if (Array.isArray(error.message)) {
+            const errors = error.message.reduce((previous, current) => {
+              previous[current.property] = Object.values(current.constraints)
+              return previous
+            }, {})
+            this.serverError = []
+            Object.keys(errors).map((k) => {
+              this.serverError.push(
+                errors[k]
+              )
+            })
+            // this.serverError.join(', ')
+            this.openSnack(this.serverError.join(', '))
+            return throwError(errors)
+          }
+          return throwError(error)
         })
       )
       .subscribe((res) => {
@@ -60,8 +76,11 @@ export class FormBackendComponent implements OnInit {
         //     res[k]
         //   )
         // })
+        // if (res.type && res.type === )
+        if (res.type)
+          this.saved.emit(res)
         this.openSnack()
-        sub.unsubscribe()
+        // sub.unsubscribe()
         console.log('res: ', res)
       })
 

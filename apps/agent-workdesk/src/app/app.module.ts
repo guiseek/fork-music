@@ -5,14 +5,13 @@ import localeBr from '@angular/common/locales/pt';
 import localeBrExtra from '@angular/common/locales/extra/br';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import {
-  ProfileSettingsUiModule,
-  profileSettingsUiRoutes
-} from '@suite/profile-settings-ui';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthInterceptor, AuthGuard, AuthService } from '@suite/auth/shared/auth';
+// import { AuthInterceptor, AuthGuard, AuthService } from '@suite/auth/shared/auth';
 import { CoreModule } from '@suite/common/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { SharedAuthModule, AuthGuard } from '@suite/account/shared/auth';
+import { environment } from '../environments/environment';
 
 registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
 
@@ -21,24 +20,25 @@ registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
   imports: [
     BrowserModule,
     CoreModule,
+    SharedAuthModule.forRoot({
+      api: environment.api
+    }),
     HttpClientModule,
     RouterModule.forRoot(
       [
-        { path: 'profile-settings-ui', children: profileSettingsUiRoutes },
-        {
-          path: 'ticket-list',
-          loadChildren: () =>
-            import('@suite/ticket-list-ui').then(
-              module => module.TicketListUiModule
-            )
-        },
+        { path: '', pathMatch: 'full', redirectTo: 'admin' },
         {
           path: 'auth',
           loadChildren: () =>
-            import('@suite/auth/lazy/sign').then(
-              module => module.AuthLazySignModule
-            )
+            import('@suite/account/lazy/auth').then(module => module.AuthModule)
         },
+        // {
+        //   path: 'auth',
+        //   loadChildren: () =>
+        //     import('@suite/auth/lazy/sign').then(
+        //       module => module.AuthLazySignModule
+        //     )
+        // },
         {
           path: 'dashboard',
           loadChildren: () =>
@@ -48,8 +48,16 @@ registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
         {
           path: 'conta',
           loadChildren: () =>
-            import('@suite/account-ui').then(module => module.AccountUiModule)
+            import('@suite/account/lazy/account').then(
+              module => module.AccountModule
+            ),
+          canLoad: [AuthGuard]
         },
+        // {
+        //   path: 'conta',
+        //   loadChildren: () =>
+        //     import('@suite/account-ui').then(module => module.AccountUiModule)
+        // },
         {
           path: 'admin',
           loadChildren: () =>
@@ -64,12 +72,10 @@ registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
             import('@suite/workdesk/teacher').then(
               module => module.WorkdeskTeacherModule
             )
-        },
-        { path: '', pathMatch: 'full', redirectTo: 'admin' }
+        }
       ],
       { initialNavigation: 'enabled' }
     ),
-    ProfileSettingsUiModule,
     BrowserAnimationsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

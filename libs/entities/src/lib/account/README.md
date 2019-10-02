@@ -8,7 +8,7 @@ O modelo consiste em três áreas de assunto:
 ## Seção 1: Usuários e Grupos
 A Users & groups área de assunto armazena informações sobre todos os usuários do nosso aplicativo. Assumiremos que os usuários podem ser agrupados, por exemplo, quando uma empresa deseja comprar licenças para vários funcionários. Criaremos um grupo mesmo quando apenas um usuário pertencer a ele. Isso nos dará a flexibilidade de adicionar mais tarde novos membros a esse grupo.
 
-![user_and_groups](https://www.vertabelo.com/blog/a-saas-subscription-data-model/users-and-groups.png)
+<!-- ![user_and_groups](https://www.vertabelo.com/blog/a-saas-subscription-data-model/users-and-groups.png) -->
 
 
 A tabela mais importante aqui é a `user_account`. Vamos usá-lo para armazenar todos os detalhes relacionados às contas de usuário. Esses são:
@@ -24,9 +24,13 @@ A tabela mais importante aqui é a `user_account`. Vamos usá-lo para armazenar 
 Os usuários podem criar grupos; grupos têm tipos predefinidos. Uma lista de todos os tipos de grupos possíveis é armazenada na tabela `user_group_type`.
 Cada tipo é definido EXCLUSIVAMENTE por seus `type_name`. Também definiremos o número mínimo e máximo de membros do grupo permitido para cada tipo de grupo. Esse intervalo é definido com dois valores - `members_min` (o limite inferior) e `members_max` (o limite superior).
 
+## Criando uma conta
 Ao criar uma nova conta, os usuários também selecionam seu grupo de usuários. Isso criará um novo registro na tabela `user_group` referenciando o tipo de grupo selecionado e armazenando o registro de data e hora (insert_ts) quando esse registro foi inserido. O atributo `customer_invoice_data` é uma descrição textual do que imprimiremos na fatura desse grupo de usuários.
 
 A última tabela nesta área de assunto é a tabela `in_group`. Para cada grupo, armazenaremos uma lista de todos os seus membros. Além das referências ao grupo de usuários (`user_group_id`) e conta de usuário (`user_account_id`), também armazenaremos o registro de data e hora quando um usuário foi adicionado ao grupo (`time_added`) ou removido do grupo (`time_removed` que só conterá um valor se o usuário tiver sido removido ) Também teremos um sinalizador para indicar se o usuário é `group_admin` ou não. Os administradores do grupo podem atualizar os membros do grupo e adicionar novos membros.
+
+![user_and_groups](https://www.vertabelo.com/blog/a-saas-subscription-data-model/users-and-groups.png)
+
 
 ## Seção 2: Software e planos
 Em seguida, precisamos definir tudo o que ofereceremos aos nossos (potenciais) clientes. Podemos oferecer apenas um tipo de software, mas há uma grande possibilidade de termos várias ofertas diferentes. Um exemplo comum desse caso é ter uma ferramenta SaaS separada de seu aplicativo de análise, por exemplo, Stripe e Stripe Sigma. Abordaremos esses casos em nosso modelo de dados.

@@ -1,0 +1,128 @@
+<div
+  id="login-form"
+  [@animate]="{ value: '*', params: { duration: '300ms', y: '100px' } }"
+>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Crie uma conta</mat-card-title>
+      <mat-card-subtitle>Para sua escola</mat-card-subtitle>
+    </mat-card-header>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <div fxLayout="row" fxLayoutGap="28px">
+        <div fxFlex>
+          <mat-form-field
+            appearance="outline"
+            [color]="firstName.valid && 'accent'"
+          >
+            <mat-label>Seu nome</mat-label>
+            <input
+              matInput
+              formControlName="firstName"
+              placeholder="Ex.: Ray"
+            />
+            <mat-error>
+              <span *ngIf="firstName.pristine">
+                Preencha com seu nome
+              </span>
+              <span *ngIf="firstName.invalid && firstName.dirty">
+                No máximo 64 letras
+              </span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex>
+          <mat-form-field
+            appearance="outline"
+            [color]="lastName.valid && 'accent'"
+          >
+            <mat-label>Sobrenome</mat-label>
+            <input
+              matInput
+              formControlName="lastName"
+              placeholder="Ex.: Charles"
+            />
+
+            <mat-error *ngIf="lastName.invalid && lastName.dirty">
+              No máximo 64 letras
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-form-field appearance="outline" [color]="email.valid && 'accent'">
+        <mat-label>Seu e-mail</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          type="email"
+          placeholder="Ex.: raycharles@mundodamusica.com"
+          autocomplete="off"
+        />
+        <mat-error *ngIf="email.errors as error">
+          {{ email.hasError('Conflict') ? error.Conflict : 'Email inválido' }}
+        </mat-error>
+      </mat-form-field>
+
+      <div fxLayout="row" fxLayoutGap="28px">
+        <mat-form-field
+          fxFlex
+          appearance="outline"
+          [color]="password.valid && 'accent'"
+        >
+          <mat-label>Sua senha</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            type="password"
+            autocomplete="off"
+          />
+
+          <mat-error *ngIf="password.invalid && password.dirty">
+            Mínimo de 6 caracteres
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field
+          fxFlex
+          appearance="outline"
+          [color]="confirm.valid && 'accent'"
+        >
+          <mat-label>Confirme sua senha</mat-label>
+          <input
+            matInput
+            formControlName="confirm"
+            type="password"
+            autocomplete="off"
+          />
+
+          <mat-error>
+            Confirmação inválida
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="flex justify-end">
+        <button mat-flat-button color="accent" type="submit">
+          Criar
+        </button>
+      </div>
+    </form>
+    <div class="actions">
+      <a type="button" mat-button routerLink="/auth">
+        Fazer login
+      </a>
+      <button
+        class="register"
+        type="button"
+        mat-button
+        color="accent"
+        [matMenuTriggerFor]="menu"
+      >
+        Tem dúvidas?
+      </button>
+    </div>
+  </mat-card>
+  <mat-menu #menu="matMenu" xPosition="before">
+    <a mat-menu-item disabled>Perguntas frequentes</a>
+    <button mat-menu-item (click)="onContact()">Enviar mensagem</button>
+  </mat-menu>
+</div>

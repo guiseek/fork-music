@@ -33,6 +33,7 @@ export class AuthService {
   }
   // @EmailAlreadyExistsHandler()
   async email(email: string) {
+    console.log('email: ', email)
     return await this.inUserAccountService.verifyEmail(email);
   }
 

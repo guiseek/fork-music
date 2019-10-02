@@ -73,7 +73,7 @@ export class UserAccountController implements CrudController<UserAccount> {
   //     console.log(auth)
   //     // auth.hashPassword()
   //     if (!!find && (password === auth.password)) {
-        
+
   //     }
   //     console.log(auth)
   //     return user
@@ -102,21 +102,21 @@ export class UserAccountController implements CrudController<UserAccount> {
   //   return this.account.getManyBase(req)
   // }
   @Override()
-  createOne(
+  async createOne(
     @ParsedRequest() req: CrudRequest,
     @ParsedBody() dto: CreateUserAccountDto,
   ) {
-    // const confirmationCode = ("" + Math.random()).substring(2, 7)
-
-    // Math.floor(Math.random() * 90000) + 10000;
-    return this.base.createOneBase(req, dto)
-    // this.service.createOne(
-    //   req, Object.assign({ ...dto, confirmationCode })
-    // )
-    // return this.register.createOneBase(
-    //   req,
-    //   { ...dto, confirmationCode }
-    // );
+    try {
+      const create = await this.base.createOneBase(req, dto)
+      console.log('create: ', create)
+    } catch (err) {
+      if (err.code === 'ER_DUP_ENTRY') {
+        throw new ConflictException('Este email já está sendo usado por outro usuário')
+      }
+      throw new BadRequestException(err.message)
+      // console.log('err: ', err)
+      // return err
+    }
   }
 
   @HttpCode(HttpStatus.ACCEPTED)
@@ -139,7 +139,8 @@ export class UserAccountController implements CrudController<UserAccount> {
           message: 'Conta verificada!'
         }
       } catch (err) {
-        return err
+
+        // return err
       }
       // return account.save()
     }

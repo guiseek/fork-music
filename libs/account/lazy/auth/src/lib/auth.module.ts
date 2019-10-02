@@ -2,25 +2,51 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthLayoutComponent } from './auth-layout.component';
-import { SharedMaterialFormModule } from '@suite/ui-kit';
-import { MatStepperModule, MatButtonModule, MatCardModule } from '@angular/material';
+import { SharedMaterialFormModule, UiKitModule } from '@suite/ui-kit';
+import { MatButtonModule, MatCardModule, MatIconModule, MatMenuModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { SharedAuthModule } from '@suite/account/shared/auth';
+import { environment } from '@env/customer/environment';
+import { SharedAccountModule } from '@suite/account/shared/account';
+
+const modules = [
+  MatCardModule,
+  MatMenuModule,
+  MatIconModule,
+  MatButtonModule
+]
 
 @NgModule({
+  declarations: [
+    AuthLayoutComponent,
+    RegisterComponent,
+    LoginComponent,
+  ],
   imports: [
     CommonModule,
-    FlexLayoutModule,
+    // SharedAuthModule,
+    // SharedAuthModule.forRoot({
+    //   api: environment.api
+    // }),
     ReactiveFormsModule,
-    MatStepperModule,
-    MatCardModule,
-    MatButtonModule,
+    SharedAccountModule,
+    UiKitModule,
     SharedMaterialFormModule,
+    FlexLayoutModule,
+    ...modules,
     RouterModule.forChild([
-      /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
-      { path: '', component: AuthLayoutComponent }
+      {
+        path: '', component: AuthLayoutComponent, children: [
+          {
+            path: '', component: LoginComponent
+          }, {
+            path: 'criar-conta', component: RegisterComponent
+          }]
+      }
     ])
-  ],
-  declarations: [AuthLayoutComponent]
+  ]
 })
-export class AuthModule {}
+export class AuthModule { }

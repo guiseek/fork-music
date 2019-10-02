@@ -4,11 +4,11 @@ export interface IUserAccount {
   id: number;
   firstName: string;
   lastName: string;
-  username: string;
-  password: string;
   email: string;
-  confirmationCode: string;
-  confirmationTime: any;
-  insertTs: any;
-  inGroups: IInGroup[] | {};
+  username?: string;
+  password?: string;
+  confirmationCode?: string;
+  confirmationTime?: any;
+  insertTs?: any;
+  inGroups?: IInGroup[] | {};
 }

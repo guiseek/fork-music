@@ -21,8 +21,18 @@ import {
     MatIconModule,
     MatButtonModule
   ],
-  declarations: [HelperHotkeyListenerComponent, HelperAnchorOpenerComponent, AnchorMenuDirective, HelperStepTemplateComponent],
-  exports: [HelperHotkeyListenerComponent, HelperAnchorOpenerComponent, AnchorMenuDirective, HelperStepTemplateComponent]
+  declarations: [
+    HelperHotkeyListenerComponent,
+    HelperAnchorOpenerComponent,
+    AnchorMenuDirective,
+    HelperStepTemplateComponent
+  ],
+  exports: [
+    HelperHotkeyListenerComponent,
+    HelperAnchorOpenerComponent,
+    AnchorMenuDirective,
+    HelperStepTemplateComponent
+  ]
 })
 export class EduHelperModule {
   public static forRoot(): ModuleWithProviders {

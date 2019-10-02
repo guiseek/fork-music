@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpDatabaseService } from '@suite/common/core';
-import { AuthService } from '@suite/auth/shared/auth';
+// import { AuthService } from '@suite/auth/shared/auth';
 import { accountBackend } from '@suite/account/shared/resources';
+import { AuthService } from '@suite/account/shared/auth';
 
 @Component({
   selector: 'suite-account-layout',
@@ -16,14 +17,18 @@ export class AccountLayoutComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const { id, email } = this.auth.auth
-    this.database.get(
-      accountBackend.endpoints.userAccount, {
-        email
-      }
-    ).subscribe((res) => {
-      console.log(res)
-    })
+    this.auth.me()
+      .subscribe((res) => {
+        console.log(res)
+      })
+    // const { id, email } = this.auth.auth
+    // this.database.get(
+    //   accountBackend.endpoints.userAccount, {
+    //     email
+    //   }
+    // ).subscribe((res) => {
+    //   console.log(res)
+    // })
   }
 
 }

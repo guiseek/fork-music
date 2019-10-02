@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@suite/auth/shared/auth';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '@suite/account/shared/auth';
 
 @Component({
   selector: 'account-dropdown',
@@ -21,13 +21,13 @@ export class AccountDropdownComponent implements OnInit {
 
   ngOnInit() {
     console.log(
-      this.authService.auth
+      // this.authService.auth
     )
-    this.auth = this.authService.auth
-    this.auth$ = this.authService.authState
-      .pipe(
-        map((auth) => this.auth = auth)
-      )
+    // this.auth = this.authService.auth
+    // this.auth$ = this.authService.authState
+    //   .pipe(
+    //     map((auth) => this.auth = auth)
+    //   )
   }
   toggleDropdown() {
     this.isOpen = !this.isOpen;
@@ -38,7 +38,7 @@ export class AccountDropdownComponent implements OnInit {
   }
 
   public logout() {
-    this.authService.signOut()
+    this.authService.logout()
     // this.store.dispatch(new Logout());
   }
 }

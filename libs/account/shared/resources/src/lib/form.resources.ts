@@ -112,27 +112,27 @@ export const userAccountFormFields: FormField[] = [
     // ]
   }
 ]
-export const createUserAccountFormFields: FormField[] = [
-  ...userAccountFormFields,
-  {
-    type: 'select',
-    label: 'Tipo de grupo',
-    name: 'userGroupType',
-    appearance: 'outline',
-    options: [],
-    validations: [
-      {
-        name: 'required',
-        validator: Validators.required,
-        message: 'Tipo obrigatório'
-      }
-    ]
-  },
-  {
-    type: 'button',
-    label: 'Salvar'
-  }
-]
+// export const createUserAccountFormFields: FormField[] = [
+//   ...userAccountFormFields,
+//   {
+//     type: 'select',
+//     label: 'Tipo de grupo',
+//     name: 'userGroupType',
+//     appearance: 'outline',
+//     options: [],
+//     validations: [
+//       {
+//         name: 'required',
+//         validator: Validators.required,
+//         message: 'Tipo obrigatório'
+//       }
+//     ]
+//   },
+//   {
+//     type: 'button',
+//     label: 'Salvar'
+//   }
+// ]
 export const userGroupTypeFormFields: FormField[] = [
   // {
   //   type: 'input',

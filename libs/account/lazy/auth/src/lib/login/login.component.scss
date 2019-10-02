@@ -1,0 +1,50 @@
+:host {
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  .mat-card {
+    // width: 350px;
+    // padding-bottom: 9px;
+    display: flex;
+    flex-flow: column;
+    .mat-form-field {
+      width: 100%;
+    }
+  }
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    margin: 18px -9px -9px -9px;
+  }
+}
+
+// :host {
+//   flex: 1;
+//   display: flex;
+//   flex-flow: column;
+//   justify-content: center;
+//   align-items: center;
+//   .mat-card {
+//     width: 350px;
+//     padding-bottom: 9px;
+//     display: flex;
+//     flex-flow: column;
+//     .mat-form-field {
+//       width: 100%;
+//     }
+//   }
+//   .actions {
+//     display: flex;
+//     justify-content: space-between;
+//     margin: 18px -9px -9px -9px;
+//   }
+//   // .forgot {
+//   //   text-align: left;
+//   // }
+//   // .register {
+//   //   margin-right: 0px;
+//   //   text-align: right;
+//   // }
+// }

@@ -20,25 +20,10 @@
     "agent-workdesk": {
       "tags": []
     },
-    "reporting-stat-tracker-e2e": {
-      "tags": []
-    },
-    "reporting-stat-tracker": {
-      "tags": []
-    },
     "backend": {
       "tags": []
     },
     "account-ui": {
-      "tags": []
-    },
-    "profile-settings-ui": {
-      "tags": []
-    },
-    "ticket-list-ui": {
-      "tags": []
-    },
-    "reporting-ui-stat-dashboard-ui": {
       "tags": []
     },
     "auth-lazy-sign": {
@@ -132,6 +117,9 @@
       "tags": ["nav:helper"]
     },
     "account-lazy-auth": {
+      "tags": ["account:auth"]
+    },
+    "account-shared-auth": {
       "tags": ["account:auth"]
     }
   }

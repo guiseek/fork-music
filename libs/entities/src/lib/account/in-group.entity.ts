@@ -1,4 +1,4 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
 import { UserGroup } from './user-group.entity';
 import { UserAccount } from './user-account.entity';
 
@@ -6,7 +6,7 @@ import { UserAccount } from './user-account.entity';
 @Entity('in_group')
 @Index('in_group_ak_1', ['userGroup', 'userAccount', 'timeAdded',], { unique: true })
 @Index('in_group_user_account', ['userAccount',])
-export class InGroup {
+export class InGroup extends BaseEntity {
 
   @PrimaryGeneratedColumn({
     type: 'int',

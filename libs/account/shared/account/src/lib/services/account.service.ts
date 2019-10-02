@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AuthService } from '@suite/auth/shared/auth';
+// import { AuthService } from '@suite/auth/shared/auth';
 import { IUserAccount, AuthJwtPayload } from '@suite/interfaces';
 import { HttpClient } from '@angular/common/http';
 import { accountBackend } from '@suite/account/shared/resources';
@@ -9,12 +9,17 @@ import { Router } from '@angular/router';
 // import { environment } from '@env/backend/environment';
 import { catchError, map, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { environment } from '@env/customer/environment';
+import { AuthService } from '@suite/account/shared/auth';
+
+const endpoint = `${environment}/auth`
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
   account: IUserAccount
+  private _auth: any
   constructor(
     private auth: AuthService,
     private http: HttpClient,
@@ -22,6 +27,18 @@ export class AccountService {
     private database: HttpDatabaseService
   ) {
     // const env = environment
+  }
+  
+  register(data: IUserAccount) {
+    return this.http.post('/api/account/user-account', data)
+  }
+  check(data) {
+    return this.auth.email(data)
+  }
+  getGroupTypes() {
+    return this.database.get(
+      '/api/account/user-group-type', {}
+    )
   }
   up(data: IUserAccount) {
     return this.database.send<IUserAccount>(
@@ -39,14 +56,25 @@ export class AccountService {
       })
     )
   }
-  register(userAccount: IUserAccount) {
-    return this.database.post<IUserAccount>('/api/auth/register', userAccount)
+  verifyEmail(email) {
+    return this.database.post(
+      '/api/auth/email', { email }
+    )
+  }
+  confirm(code: string | number) {
+    return this.database.get(
+      `${accountBackend.endpoints.userAccount}/confirmation/${code}`,
+      { }
+    )
+  }
+  sign(data: IUserAccount) {
+    return this.database.send(
+      '/api/auth', data
+    )
   }
   in(data: IUserAccount) {
-
     return this.database.send<IUserAccount>(
       `${accountBackend.endpoints.userAccount}`,
-      // '/api/account/in-user-account',
       data
     ).pipe(
       catchError(({ error }) => throwError(error)),

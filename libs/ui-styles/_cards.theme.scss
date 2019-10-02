@@ -5,7 +5,7 @@
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
 
-  .fuse-card {
+  .suite-card {
     background: map-get($background, card);
 
     .card-divider {
@@ -17,7 +17,7 @@
 // -----------------------------------------------------------------------------------------------------
 // @ Cards
 // -----------------------------------------------------------------------------------------------------
-.fuse-card {
+.suite-card {
   max-width: 320px;
   min-width: 320px;
   border-radius: 2px;

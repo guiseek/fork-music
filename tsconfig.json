@@ -18,13 +18,10 @@
     "paths": {
       "@env/backend": ["apps/backend/src/environments"],
       "@env/backend/*": ["apps/backend/src/environments/*"],
+      "@env/customer": ["apps/customer-portal/src/environments"],
+      "@env/customer/*": ["apps/customer-portal/src/environments/*"],
       "@suite/backend": ["libs/backend/src/index.ts"],
       "@suite/account-ui": ["libs/account-ui/src/index.ts"],
-      "@suite/profile-settings-ui": ["libs/profile-settings-ui/src/index.ts"],
-      "@suite/ticket-list-ui": ["libs/ticket-list-ui/src/index.ts"],
-      "@suite/reporting/ui/stat-dashboard-ui": [
-        "libs/reporting/ui/stat-dashboard-ui/src/index.ts"
-      ],
       "auth/api": ["libs/auth/api/src"],
       "auth/api/*": ["libs/auth/api/src/*"],
       "@suite/auth/lazy/sign": ["libs/auth/lazy/sign/src/index.ts"],
@@ -99,7 +96,8 @@
       "@suite/nav/edu-helper": ["libs/nav/edu-helper/src/index.ts"],
       "backend/auth": ["libs/account/backend/auth/src"],
       "backend/auth/*": ["libs/account/backend/auth/src/*"],
-      "@suite/account/lazy/auth": ["libs/account/lazy/auth/src/index.ts"]
+      "@suite/account/lazy/auth": ["libs/account/lazy/auth/src/index.ts"],
+      "@suite/account/shared/auth": ["libs/account/shared/auth/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
