@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AuthService } from '@suite/auth/shared/auth';
+// import { AuthService } from '@suite/auth/shared/auth';
 import { IUserAccount, AuthJwtPayload } from '@suite/interfaces';
 import { HttpClient } from '@angular/common/http';
 import { accountBackend } from '@suite/account/shared/resources';
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { catchError, map, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { environment } from '@env/customer/environment';
+import { AuthService } from '@suite/account/shared/auth';
 
 const endpoint = `${environment}/auth`
 
@@ -18,6 +19,7 @@ const endpoint = `${environment}/auth`
 })
 export class AccountService {
   account: IUserAccount
+  private _auth: any
   constructor(
     private auth: AuthService,
     private http: HttpClient,
@@ -26,8 +28,12 @@ export class AccountService {
   ) {
     // const env = environment
   }
-  login(credentials) {
-    return this.http.post(endpoint, credentials)
+  
+  register(data: IUserAccount) {
+    return this.http.post('/api/account/user-account', data)
+  }
+  check(data) {
+    return this.auth.email(data)
   }
   getGroupTypes() {
     return this.database.get(

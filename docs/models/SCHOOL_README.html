@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<p>O modelo apresentado neste artigo permite armazenar dados sobre:</p>
+<ul>
+<li><code>aulas / palestras</code></li>
+<li><code>instrutores / palestrantes</code></li>
+<li><code>alunos</code></li>
+<li><code>presença em palestras</code></li>
+<li><code>conquista dos alunos / professores</code></li>
+</ul>
+<p>Também poderíamos usar esse modelo como um horário escolar, para outras atividades em grupo (aulas de natação, oficinas de dança) ou mesmo para atividades individuais, como aulas particulares. Ainda há muito espaço para melhorias, como armazenamento de dados de localização da classe ou duração do workshop; abordaremos isso nos próximos artigos.</p>
+<p>Vamos começar com nossos elementos do banco de dados de educação básica: as tabelas.</p>
+<h2 id="os-tr%C3%AAs-grandes-tabelas-de-alunos-instrutores-e-classes">Os Três Grandes: Tabelas de Alunos, Instrutores e Classes</h2>
+<p>As tabelas de aluno, instrutor e turma compõem o núcleo do nosso banco de dados.</p>
+<p><img src="https://www.vertabelo.com/blog/how-does-database-design-help-organize-teachers-lessons-and-students/education-database-model-student-table.png" alt="student"></p>
+<p>A tabela do aluno, mostrada acima, é usada para armazenar dados básicos sobre os alunos, mas pode ser expandida de acordo com necessidades específicas. Com exceção dos três atributos de contato, todos os atributos na tabela são necessários:</p>
+<p><code>first_name</code> - o nome do aluno
+<code>last_name</code> - o sobrenome do aluno
+<code>birth_date</code> - a data de nascimento do aluno
+<code>contact_phone</code> - o número de telefone do aluno
+<code>contact_mobile</code> - o número de celular do aluno
+<code>contact_mail</code> - o endereço de email do aluno
+<code>category_id</code> - é uma referência ao catálogo de categorias.</p>
+<p>Com essa estrutura, estamos limitados a apenas uma <code>categoria</code> por <code>aluno</code>. Isso funciona na maioria dos casos, mas em algumas situações podemos precisar de espaço para listar várias categorias.</p>
+<p>Como você pode ver, adicionar uma relação muitos-para-muitos que conecta a tabela do aluno ao dicionário de categorias resolve esse problema. Nesse cenário, porém, precisaremos escrever consultas um pouco mais complexas para manipular nossos dados.</p>
+<p><img src="https://www.vertabelo.com/blog/how-does-database-design-help-organize-teachers-lessons-and-students/education-database-model-student-section.png" alt="N:N"></p>
+<p>Como mencionamos, vamos discutir a tabela de categorias aqui.</p>
+<p><img src="https://www.vertabelo.com/blog/how-does-database-design-help-organize-teachers-lessons-and-students/education-database-model-category-table.png" alt=""></p>
+<p>Esta tabela é um dicionário usado para agrupar alunos com base em determinados critérios. O atributo name é o único dado na tabela (além do id, a chave primária) e é obrigatório. Um conjunto de valores que podem ser armazenados aqui é o status de emprego do aluno: &quot;aluno&quot;, &quot;empregado&quot;, &quot;desempregado&quot; e &quot;aposentado&quot;. Também poderíamos usar outros conjuntos com base em critérios altamente específicos, como “gosta de ioga”, “gosta de caminhadas”, “gosta de andar de bicicleta” e “não gosta de nada”.</p>
+<p><img src="https://www.vertabelo.com/blog/how-does-database-design-help-organize-teachers-lessons-and-students/education-database-model-instructor-table.png" alt=""></p>
+<p>A tabela de instrutores contém uma lista de todos os instrutores / professores da organização. Os atributos na tabela são:</p>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>first_name</code></td>
+<td>o nome do instrutor</td>
+</tr>
+<tr>
+<td><code>last_name</code></td>
+<td>o sobrenome do instrutor</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>o título do instrutor (se houver)</td>
+</tr>
+<tr>
+<td><code>birth_date</code></td>
+<td>a data de nascimento do instrutor</td>
+</tr>
+<tr>
+<td><code>contact_phone</code></td>
+<td>o número de telefone do instrutor</td>
+</tr>
+<tr>
+<td><code>contact_mobile</code></td>
+<td>o número de celular do instrutor</td>
+</tr>
+<tr>
+<td><code>contact_mail</code></td>
+<td>o endereço de email do instrutor</td>
+</tr>
+</tbody>
+</table>
+<p>O <code>título</code> e todos os três atributos de <code>contact_*</code> não são obrigatórios.</p>
+<p>A tabela do aluno e a tabela do instrutor compartilham uma estrutura semelhante, mas há outra possibilidade de organizar essas informações. Uma segunda abordagem seria ter uma tabela de pessoa (que armazena todos os dados de funcionários e alunos) e tem uma relação muitos-para-muitos que nos diz todas as funções atribuídas a essa pessoa. A vantagem mais importante da segunda abordagem é que armazenaremos dados apenas uma vez. Se alguém for instrutor de uma turma e aluno de outra, eles aparecerão apenas uma vez no banco de dados, mas com as duas funções definidas.</p>
+<p>Por que selecionamos a abordagem de duas tabelas para o nosso modelo de banco de dados educacional? Geralmente, alunos e instrutores se comportam de maneira diferente, tanto na vida real quanto em nosso banco de dados. Por isso, pode ser prudente armazenar seus dados separadamente. Podemos encontrar outras maneiras de mesclar as informações da mesma pessoa que aparecem nas duas tabelas (por exemplo, par de consultas de inserção / atualização com base em um ID externo, como um número de previdência social ou número de IVA).</p>
+<p><img src="https://www.vertabelo.com/blog/how-does-database-design-help-organize-teachers-lessons-and-students/education-database-model-class-table.png" alt=""></p>
+<p>A tabela de classes é um catálogo que contém detalhes sobre todas as classes. Podemos ter várias instâncias de cada tipo de classe. Os atributos na tabela são os seguintes (todos são obrigatórios, exceto end_date):</p>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>class_type_id</code></td>
+<td>é uma referência ao dicionário class_type.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>é um nome abreviado da classe.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>essa descrição é mais específica que a da tabela class_type.</td>
+</tr>
+<tr>
+<td><code>start_date</code></td>
+<td>a data de início da turma.</td>
+</tr>
+<tr>
+<td><code>end_date</code></td>
+<td>a data final da turma. Não é obrigatório, pois nem sempre sabemos a data exata de término de cada aula com antecedência.</td>
+</tr>
+<tr>
+<td><code>completed</code></td>
+<td>é um valor booleano que indica se todas as atividades de classe planejadas foram concluídas. Isso é útil quando atingimos o tempo final planejado para uma aula, mas outras atividades ainda precisam ser concluídas.</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://www.vertabelo.com/blog/how-does-database-design-help-organize-teachers-lessons-and-students/education-database-model-class_type-table.png" alt=""></p>
+<p>A tabela <code>class_type</code> é um catálogo simples, destinado a armazenar informações básicas sobre as palestras ou aulas oferecidas aos alunos. Pode conter valores como &quot;idioma inglês (grupo)&quot;, &quot;idioma polonês (grupo)&quot;, &quot;idioma croata (grupo)&quot;, &quot;idioma inglês (pessoalmente)&quot; ou &quot;aulas de dança&quot;.</p>
+<p>Possui apenas dois atributos obrigatórios
+<code>name</code> e <code>description</code>, os quais não precisam de explicação adicional.</p>
+<p><img src="https://www.vertabelo.com/blog/how-does-database-design-help-organize-teachers-lessons-and-students/education-database-model-class_schedule-table.png" alt=""></p>
+<p>A tabela class_schedule contém horários específicos para palestras e aulas. Todos os atributos na tabela são obrigatórios. O atributo class_id é uma referência à tabela de classes, enquanto <code>start_time</code> e <code>end_time</code> são os horários de início e de término dessa aula específica.</p>
+<h2 id="quem-est%C3%A1-aqui-tabela-relacionada-a-presen%C3%A7a">Quem está aqui? Tabela relacionada a presença</h2>
+<p><img src="https://www.vertabelo.com/blog/how-does-database-design-help-organize-teachers-lessons-and-students/education-database-model-attend-table.png" alt=""></p>
+<p>A tabela <code>attend</code> armazena informações sobre qual aluno participou de qual aula e o resultado final.</p>
+<p>Os atributos na tabela são:</p>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>student_id</code></td>
+<td>é uma referência à studenttabela</td>
+</tr>
+<tr>
+<td><code>class_id</code></td>
+<td>é uma referência à classtabela</td>
+</tr>
+<tr>
+<td><code>class_enrollment_date </code></td>
+<td>é a data em que o aluno começou a frequentar essa aula</td>
+</tr>
+<tr>
+<td><code>class_drop_date</code></td>
+<td>a data em que o aluno saiu da aula. Este atributo só terá valor se o aluno abandonar a turma antes da data de término da aula. Nesse caso, o drop_class_reason_idvalor do atributo também deve ser definido.</td>
+</tr>
+<tr>
+<td><code>drop_class_reason_id</code></td>
+<td>é uma referência à drop_class_reasontabela</td>
+</tr>
+<tr>
+<td><code>attendance_outcome_id</code></td>
+<td>é uma referência à tabela <code>attendance_outcome</code></td>
+</tr>
+</tbody>
+</table>
+<p>Todos os dados são obrigatório, exceto <code>class_drop_date</code> e <code>drop_class_reason_id</code>. Esses dois serão preenchidos se e somente se um aluno abandonar a aula.</p>
+<p><img src="https://www.vertabelo.com/blog/how-does-database-design-help-organize-teachers-lessons-and-students/education-database-model-drop_attendance_reason-table.png" alt=""></p>
+<p>A tabela <code>drop_attendance_reason</code> é um dicionário que contém os vários motivos pelos quais um aluno pode abandonar um curso. Ele possui apenas um atributo <code>reason_text</code>, e é obrigatório. Um exemplo de conjunto de valores pode incluir: “doença”, “perda de interesse”, “não tem tempo suficiente” e “outras razões”.</p>
+<p><img src="https://www.vertabelo.com/blog/how-does-database-design-help-organize-teachers-lessons-and-students/education-database-model-attendance_outcome-table.png" alt=""></p>
+<p>A tabela <code>attendance_outcome</code> contém descrições sobre a atividade do aluno em um determinado curso. O <code>outcome_text</code> é o único atributo na tabela e é obrigatório. Um conjunto de valores possíveis é: &quot;em andamento&quot;, &quot;concluído com êxito&quot;, &quot;concluído parcialmente&quot; e &quot;não concluiu a aula&quot;.</p>
+<h2 id="quem-est%C3%A1-no-comando-tabelas-relacionadas-ao-ensino">Quem está no comando? Tabelas relacionadas ao ensino</h2>
+<p>As tabelas <code>teach</code>, <code>drop_teach_reasone</code> <code>teach_outcome</code> usam a mesma lógica, como as tabelas <code>attend</code>, <code>drop_attendance_reason</code> e <code>attendance_outcome</code>. Todas elas armazenam dados sobre as atividades relacionadas aos cursos dos instrutores.</p>
+<p><img src="https://www.vertabelo.com/blog/how-does-database-design-help-organize-teachers-lessons-and-students/education-database-model-teach-table.png" alt=""></p>
+<p>A tabela de ensino (<code>teach</code>) é usada para armazenar informações sobre qual instrutor está ensinando qual classe. Os atributos na tabela são:</p>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>instructor_id</code></td>
+<td>é uma referência à tabela de <code>instructor</code>.</td>
+</tr>
+<tr>
+<td><code>class_id</code></td>
+<td>é uma referência à tabela de classes.</td>
+</tr>
+<tr>
+<td><code>start_date</code></td>
+<td>é a data em que o instrutor começou a trabalhar nessa classe.</td>
+</tr>
+<tr>
+<td><code>end_date</code></td>
+<td>é a data em que o instrutor parou de trabalhar nessa classe. Não é obrigatório, porque não podemos saber com antecedência se o instrutor ensinará até a data de término da aula.</td>
+</tr>
+<tr>
+<td><code>drop_teach_reason_id</code></td>
+<td>é uma referência à tabela <code>drop_teach_reason</code>. Não é obrigatório porque o instrutor não pode deixar a aula.</td>
+</tr>
+<tr>
+<td><code>teach_outcome_id</code></td>
+<td>é uma referência à tabela <code>teach_outcome_reason</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://www.vertabelo.com/blog/how-does-database-design-help-organize-teachers-lessons-and-students/education-database-model-drop_teach_reason-table.png" alt=""></p>
+<p>A tabela <code>drop_teach_reason</code> é um dicionário simples. Ele contém um conjunto de explicações possíveis para o motivo pelo qual o instrutor terminou o ensino antes da data final. Existe apenas um atributo obrigatório: <code>reason_text</code>. Isso pode ser “doença”, “movido para outro projeto / trabalho”, “sair” ou “outro motivo”.</p>
+<p><img src="https://www.vertabelo.com/blog/how-does-database-design-help-organize-teachers-lessons-and-students/education-database-model-teach_outcome-table.png" alt=""></p>
+<p>A tabela <code>teach_outcome</code> descreve o sucesso do instrutor em um curso específico. O <code>outcome_text</code> é o único atributo da tabela e é obrigatório. Os valores possíveis para esta tabela podem ser: “em andamento”, “concluído com êxito”, “concluído parcialmente” e “não concluiu a aula”.</p>
+<p><img src="https://www.vertabelo.com/blog/how-does-database-design-help-organize-teachers-lessons-and-students/education-database-model-student_presence-table.png" alt=""></p>
+<p>A tabela <code>student_presence</code> é usada para armazenar dados sobre a presença do aluno em uma aula específica. Podemos assumir que, para cada aula, o instrutor notará a presença e / ou ausência de todos os alunos.</p>
+<p>Os atributos na tabela são:</p>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>student_id</code></td>
+<td>é uma referência à tabela de alunos</td>
+</tr>
+<tr>
+<td><code>class_schedule_id</code></td>
+<td>é uma referência à tabela class_schedule</td>
+</tr>
+<tr>
+<td><code>presente</code></td>
+<td>é uma marcação booleana se o aluno está presente na palestra ou não</td>
+</tr>
+</tbody>
+</table>
+<p>Poderíamos monitorar a presença dos alunos em uma turma específica com uma consulta como a seguinte (supondo que <code>@id_class</code> contenha o ID da turma que queremos).</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span>
+    a.id, 
+    <span class="hljs-keyword">CONCAT</span>(a.first_name, <span class="hljs-string">' '</span>, a.last_name) <span class="hljs-keyword">AS</span> student_name,
+    a.number_total, 
+    <span class="hljs-keyword">CONCAT</span>(<span class="hljs-keyword">CONVERT</span>(a.number_present / a.number_total * <span class="hljs-number">100</span>, <span class="hljs-built_in">DECIMAL</span>(<span class="hljs-number">5</span>,<span class="hljs-number">2</span>)), <span class="hljs-string">'%'</span>) <span class="hljs-keyword">AS</span> percentage,
+    a.attendance_outcome
+<span class="hljs-keyword">FROM</span>
+(
+<span class="hljs-keyword">SELECT</span>
+    student.id, 
+    student.first_name, 
+    student.last_name, 
+    <span class="hljs-keyword">SUM</span>(<span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> student_presence.present = <span class="hljs-literal">True</span> <span class="hljs-keyword">THEN</span> <span class="hljs-number">1</span> <span class="hljs-keyword">ELSE</span> <span class="hljs-number">0</span> <span class="hljs-keyword">END</span>) <span class="hljs-keyword">AS</span> number_present,
+    <span class="hljs-keyword">COUNT</span>(<span class="hljs-keyword">DISTINCT</span> class_schedule.id) <span class="hljs-keyword">AS</span> number_total,
+    attendance_outcome.outcome_text <span class="hljs-keyword">AS</span> attendance_outcome
+<span class="hljs-keyword">FROM</span> <span class="hljs-keyword">class</span>
+    <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> attend <span class="hljs-keyword">ON</span> class.id = attend.class_id
+    <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> student <span class="hljs-keyword">ON</span> attend.student_id = student.id
+    <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> class_schedule <span class="hljs-keyword">ON</span> class_schedule.class_id = class.id
+    <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> student_presence <span class="hljs-keyword">ON</span> student_presence.student_id = student.id <span class="hljs-keyword">AND</span> student_presence.class_schedule_id = class_schedule.id
+    <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> attendance_outcome <span class="hljs-keyword">ON</span> attendance_outcome.id = attend.attendance_outcome_id
+<span class="hljs-keyword">WHERE</span> class.id = @id_class
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span>
+    student.id, 
+    student.first_name, 
+    student.last_name, 
+    attendance_outcome.outcome_text
+) a  
+</div></code></pre>
+<p><img src="https://www.vertabelo.com/blog/how-does-database-design-help-organize-teachers-lessons-and-students/education-database-model-instructor_presence-table.png" alt=""></p>
+<p>A tabela <code>instructor_presence</code> usa a mesma lógica que a tabela <code>student_presence</code>, mas aqui queremos focar nos instrutores.</p>
+<p>Os atributos na tabela são:</p>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>instructor_id</code></td>
+<td>é uma referência à tabela de <code>instructor</code></td>
+</tr>
+<tr>
+<td><code>class_schedule_id</code></td>
+<td>é uma referência à tabela <code>class_schedule</code></td>
+</tr>
+<tr>
+<td><code>present</code></td>
+<td>é um valor booleano que representa se o instrutor presente na palestra ou não</td>
+</tr>
+</tbody>
+</table>
+<p>Poderíamos usar a consulta abaixo para monitorar a atividade do instrutor na aula:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span>
+    a.id, 
+    <span class="hljs-keyword">CONCAT</span>(a.first_name, <span class="hljs-string">' '</span>, a.last_name) <span class="hljs-keyword">AS</span> instructor_name,
+    a.number_total,
+    <span class="hljs-keyword">CONCAT</span>(<span class="hljs-keyword">CONVERT</span>(a.number_present / a.number_total * <span class="hljs-number">100</span>, <span class="hljs-built_in">DECIMAL</span>(<span class="hljs-number">5</span>,<span class="hljs-number">2</span>)), <span class="hljs-string">'%'</span>) <span class="hljs-keyword">AS</span> percentage,
+    a.teach_outcome
+<span class="hljs-keyword">FROM</span>
+(
+<span class="hljs-keyword">SELECT</span>
+    instructor.id, 
+    instructor.first_name, 
+    instructor.last_name, 
+    <span class="hljs-keyword">SUM</span>(<span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> instructor_presence.present = <span class="hljs-literal">True</span> <span class="hljs-keyword">THEN</span> <span class="hljs-number">1</span> <span class="hljs-keyword">ELSE</span> <span class="hljs-number">0</span> <span class="hljs-keyword">END</span>) <span class="hljs-keyword">AS</span> number_present,
+    <span class="hljs-keyword">COUNT</span>(<span class="hljs-keyword">DISTINCT</span> class_schedule.id) <span class="hljs-keyword">AS</span> number_total,
+    teach_outcome.outcome_text <span class="hljs-keyword">AS</span> teach_outcome
+<span class="hljs-keyword">FROM</span> <span class="hljs-keyword">class</span>
+    <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> teach <span class="hljs-keyword">ON</span> class.id = teach.class_id
+    <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> instructor <span class="hljs-keyword">ON</span> teach.instructor_id = instructor.id
+    <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> class_schedule <span class="hljs-keyword">ON</span> class_schedule.class_id = class.id
+    <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> instructor_presence <span class="hljs-keyword">ON</span> instructor_presence.instructor_id = instructor.id <span class="hljs-keyword">AND</span> instructor_presence.class_schedule_id = class_schedule.id
+    <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> teach_outcome <span class="hljs-keyword">ON</span> teach_outcome.id = teach.teach_outcome_id
+<span class="hljs-keyword">WHERE</span> class.id = @id_class
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span>
+    instructor.id, 
+    instructor.first_name, 
+    instructor.last_name, 
+    teach_outcome.outcome_text
+) a 
+</div></code></pre>
+<p>Agora, vamos terminar discutindo as tabelas da pessoa de contato.</p>
+<h2 id="para-quem-podemos-ligar-tabelas-da-pessoa-de-contato">Para quem podemos ligar? Tabelas da pessoa de contato</h2>
+<p>Na maioria dos casos, não precisamos armazenar informações de contato de emergência (por exemplo, em caso de emergência, entre em contato com essa pessoa). No entanto, isso muda quando ensinamos crianças. Por lei ou por costume, precisamos ter uma pessoa de contato para cada criança que estamos ensinando. Em nossas tabelas de modelos - <code>contact_person</code>, <code>contact_person_type</code> e <code>contact_person_student</code> - demonstramos como isso pode ser feito.</p>
+<p><img src="https://www.vertabelo.com/blog/how-does-database-design-help-organize-teachers-lessons-and-students/education-database-model-contact_person-table.png" alt=""></p>
+<p>A tabela <code>contact_person</code> é uma lista de pessoas relacionadas aos alunos. Obviamente, não precisamos listar todos os parentes; principalmente, teremos um ou dois contatos por aluno. Essa é uma boa maneira de encontrar “para quem você vai ligar” quando o aluno precisar ou quiser sair mais cedo.</p>
+<p>Os atributos na tabela são:</p>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>first_name</code></td>
+<td>é o nome da pessoa de contato</td>
+</tr>
+<tr>
+<td><code>last_name</code></td>
+<td>é o sobrenome da pessoa</td>
+</tr>
+<tr>
+<td><code>contact_phone</code></td>
+<td>é o número de telefone da pessoa</td>
+</tr>
+<tr>
+<td><code>contact_mobile</code></td>
+<td>é o número de celular da pessoa</td>
+</tr>
+<tr>
+<td><code>contact_mail</code></td>
+<td>é o endereço de email da pessoa</td>
+</tr>
+</tbody>
+</table>
+<p>Os detalhes de contato não são obrigatórios, embora sejam muito úteis.</p>
+<p><img src="https://www.vertabelo.com/blog/how-does-database-design-help-organize-teachers-lessons-and-students/education-database-model-contact_person_type-table.png" alt=""></p>
+<p>A tabela <code>contact_person_type</code> é um dicionário com um único atributo obrigatório: <code>type_name</code>.</p>
+<p>Exemplos de valores armazenados nesta tabela são: &quot;mãe&quot;, &quot;pai&quot;, &quot;irmão&quot;, &quot;irmã&quot; ou &quot;tio&quot;.</p>
+<p><img src="https://www.vertabelo.com/blog/how-does-database-design-help-organize-teachers-lessons-and-students/education-database-model-contact_person_student-table.png" alt=""></p>
+<p>A tabela <code>contact_person_student</code> é uma relação muitos para muitos que conecta pessoas de contato e seu tipo com os alunos.</p>
+<p>Os atributos na tabela são (todos são obrigatórios):</p>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contact_person_id</code></td>
+<td>é uma referência à tabela <code>contact_person</code></td>
+</tr>
+<tr>
+<td><code>student_id</code></td>
+<td>é uma referência à tabela <code>student</code></td>
+</tr>
+<tr>
+<td><code>contact_person_type_id</code></td>
+<td>é uma referência à tabela <code>contact_person_type</code></td>
+</tr>
+</tbody>
+</table>
+<p>Vale a pena mencionar que essa relação <em>muitos-para-muitos</em> conecta três tabelas. O par de atributos contact_person_id e student_id é usado como chave alternativa (<strong>UNIQUE</strong>). Dessa forma, desativaremos as entradas duplicadas que conectam alunos individuais com a mesma pessoa de contato.</p>
+<p>O atributo <code>contact_person_type_id</code> não faz parte da chave alternativa. Nesse caso, poderíamos ter várias relações para a mesma pessoa de contato e o mesmo aluno (usando diferentes tipos de relacionamento), e isso não faz sentido em situações da vida real.</p>
+
+</body>
+</html>

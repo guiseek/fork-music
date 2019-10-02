@@ -21,6 +21,11 @@ export class AuthService {
       tap(response => this._tokenService.setToken(response))
     )
   }
+  email(email) {
+    return this._http.post(
+      this.endpoint('email'), { email }
+    )
+  }
   me() {
     return this._http.get(
       this.endpoint('me')

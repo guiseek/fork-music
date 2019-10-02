@@ -3,5 +3,6 @@ export interface IAuthConfig {
   endpoint?: string;
   login?: string;
   register?: string;
+  email?: string;
   me?: string;
 }

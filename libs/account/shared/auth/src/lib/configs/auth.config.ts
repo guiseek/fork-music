@@ -5,6 +5,7 @@ export const AUTH_CONFIG: IAuthConfig = {
   endpoint: '/auth',
   login: '/login',
   register: '/register',
+  email: '/email',
   me: '/me'
 }
 export const AUTH_CONFIG_TOKEN = 'AuthConfig'

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<p>O modelo consiste em três áreas de assunto:</p>
+<ul>
+<li>Users &amp; groups</li>
+<li>Software &amp; plans</li>
+<li>Subscriptions, plans &amp; payments.</li>
+<li>Descreveremos cada uma dessas áreas na ordem em que estão listadas.</li>
+</ul>
+<h2 id="se%C3%A7%C3%A3o-1-usu%C3%A1rios-e-grupos">Seção 1: Usuários e Grupos</h2>
+<p>A Users &amp; groups área de assunto armazena informações sobre todos os usuários do nosso aplicativo. Assumiremos que os usuários podem ser agrupados, por exemplo, quando uma empresa deseja comprar licenças para vários funcionários. Criaremos um grupo mesmo quando apenas um usuário pertencer a ele. Isso nos dará a flexibilidade de adicionar mais tarde novos membros a esse grupo.</p>
+<!-- ![user_and_groups](https://www.vertabelo.com/blog/a-saas-subscription-data-model/users-and-groups.png) -->
+<p>A tabela mais importante aqui é a <code>user_account</code>. Vamos usá-lo para armazenar todos os detalhes relacionados às contas de usuário. Esses são:</p>
+<ul>
+<li><code>first_name</code> &amp; <code>last_name</code> - O nome e o sobrenome do usuário. Observe que cada usuário armazenado aqui é um indivíduo particular.</li>
+</ul>
+<!-- - `username` - Um nome de usuário (escolhido pelo usuário). -->
+<ul>
+<li><code>password</code> - Um valor de hash da senha do usuário. (Os usuários definem suas próprias senhas.)</li>
+<li><code>email</code> - O endereço de email do usuário, definido durante o processo de registro.</li>
+<li><code>confirmation_code</code> - O código usado durante o processo de confirmação por email.</li>
+<li><code>confirmation_time</code> - Quando o registro / confirmação foi concluído.</li>
+<li><code>insert_ts</code> - O registro de data e hora em que este registro foi inserido inicialmente.</li>
+</ul>
+<p>Os usuários podem criar grupos; grupos têm tipos predefinidos. Uma lista de todos os tipos de grupos possíveis é armazenada na tabela <code>user_group_type</code>.
+Cada tipo é definido EXCLUSIVAMENTE por seus <code>type_name</code>. Também definiremos o número mínimo e máximo de membros do grupo permitido para cada tipo de grupo. Esse intervalo é definido com dois valores - <code>members_min</code> (o limite inferior) e <code>members_max</code> (o limite superior).</p>
+<h2 id="criando-uma-conta">Criando uma conta</h2>
+<p>Ao criar uma nova conta, os usuários também selecionam seu grupo de usuários. Isso criará um novo registro na tabela <code>user_group</code> referenciando o tipo de grupo selecionado e armazenando o registro de data e hora (insert_ts) quando esse registro foi inserido. O atributo <code>customer_invoice_data</code> é uma descrição textual do que imprimiremos na fatura desse grupo de usuários.</p>
+<p>A última tabela nesta área de assunto é a tabela <code>in_group</code>. Para cada grupo, armazenaremos uma lista de todos os seus membros. Além das referências ao grupo de usuários (<code>user_group_id</code>) e conta de usuário (<code>user_account_id</code>), também armazenaremos o registro de data e hora quando um usuário foi adicionado ao grupo (<code>time_added</code>) ou removido do grupo (<code>time_removed</code> que só conterá um valor se o usuário tiver sido removido ) Também teremos um sinalizador para indicar se o usuário é <code>group_admin</code> ou não. Os administradores do grupo podem atualizar os membros do grupo e adicionar novos membros.</p>
+<p><img src="https://www.vertabelo.com/blog/a-saas-subscription-data-model/users-and-groups.png" alt="user_and_groups"></p>
+<h2 id="se%C3%A7%C3%A3o-2-software-e-planos">Seção 2: Software e planos</h2>
+<p>Em seguida, precisamos definir tudo o que ofereceremos aos nossos (potenciais) clientes. Podemos oferecer apenas um tipo de software, mas há uma grande possibilidade de termos várias ofertas diferentes. Um exemplo comum desse caso é ter uma ferramenta SaaS separada de seu aplicativo de análise, por exemplo, Stripe e Stripe Sigma. Abordaremos esses casos em nosso modelo de dados.</p>
+<p><img src="https://www.vertabelo.com/blog/a-saas-subscription-data-model/software-and-plans.png" alt="software_and_plans"></p>
+<p>Vamos começar com a softwaremesa. Neste dicionário, armazenaremos uma lista de todas as nossas ofertas de SaaS. Para cada um, armazenaremos:</p>
+<ul>
+<li>
+<p><code>software_name</code> - Um nome de software exclusivo.</p>
+</li>
+<li>
+<p><code>details</code> - Todos os detalhes que descrevem esse software.</p>
+</li>
+<li>
+<p><code>access_link</code> - Um local ou link onde podemos acessar esse software.
+Deveríamos poder oferecer nossas soluções SaaS em um ou mais planos diferentes. Cada plano contém várias opções. Por exemplo, poderíamos ter um plano premium que inclua todas as opções que oferecemos e um plano básico que inclua apenas o essencial. Armazenaremos todos os planos distintos na plantabela. Para cada plano, definiremos:</p>
+</li>
+<li>
+<p><code>plan_name</code> - O nome que selecionamos para este plano. Juntamente com a referência ao software (<code>software_id</code>), isso forma a chave alternativa / <strong>UNIQUE</strong> desta tabela.</p>
+</li>
+<li>
+<p><code>user_group_type_id</code> - Uma referência que indica o tipo do grupo que pode usar este plano. Pode ser um grupo de usuário único ou um grupo padrão. Essa referência também define o número máximo de membros do grupo para esse plano - por exemplo, se nosso plano permitir cinco contas diferentes em uma assinatura, devemos fazer referência ao apropriado user_group_type.</p>
+</li>
+<li>
+<p><code>current_price</code> - O preço atual para este plano.</p>
+</li>
+<li>
+<p><code>insert_ts</code> - O registro de data e hora em que esse registro foi inserido.</p>
+</li>
+<li>
+<p><code>active</code> - Uma bandeira indicando se este plano está ativo ou não.
+Já mencionamos que os planos para o mesmo software virão com opções diferentes. Uma lista de todas as opções distintas é armazenada no optiondicionário. Cada opção é definida EXCLUSIVAMENTE por seus <code>option_name</code>.</p>
+</li>
+</ul>
+<p>Para atribuir opções a diferentes planos, usaremos a option_includedtabela. Ele armazena referências ao plano relacionado ( plan_id) e opção ( option_id). Este par, junto com o date_addedatributo, forma a chave UNIQUE desta tabela. O date_removedatributo conterá um valor apenas se decidirmos remover uma determinada opção de um plano. Isso pode acontecer quando criamos uma nova opção para substituir a antiga ou decidimos não ter mais uma opção, porque poucas pessoas a usam.</p>
+<p>A última parte desta área de assunto está relacionada a ofertas especiais ou promocionais. Em geral, essas ofertas oferecem aos clientes mais serviços por menos dinheiro e duram um certo período de tempo. Eles poderiam ter como objetivo adquirir novos clientes ou vender atualizações de planos (ou uma gama mais ampla de serviços) para clientes existentes.</p>
+<p>Todas as nossas ofertas promocionais são armazenadas na offertabela. Para cada oferta, precisaremos definir:</p>
+<ul>
+<li><code>offer_name</code> - Um nome único que selecionamos para esta oferta.</li>
+<li><code>offer_start_date</code> e <code>offer_end_date</code> - O período durante o qual esta oferta está disponível.</li>
+<li><code>description</code> - Uma descrição textual detalhada da oferta.
+Descontos: precisamos da flexibilidade para ter dois tipos de descontos - um desconto fixo com base no valor (por exemplo, receba 50 dólares) e um desconto percentual (por exemplo, economize 25%). Se oferecermos um desconto fixo, inseriremos esse valor no discount_amountatributo; se oferecermos um desconto percentual, inseriremos essa porcentagem no atributo <code>discount_percentage</code></li>
+<li>Duração: usaremos a mesma lógica usada para os descontos. Em alguns casos, as ofertas duram um número definido de meses (por exemplo, 24 meses após a inscrição dos clientes); nesses casos, definiremos o duration_monthsvalor. Outras ofertas serão válidas até uma determinada data fixa (por exemplo, até 31 de dezembro de 2019); para isso, definiremos a data e a armazenaremos no duration_end_dateatributo
+Usaremos as duas tabelas restantes nesta área de assunto para definir o que cada oferta contém e quais os pré-requisitos. Para esse fim, usaremos duas tabelas: includee prerequisite. Eles compartilham a mesma estrutura e contêm o mesmo par UNIQUE de offer_id- plan_id. Algumas ofertas podem não ter pré-requisitos, enquanto outras podem - por exemplo, se estamos oferecendo um desconto para atualizar para um plano com mais usuários ou uma assinatura de software para usuários de algum outro software.</li>
+</ul>
+<p>As ofertas podem ser complexas, por isso fornecerei alguns exemplos.</p>
+<ol>
+<li>Se atualmente usamos o Plano A e temos uma oferta para atualizar para o Plano B, isso é simples.</li>
+<li>Se tivermos duas ofertas, “Atualizações do plano A para o plano B” e “Atualizações do plano B para o plano C”, devemos criar mais uma oferta: “Atualizações do plano A diretamente para o plano C”. Isso permite que os usuários atualizem seus planos em uma etapa e não em duas. Um exemplo dessa atualização é alterar uma assinatura que atualmente permite cinco usuários por grupo para outra que permite 20 usuários por grupo sem parar em um plano intermediário de dez usuários por grupo ao longo do caminho.</li>
+<li>Se um grupo usa o Produto A, poderíamos ter uma oferta especial para assinar os Produtos B e C a um preço promocional. Também poderíamos ter duas ofertas separadas para assinar apenas o Produto B e apenas o Produto C.</li>
+</ol>
+<p>Em geral, devemos ter uma oferta que altere o plano atual para o plano desejado sem nenhuma etapa intermediária e apenas uma oferta para assinar um ou mais novos produtos.</p>
+<h2 id="se%C3%A7%C3%A3o-3-assinaturas-planos-e-pagamentos">Seção 3: Assinaturas, planos e pagamentos</h2>
+<p>A última área de assunto conecta as duas áreas mencionadas anteriormente e é o verdadeiro coração desse modelo.</p>
+<p><img src="https://www.vertabelo.com/blog/a-saas-subscription-data-model/subscriptions-plans-and-payments.png" alt="subscriptions_plans_and_payments"></p>
+<p>Todas as assinaturas são armazenadas na subscriptiontabela. Trataremos cada plano diferente como uma assinatura separada, mesmo que essas assinaturas / planos sejam o resultado da mesma oferta. A razão para isso é que poderemos gerenciar assinaturas separadamente - por exemplo, cancele-as separadamente, se quisermos. Precisamos definir vários detalhes aqui:</p>
+<ul>
+<li><code>user_group_id</code> - O ID do grupo que assina este plano. Isso é importante porque os usuários não serão inscritos individualmente; eles são assinados indiretamente, como parte do grupo.</li>
+<li><code>trial_period_start_date</code> e <code>trial_period_end_date</code> - Os limites inferior e superior do período de avaliação (se houver) para esta assinatura.</li>
+<li><code>subscribe_after_trial</code> - Uma bandeira indicando se a assinatura será renovada automaticamente após o término do período de avaliação (se houver).
+<code>current_plan_id</code> - O plano atual para essa assinatura. Se a assinatura não estiver mais ativa, esse atributo conterá o valor do último plano ativo.</li>
+<li><code>offer_id</code> - Uma referência à oferta à qual esta assinatura está relacionada. Este atributo conterá um valor apenas se essa assinatura for o resultado de uma determinada oferta.</li>
+<li><code>offer_start_date</code> e <code>offer_end_date</code> - os limites inferior e superior do período durante o qual essa oferta estava ativa. Esses atributos serão definidos apenas se essa assinatura for o resultado de uma determinada oferta.</li>
+<li><code>date_subscribed</code> - Quando este grupo se inscreveu nesta assinatura.</li>
+<li><code>valid_to</code> - A última data em que esta assinatura é válida. No caso de uma assinatura mensal, podemos esperar que valid_toisso seja definido para o final do mês atual. Se um cliente cancelar a inscrição a qualquer momento durante um mês, ele ainda poderá usar o software até o final desse mês.</li>
+<li><code>date_unsubscribed</code> - A data em que esse grupo cancelou a inscrição nesta assinatura. Podemos esperar que essa data seja definida manualmente pelo administrador do grupo quando o grupo decidir não usar mais o serviço. No entanto, também pode ser definido automaticamente, de acordo com critérios predefinidos - por exemplo, cancelando automaticamente a inscrição de um grupo em seu serviço, se houver duas ou mais faturas não pagas.</li>
+<li><code>insert_ts</code> - O registro de data e hora em que esse registro foi inserido.</li>
+</ul>
+<p>Os planos de assinatura geralmente mudam com o tempo. Para manter um histórico completo de todos os nossos planos, armazenaremos todas as alterações de planos na plan_historytabela. Para cada registro aqui, precisaremos de:</p>
+<ul>
+<li>
+<p><code>subscription_id</code> - O ID da assinatura relacionada.</p>
+</li>
+<li>
+<p><code>plan_id</code> - O ID do plano relacionado.</p>
+</li>
+<li>
+<p><code>date_start</code> e date_end- O período em que este plano estava ativo.</p>
+</li>
+<li>
+<p><code>insert_ts</code> - O registro de data e hora em que esse registro foi inserido.
+A última tabela em nosso modelo armazenará nossa invoices. Para cada fatura, manteremos os seguintes detalhes:</p>
+</li>
+<li>
+<p><code>customer_invoice_data</code> - Uma descrição do cliente faturado por esta fatura. Esses serão os dados de u ser_group.customer_invoice_datano momento em que a fatura foi gerada.</p>
+</li>
+<li>
+<p><code>subscription_id</code> - O ID da assinatura relacionada.</p>
+</li>
+<li>
+<p><code>plan_history_id</code> - O ID do plano ativo durante esse período da fatura.</p>
+</li>
+<li>
+<p><code>invoice_period_start_date</code> e <code>invoice_period_end_date</code> - o intervalo de tempo (por exemplo, de 1 de janeiro de 2019 a 31 de janeiro de 2019) coberto por esta fatura.</p>
+</li>
+<li>
+<p><code>invoice_description</code> - Uma breve descrição textual da fatura.</p>
+</li>
+<li>
+<p><code>invoice_amount</code> - O valor do pagamento devido para esta fatura.</p>
+</li>
+<li>
+<p><code>invoice_created_ts</code> - Quando esta fatura foi gerada e inserida na tabela.</p>
+</li>
+<li>
+<p><code>invoice_due_ts</code> - Quando esta fatura vence.</p>
+</li>
+<li>
+<p><code>invoice_paid_ts</code> - O carimbo de data e hora em que esta fatura foi paga.</p>
+</li>
+</ul>
+
+</body>
+</html>
