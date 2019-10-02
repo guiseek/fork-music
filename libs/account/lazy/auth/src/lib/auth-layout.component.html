@@ -1,10 +1,21 @@
-<mat-horizontal-stepper #stepper>
+<div class="layout-container">
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  <!-- <main [@routerFadeAnimation]="getRouterOutletState(o)">
+    <router-outlet #o="outlet"></router-outlet>
+  </main> -->
+</div>
+<!-- <mat-horizontal-stepper #stepper>
   <ng-container *ngFor="let step of forms">
     <mat-step [label]="step.label">
-      <suite-form-backend [config]="step.form" (saved)="onSaved($event)"></suite-form-backend>
+      <suite-form-backend
+        [config]="step.form"
+        (saved)="onSaved($event)"
+      ></suite-form-backend>
     </mat-step>
   </ng-container>
-</mat-horizontal-stepper>
+</mat-horizontal-stepper> -->
 <!-- <mat-horizontal-stepper #stepper>
   <mat-step [stepControl]="userAccountFormGroup">
     <form [formGroup]="userAccountFormGroup" (ngSubmit)="onSubmitUserAccount()">

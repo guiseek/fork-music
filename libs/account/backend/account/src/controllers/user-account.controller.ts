@@ -107,10 +107,15 @@ export class UserAccountController implements CrudController<UserAccount> {
     @ParsedBody() dto: CreateUserAccountDto,
   ) {
     try {
-      return this.base.createOneBase(req, dto)
+      const create = await this.base.createOneBase(req, dto)
+      console.log('create: ', create)
     } catch (err) {
-
-      return err
+      if (err.code === 'ER_DUP_ENTRY') {
+        throw new ConflictException('Este email já está sendo usado por outro usuário')
+      }
+      throw new BadRequestException(err.message)
+      // console.log('err: ', err)
+      // return err
     }
   }
 

@@ -5,10 +5,7 @@ import localeBr from '@angular/common/locales/pt';
 import localeBrExtra from '@angular/common/locales/extra/br';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import {
-  ProfileSettingsUiModule,
-  profileSettingsUiRoutes
-} from '@suite/profile-settings-ui';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptor, AuthGuard, AuthService } from '@suite/auth/shared/auth';
 import { CoreModule } from '@suite/common/core';
@@ -24,14 +21,6 @@ registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
     HttpClientModule,
     RouterModule.forRoot(
       [
-        { path: 'profile-settings-ui', children: profileSettingsUiRoutes },
-        {
-          path: 'ticket-list',
-          loadChildren: () =>
-            import('@suite/ticket-list-ui').then(
-              module => module.TicketListUiModule
-            )
-        },
         {
           path: 'auth',
           loadChildren: () =>
@@ -69,7 +58,6 @@ registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
       ],
       { initialNavigation: 'enabled' }
     ),
-    ProfileSettingsUiModule,
     BrowserAnimationsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

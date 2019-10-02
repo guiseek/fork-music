@@ -15,7 +15,8 @@ import {
   ConfirmComponent
 } from '@suite/account/shared/account';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthInterceptor } from '@suite/auth/shared/auth';
+import { TokenInterceptor, AuthGuard, SharedAuthModule } from '@suite/account/shared/auth';
+// import { AuthInterceptor } from '@suite/auth/shared/auth';
 // import { InComponent } from '@suite/account/shared/account';
 // import {
 //   createUserAccountForm,
@@ -35,6 +36,7 @@ registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
     BrowserAnimationsModule,
     CoreModule,
     SharedAccountAuthModule,
+    SharedAuthModule,
     HttpClientModule,
     RouterModule.forRoot(
       [
@@ -44,7 +46,7 @@ registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
             import('@suite/account/lazy/account').then(
               module => module.AccountModule
             ),
-          canLoad: [AccountGuard]
+          canLoad: [AuthGuard]
         },
         // // {
         // //   path: 'auth',
@@ -93,7 +95,7 @@ registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },
-    { provide: HTTP_INTERCEPTORS, multi: true, useClass: AuthInterceptor }
+    { provide: HTTP_INTERCEPTORS, multi: true, useClass: TokenInterceptor }
   ],
 
   bootstrap: [AppComponent]

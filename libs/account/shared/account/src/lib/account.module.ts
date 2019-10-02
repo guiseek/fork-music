@@ -6,7 +6,8 @@ import { MatButtonModule, MatIconModule, MatMenuModule, MatListModule, MatCardMo
 import { RouterModule } from '@angular/router';
 import { UserInGroupComponent } from './user-in-group/user-in-group.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SharedAccountAuthModule } from './auth/auth.module';
+// import { SharedAccountAuthModule } from './auth/auth.module';
+import { SharedAuthModule } from '@suite/account/shared/auth';
 
 const modules = [
   MatMenuModule,
@@ -20,7 +21,8 @@ const modules = [
   imports: [
     CommonModule,
     // AuthModule,
-    SharedAccountAuthModule,
+    SharedAuthModule,
+    // SharedAccountAuthModule,
     RouterModule,
     FlexLayoutModule,
     ...modules

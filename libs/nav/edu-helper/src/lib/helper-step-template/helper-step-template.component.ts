@@ -11,7 +11,10 @@ import { HelperStepTemplateService } from './helper-step-template.service';
     ::ng-deep .helper-step .mat-menu-content { 
       padding: 0 !important; 
     }
-  `]
+  `],
+  providers: [
+    HelperStepTemplateService
+  ]
 })
 export class HelperStepTemplateComponent extends HelperHotkeyListenerComponent implements AfterViewInit {
   @ViewChild(MatMenu, { static: true }) public helperStep: MatMenu;

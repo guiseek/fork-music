@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 // import { environment } from '@env/backend/environment';
 import { catchError, map, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { environment } from '@env/customer/environment';
+
+const endpoint = `${environment}/auth`
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +25,9 @@ export class AccountService {
     private database: HttpDatabaseService
   ) {
     // const env = environment
+  }
+  login(credentials) {
+    return this.http.post(endpoint, credentials)
   }
   getGroupTypes() {
     return this.database.get(

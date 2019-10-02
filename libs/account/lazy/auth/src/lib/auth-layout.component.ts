@@ -1,11 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AccountService } from '@suite/account/shared/account';
-import { MatStepper } from '@angular/material';
 import { timer, of, Observable } from 'rxjs';
 import { switchMap, catchError } from 'rxjs/operators';
 import { IUserGroupType } from '@suite/interfaces';
-import { createUserAccountForm, createUserGroupForm, createInGroupForm, createUserAccountFormStep, confirmationCodeFormStep, createUserGroupFormStep, createInGroupFormStep } from '@suite/account/shared/resources';
+// import { AuthService } from '@suite/account/shared/auth';
 
 @Component({
   selector: 'suite-auth-layout',
@@ -13,94 +12,70 @@ import { createUserAccountForm, createUserGroupForm, createInGroupForm, createUs
   styleUrls: ['./auth-layout.component.scss']
 })
 export class AuthLayoutComponent implements OnInit {
-  userAccountFormGroup: FormGroup;
-  confirmationCodeFormGroup: FormGroup;
-  userAccountGroupFormGroup: FormGroup;
-  @ViewChild(MatStepper, { static: true }) stepper: MatStepper
-  groupTypes$: Observable<IUserGroupType[]>
+  // userAccountFormGroup: FormGroup;
+  // confirmationCodeFormGroup: FormGroup;
+  // userAccountGroupFormGroup: FormGroup;
+  // @ViewChild(MatStepper, { static: true }) stepper: MatStepper
+  // groupTypes$: Observable<IUserGroupType[]>
 
-  forms = [
-    createUserAccountFormStep,
-    createUserGroupFormStep,
-    createInGroupFormStep,
-    confirmationCodeFormStep
-  ]
+  // userAccountForm = createUserAccountFormStep
+  // userGroupForm = createUserGroupFormStep
+  // inGroupForm = createInGroupFormStep
+  // confirmationCodeForm = confirmationCodeFormStep
+  // forms = [
+  //   createUserAccountFormStep,
+  //   createUserGroupFormStep,
+  //   createInGroupFormStep,
+  //   confirmationCodeFormStep
+  // ]
   constructor(
     private _formBuilder: FormBuilder,
+    // private authService: AuthService,
     private accountService: AccountService
   ) { }
   onSaved(data) {
     console.log(data)
-    this.stepper.next()
+    // this.stepper.next()
+  }
+  public getRouterOutletState(outlet) {
+    return outlet.isActivated ? outlet.activatedRoute : '';
   }
   ngOnInit() {
-    console.log(this.stepper)
-    this.userAccountFormGroup = this._formBuilder.group({
-      firstName: ['', [
-        Validators.required,
-        Validators.maxLength(64)
-      ]],
-      lastName: ['', [
-        Validators.required,
-        Validators.maxLength(64)
-      ]],
-      password: ['', [
-        Validators.required
-      ]],
-      email: ['', [
-        Validators.required,
-        Validators.email,
-        Validators.maxLength(128)
-      ], [this.checkEmail]]
-    });
-    this.confirmationCodeFormGroup = this._formBuilder.group({
-      confirmationCode: ['', Validators.required]
-    });
-    this.userAccountGroupFormGroup = this._formBuilder.group({
-      userGroupType: ['', Validators.required],
-      customerInvoiceData: ['', Validators.required],
-    });
-    this.groupTypes$ = this.accountService.getGroupTypes()
+    // console.log(this.stepper)
   }
-  uafg(control: string): FormControl {
-    return this.userAccountFormGroup.get(control) as FormControl
-  }
-  get confirmationCode() {
-    return this.confirmationCodeFormGroup.get('confirmationCode')
-  }
-  onSubmitUserAccount() {
-    console.table(this.userAccountFormGroup)
-    const { value } = this.userAccountFormGroup
-    this.accountService.in(value)
-      .subscribe(({ firstName, confirmationCode }) => {
-        console.log(firstName, confirmationCode)
+  // onSubmitUserAccount() {
+  //   console.table(this.userAccountFormGroup)
+  //   const { value } = this.userAccountFormGroup
+  //   this.accountService.in(value)
+  //     .subscribe(({ firstName, confirmationCode }) => {
+  //       console.log(firstName, confirmationCode)
 
 
 
-        this.confirmationCodeFormGroup.patchValue({
-          confirmationCode
-        })
-        this.stepper.next()
-      })
-  }
-  onSubmitConfirmationCode() {
-    console.table(this.confirmationCodeFormGroup)
-    const { value } = this.confirmationCodeFormGroup
-    this.accountService.confirm(value.confirmationCode)
-      .subscribe((response) => {
-        console.log(response)
-        this.stepper.next()
-      })
-  }
-  onSubmitUserGroup() {
-    console.table(this.userAccountGroupFormGroup.value)
-    // const { value } = this.confirmationCodeFormGroup
-    // this.accountService.confirm(value.confirmationCode)
-    //   .subscribe((response) => {
-    //     console.log(response)
-    //     this.stepper.next()
-    //   })
-  }
+  //       this.confirmationCodeFormGroup.patchValue({
+  //         confirmationCode
+  //       })
+  //       // this.stepper.next()
+  //     })
+  // }
+  // onSubmitConfirmationCode() {
+  //   console.table(this.confirmationCodeFormGroup)
+  //   const { value } = this.confirmationCodeFormGroup
+  //   this.accountService.confirm(value.confirmationCode)
+  //     .subscribe((response) => {
+  //       console.log(response)
+  //       // this.stepper.next()
+  //     })
+  // }
+  // onSubmitUserGroup() {
+  //   console.table(this.userAccountGroupFormGroup.value)
+  //   // const { value } = this.confirmationCodeFormGroup
+  //   // this.accountService.confirm(value.confirmationCode)
+  //   //   .subscribe((response) => {
+  //   //     console.log(response)
+  //   //     this.stepper.next()
+  //   //   })
+  // }
   checkEmail = (control: FormControl) =>
     timer(600).pipe(
       switchMap(() => this.accountService.verifyEmail(control && control.value ? control.value : '')),

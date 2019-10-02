@@ -7,18 +7,19 @@ export const createUserAccountFormFields: FormField[] = [{
   label: 'Nome',
   inputType: 'text',
   name: 'firstName',
-  validations: [
-    {
-      name: 'required',
-      validator: Validators.required,
-      message: 'Nome obrigatório'
-    },
-    {
-      name: 'maxlength',
-      validator: Validators.maxLength(64),
-      message: 'Máximo de 64 caracteres'
-    }
-  ]
+  appearance: 'outline',
+  // validations: [
+  //   {
+  //     name: 'required',
+  //     validator: Validators.required,
+  //     message: 'Nome obrigatório'
+  //   },
+  //   {
+  //     name: 'maxlength',
+  //     validator: Validators.maxLength(64),
+  //     message: 'Máximo de 64 caracteres'
+  //   }
+  // ]
 }, {
   type: 'input',
   label: 'Último nome',
