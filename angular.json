@@ -312,37 +312,6 @@
         }
       }
     },
-    "account-ui": {
-      "projectType": "library",
-      "root": "libs/account-ui",
-      "sourceRoot": "libs/account-ui/src",
-      "prefix": "suite",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/account-ui/tsconfig.lib.json",
-              "libs/account-ui/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/account-ui/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/account-ui/jest.config.js",
-            "tsConfig": "libs/account-ui/tsconfig.spec.json",
-            "setupFile": "libs/account-ui/src/test-setup.ts"
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
-        }
-      }
-    },
     "auth-lazy-sign": {
       "projectType": "library",
       "root": "libs/auth/lazy/sign",

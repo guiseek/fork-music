@@ -23,9 +23,6 @@
     "backend": {
       "tags": []
     },
-    "account-ui": {
-      "tags": []
-    },
     "auth-lazy-sign": {
       "tags": []
     },
