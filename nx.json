@@ -121,6 +121,12 @@
     },
     "account-shared-auth": {
       "tags": ["account:auth"]
+    },
+    "school-lazy-instructors": {
+      "tags": ["school:lazy"]
+    },
+    "school-shared-resources": {
+      "tags": []
     }
   }
 }

@@ -1,3 +1,84 @@
-<p>overview works!</p>
+<div class="grid-container" fxLayout="row grid" fxLayout.xs="column" fxLayoutGap="20px" fxLayoutAlign="stretch space-between">
+  <mat-grid-list fxFlex cols="2" rowHeight="2:1" gutterSize="16px">
+    <mat-grid-tile
+      *ngFor="let card of cards; let i = index"
+      [colspan]="card.cols"
+      [rowspan]="card.rows"
+    >
+      <cdk-drop-list [cdkDropListConnectedTo]="drops" [cdkDropListData]="i">
+        <suite-flip-card
+          cdkDrag
+          (cdkDragEntered)="entered($event)"
+          [cdkDragData]="i"
+          class="dashboard-card"
+          #fc="flipCard"
+          (flip)="onFlip($event)"
+        >
+          <mat-card class="suite-flip-card-front">
+            <mat-card-header cdkDragHandle>
+              <mat-card-title>
+                {{ card.title }}
+                <div class="more-button">
+                  <button
+                    mat-icon-button
+                    suiteFlipCard
+                    aria-label="Toggle menu"
+                  >
+                    <mat-icon>plus_one</mat-icon>
+                  </button>
+                  <button
+                    mat-icon-button
+                    (click)="card.refresh.next(true)"
+                    aria-label="Toggle menu"
+                  >
+                    <mat-icon>refresh</mat-icon>
+                  </button>
+                </div>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="dashboard-card-content">
+              <ng-container *ngIf="card.columns">
+                <suite-table-backend
+                  class="clickable"
+                  #tc="tableBackend"
+                  [config]="card.tableConfig"
+                  [refresh]="card.refresh"
+                  [endpoint]="card.endpoint"
+                  [columns]="card.columns"
+                ></suite-table-backend>
+              </ng-container>
+            </mat-card-content>
+          </mat-card>
+          <mat-card class="suite-flip-card-back">
+            <mat-card-header>
+              <mat-card-title>
+                {{ card.title }}
+                <button
+                  mat-icon-button
+                  suiteFlipCard
+                  class="more-button"
+                  aria-label="Toggle menu"
+                >
+                  <mat-icon>view_list</mat-icon>
+                </button>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="dashboard-card-content">
+              <ng-container *ngIf="card.fields">
+                <suite-dynamic-form
+                  [fields]="card.fields"
+                  (submit)="onSubmit($event, card, fc)"
+                ></suite-dynamic-form>
+              </ng-container>
+            </mat-card-content>
+          </mat-card>
+        </suite-flip-card>
+      </cdk-drop-list>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
 
-<suite-dynamic-form [fields]="fields" (submit)="add($event)"></suite-dynamic-form>
+
+
+<!-- <router-outlet></router-outlet> -->
+<!-- <suite-dynamic-form [fields]="fields" (submit)="add($event)"></suite-dynamic-form> -->

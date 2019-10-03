@@ -20,6 +20,29 @@
 .text-right {
   text-align: right;
 }
+.pos-abs {
+  position: absolute;
+}
+.pos-rel {
+  position: relative;
+}
+.right {
+  &-32 {
+    right: 20px;
+  }
+  &-16 {
+    right: 20px;
+  }
+}
+.bottom {
+  &-32 {
+    bottom: 20px;
+  }
+  &-16 {
+    bottom: 20px;
+  }
+}
+
 .flex-row {
   display: flex;
   flex-direction: row;
@@ -35,6 +58,20 @@
       }
     }
   }
+}
+.px-16 {
+  padding-left: 16px;
+  padding-right: 16px; 
+}
+.py-16 {
+  padding-top: 16px;
+  padding-bottom: 16px; 
+}
+.p-16 {
+  padding: 16px;
+}
+.align-center {
+  align-items: center;
 }
 .justify-between {
   justify-content: space-between;  

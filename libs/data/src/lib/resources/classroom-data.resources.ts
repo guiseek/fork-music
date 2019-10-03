@@ -31,13 +31,13 @@ export const classroomFormFields: FormField[] = [
     label: 'Tipo de classe',
     name: 'classroomType',
     value: null,
-    options: ['a', 'b'],
+    options: [],
     appearance: 'outline',
-    // asyncOptions: {
-    //   endpoint: '/api/school/classroom-types',
-    //   value: 'id',
-    //   viewValue: 'name'
-    // }
+    asyncConfig: {
+      endpoint: '/api/school/classroom-types',
+      value: 'id',
+      viewValue: 'name'
+    }
   },
   {
     type: 'input',

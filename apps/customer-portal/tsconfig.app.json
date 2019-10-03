@@ -8,7 +8,9 @@
   "include": [
     "**/*.ts",
     "../../libs/account/lazy/account/src/index.ts",
-    "../../libs/account/lazy/auth/src/index.ts"
+    "../../libs/account/lazy/auth/src/index.ts",
+
+    "../../libs/school/lazy/instructors/src/index.ts"
   ],
   "exclude": ["src/test-setup.ts", "**/*.spec.ts"]
 }

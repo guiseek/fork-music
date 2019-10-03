@@ -52,70 +52,23 @@ export class UserAccountController implements CrudController<UserAccount> {
   get register(): CrudController<UserAccount> {
     return this;
   }
-  // getManyBase(
-  //   @ParsedRequest() req: CrudRequest,
-  // ): Promise<GetManyDefaultResponse<T> | T[]>;
-
-  // @Post('in')
-  // async in(@Body() credential) {
-  //   console.log(credential)
-  //   const { email, password } = credential
-  //   try {
-  //     const find = await this.service.findOne({
-  //       email
-  //     })
-  //     // find.
-  //     const user = new UserAccount()
-  //     const auth = Object.assign(
-  //       find, user, { password }
-  //     )
-  //     console.log(user)
-  //     console.log(auth)
-  //     // auth.hashPassword()
-  //     if (!!find && (password === auth.password)) {
-
-  //     }
-  //     console.log(auth)
-  //     return user
-  //   } catch (error) {
-  //     return new BadRequestException('Credenciais inválidas')
-  //   }
-
-  // }
-  // @Override('updateOneBase')
-  // coolFunction(
-  //   @ParsedRequest() req: CrudRequest,
-  //   @ParsedBody() dto: UserAccount,
-  // ) {
-  //   return this.base.updateOneBase(req, dto);
-  // }
-
-  // @Override()
-  // @UseInterceptors(CrudRequestInterceptor)
-  // @Feature('Read')
-  // @Action('All')
-  // @Get('')
-  // getManyBase(
-  //   @ParsedRequest() req: CrudRequest
-  // ): Promise<GetManyDefaultResponse<UserAccount> | UserAccount[]> {
-  //   console.log(req.options)
-  //   return this.account.getManyBase(req)
-  // }
   @Override()
   async createOne(
     @ParsedRequest() req: CrudRequest,
     @ParsedBody() dto: CreateUserAccountDto,
   ) {
     try {
-      const create = await this.base.createOneBase(req, dto)
-      console.log('create: ', create)
+      // const create = await this.base.createOneBase(req, dto)
+      return await await this.base.createOneBase(req, dto)
+      // console.log('create: ', create)
+      // if (create) {
+      //   return create
+      // }
     } catch (err) {
       if (err.code === 'ER_DUP_ENTRY') {
         throw new ConflictException('Este email já está sendo usado por outro usuário')
       }
       throw new BadRequestException(err.message)
-      // console.log('err: ', err)
-      // return err
     }
   }
 

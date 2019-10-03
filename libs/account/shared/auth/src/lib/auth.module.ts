@@ -7,6 +7,7 @@ import { AUTH_CONFIG_TOKEN, AUTH_CONFIG } from './configs/auth.config';
 import { JWT_CONFIG_TOKEN, JWT_CONFIG } from './configs/jwt.config';
 import { AuthGuard } from './guards/auth.guard';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ConfirmationCodeComponent } from './components/confirmation-code/confirmation-code.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     AuthService,
     TokenService,
     AuthGuard
-  ]
+  ],
+  declarations: [ConfirmationCodeComponent],
+  exports: [ConfirmationCodeComponent],
+  entryComponents: [ConfirmationCodeComponent]
 })
 export class SharedAuthModule {
   static forRoot(

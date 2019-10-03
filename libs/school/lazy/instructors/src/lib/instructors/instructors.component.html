@@ -1,0 +1,14 @@
+<p>instructors works!</p>
+<button mat-button type="button" (click)="refresh()">
+  Atualizar
+</button>
+<button mat-button type="button" (click)="openDialogForm()">
+  Criar
+</button>
+
+<suite-table-backend
+  [refresh]="table.refresh"
+  [endpoint]="table.endpoint"
+  [columns]="table.columns"
+  [config]="table.config"
+></suite-table-backend>

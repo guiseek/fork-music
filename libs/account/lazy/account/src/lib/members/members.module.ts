@@ -13,11 +13,14 @@ import { EduHelperModule } from '@suite/nav/edu-helper';
 
 
 const routes: Routes = [
-  { path: '', component: MembersComponent, children: [
-    { path: 'usuarios', component: UsersComponent },
-    { path: 'grupos', component: GroupsComponent },
-    { path: '', redirectTo: 'usuarios' }
-  ] }
+  {
+    path: '', component: MembersComponent, children: [
+      { path: '', redirectTo: 'usuarios', pathMatch: 'full' },
+      { path: 'usuarios', component: UsersComponent },
+      { path: 'grupos', component: GroupsComponent },
+      // { path: '', redirectTo: 'usuarios' }
+    ]
+  }
 ];
 
 const modules = [

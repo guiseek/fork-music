@@ -35,7 +35,7 @@ export class MembersComponent implements OnInit {
         }
       ]
     );
-    this.helperService.start()
+    // this.helperService.start()
   }
   showInfo(type) {
     console.log(type)

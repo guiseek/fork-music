@@ -1302,6 +1302,68 @@
           "styleext": "scss"
         }
       }
+    },
+    "school-lazy-instructors": {
+      "projectType": "library",
+      "root": "libs/school/lazy/instructors",
+      "sourceRoot": "libs/school/lazy/instructors/src",
+      "prefix": "school",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/school/lazy/instructors/tsconfig.lib.json",
+              "libs/school/lazy/instructors/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/school/lazy/instructors/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/school/lazy/instructors/jest.config.js",
+            "tsConfig": "libs/school/lazy/instructors/tsconfig.spec.json",
+            "setupFile": "libs/school/lazy/instructors/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "school-shared-resources": {
+      "root": "libs/school/shared/resources",
+      "sourceRoot": "libs/school/shared/resources/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/school/shared/resources/tsconfig.lib.json",
+              "libs/school/shared/resources/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/school/shared/resources/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/school/shared/resources/jest.config.js",
+            "tsConfig": "libs/school/shared/resources/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {

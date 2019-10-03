@@ -38,7 +38,7 @@ registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
           path: 'auth',
           loadChildren: () =>
             import('@suite/account/lazy/auth').then(module => module.AuthModule)
-        },
+        }
         // {
         //   path: 'software',
         //   component: InComponent,
@@ -52,7 +52,7 @@ registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
     BrowserAnimationsModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
     // { provide: HTTP_INTERCEPTORS, multi: true, useClass: TokenInterceptor }
   ],
 

@@ -9,6 +9,7 @@ import { TableBackendModule } from '@suite/common/tables/table-backend';
 
 import { DialogTableBackendComponent } from './dialog-table-backend/dialog-table-backend.component';
 import { EmptyComponent } from './empty/empty.component';
+import { WinComponent } from './win/win.component';
 
 @NgModule({
   imports: [
@@ -18,8 +19,8 @@ import { EmptyComponent } from './empty/empty.component';
     TableBackendModule,
     DynamicFormModule
   ],
-  declarations: [SetupSteps, DialogFormComponent, DialogTableBackendComponent, EmptyComponent],
-  exports: [SetupSteps, DialogFormComponent, DialogTableBackendComponent, EmptyComponent],
-  entryComponents: [DialogFormComponent, DialogTableBackendComponent]
+  declarations: [SetupSteps, DialogFormComponent, DialogTableBackendComponent, EmptyComponent, WinComponent],
+  exports: [SetupSteps, DialogFormComponent, DialogTableBackendComponent, EmptyComponent, WinComponent],
+  entryComponents: [DialogFormComponent, DialogTableBackendComponent, WinComponent]
 })
 export class UiKitModule {}

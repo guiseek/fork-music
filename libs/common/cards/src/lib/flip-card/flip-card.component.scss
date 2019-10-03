@@ -64,20 +64,20 @@ suite-flip-card {
     }
   }
 
-  .mat-form-field {
-    &.mat-form-field-type-mat-select {
-      .mat-form-field-wrapper {
-        padding: 16px 0;
+  // .mat-form-field {
+  //   &.mat-form-field-type-mat-select {
+  //     .mat-form-field-wrapper {
+  //       padding: 16px 0;
 
-        .mat-form-field-infix {
-          border: none;
-          padding: 0;
-        }
-      }
+  //       .mat-form-field-infix {
+  //         border: none;
+  //         padding: 0;
+  //       }
+  //     }
 
-      .mat-form-field-underline {
-        display: none;
-      }
-    }
-  }
+  //     .mat-form-field-underline {
+  //       display: none;
+  //     }
+  //   }
+  // }
 }

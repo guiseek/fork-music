@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { suiteAnimations } from '@suite/ui-kit';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { take } from 'rxjs/operators';
+import { take, catchError } from 'rxjs/operators';
 import { AuthService } from '@suite/account/shared/auth';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'suite-login',
@@ -15,7 +16,7 @@ import { AuthService } from '@suite/account/shared/auth';
 })
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup
-  // public serverMessage: string
+  public serverMessage: string
   // public loading = false
   private returnTo: string
   constructor(
@@ -54,11 +55,24 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.authService.login(
         this.loginForm.value
-      ).pipe(take(1))
+      ).pipe(
+        catchError(({ message, ...err }) => {
+          console.log(message)
+          console.log(err)
+          this.toggleServerMessage(message)
+          // this.serverMessage = message ? message : 'Erro desconhecido'
+          return throwError(err)
+        })
+      )
         .subscribe((response) => {
           console.log(response)
+          this.serverMessage = ''
           this.router.navigateByUrl(this.returnTo)
         })
     }
+  }
+  toggleServerMessage(message = 'Erro :/') {
+    this.serverMessage = message
+    window.setTimeout(() => this.serverMessage = '', 5000)
   }
 }

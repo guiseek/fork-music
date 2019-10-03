@@ -30,7 +30,12 @@ export class AccountService {
   }
   
   register(data: IUserAccount) {
-    return this.http.post('/api/account/user-account', data)
+    return this.http.post<IUserAccount>('/api/account/user-account', data)
+  }
+  confirmCode(code: string) {
+    return this.http.get(
+      `/api/account/user-account/confirmation/${code}`
+    )
   }
   check(data) {
     return this.auth.email(data)

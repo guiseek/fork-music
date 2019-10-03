@@ -6,6 +6,8 @@ import { IEmployee } from '@suite/interfaces';
 import { HttpDatabaseService } from '@suite/common/core';
 import { MatSnackBar } from '@angular/material';
 import { createEmployeeFormFields } from '@suite/common/forms/resources';
+import { instructorResources } from '@suite/data';
+import { IInstructor } from '@suite/interfaces';
 
 @Component({
   selector: 'wd-team',
@@ -20,7 +22,7 @@ export class TeamComponent implements OnInit {
     // { columnDef: 'weight', header: 'Weight', cell: (element: any) => `${element.weight}` },
     // { columnDef: 'symbol', header: 'Symbol', cell: (element: any) => `${element.symbol}` },
   ];
-
+  resources = instructorResources
   constructor(
     private dialogService: DialogService,
     private route: ActivatedRoute,
@@ -33,25 +35,27 @@ export class TeamComponent implements OnInit {
   }
   openDialogForm() {
     const ref = this.dialogService.open(
-      DialogFormComponent, {
-      data: {
-        fields: createEmployeeFormFields
-      },
-      header: {
-        title: 'Grupos',
-        subtitle: 'Agrupe usuários com permissões para conteúdos',
-      },
-      draggable: true,
-      hasBackdrop: true
-    }
+      DialogFormComponent,
+      this.resources.dialogConfig
+    //   {
+    //   data: {
+    //     fields: createEmployeeFormFields
+    //   },
+    //   header: {
+    //     title: 'Grupos',
+    //     subtitle: 'Agrupe usuários com permissões para conteúdos',
+    //   },
+    //   draggable: true,
+    //   hasBackdrop: true
+    // }
     )
     const sub = ref.afterClosed().subscribe((res) => {
       console.log(res)
-      console.log(res.hireDate)
-      console.log(new Date(res.hireDate))
+      console.log(res.birthDate)
+      console.log(new Date(res.birthDate))
       if (res) {
-        this.database.post<IEmployee>(
-          '/api/employees',
+        this.database.post<IInstructor>(
+          this.resources.endpoint,
           res
         ).subscribe((result) => {
           if (result) {

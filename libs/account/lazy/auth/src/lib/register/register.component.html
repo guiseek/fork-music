@@ -2,6 +2,8 @@
   id="login-form"
   [@animate]="{ value: '*', params: { duration: '300ms', y: '100px' } }"
 >
+  <ui-win #win="uiWin"></ui-win>
+
   <mat-card>
     <mat-card-header>
       <mat-card-title>Crie uma conta</mat-card-title>
@@ -49,7 +51,11 @@
           </mat-form-field>
         </div>
       </div>
-      <mat-form-field appearance="outline" [color]="email.valid && 'accent'">
+      <mat-form-field
+        [ngClass]="{ loading: loading }"
+        appearance="outline"
+        [color]="email.valid && 'accent'"
+      >
         <mat-label>Seu e-mail</mat-label>
         <input
           matInput
@@ -126,3 +132,26 @@
     <button mat-menu-item (click)="onContact()">Enviar mensagem</button>
   </mat-menu>
 </div>
+<button mat-button (click)="openToConfirmCode('', win)">
+  Open
+</button>
+<ng-template #confirmation let-data let-dialog="dialog">
+  <div class="p-16">
+    <mat-form-field appearance="outline" class="w-full">
+      <input type="text" matInput [formControl]="code" />
+      <mat-hint>Insira o código no campo abaixo para acessar</mat-hint>
+    </mat-form-field>
+
+    <button
+      type="button"
+      class="w-full"
+      mat-flat-button
+      color="accent"
+      [disabled]="code.invalid"
+      (click)="onSubmit(code.value, win, dialog)"
+    >
+      Confirmar
+    </button>
+  </div>
+</ng-template>
+<!-- (click)="onSubmit(code.value, dialog)" -->

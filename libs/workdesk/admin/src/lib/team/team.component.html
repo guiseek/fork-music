@@ -9,8 +9,9 @@
   <mat-icon>add</mat-icon>
 </a>
 <suite-table-backend
-  endpoint="/api/employees"
-  [columns]="columns"
+  [endpoint]="resources.endpoint"
+  [columns]="resources.tableColumns"
+  [config]="resources.tableConfig"
   editable="true"
   (edit)="onEdit($event)"
   deletable="true"

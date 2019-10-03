@@ -5,3 +5,4 @@ export * from './lib/setup-steps/setup-step.model';
 export * from './lib/animations/index';
 export * from './lib/shared/index';
 export * from './lib/setup-steps/setup-steps.component';
+export * from './lib/win/win.component';

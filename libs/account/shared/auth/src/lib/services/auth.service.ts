@@ -2,8 +2,9 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AUTH_CONFIG_TOKEN } from '../configs/auth.config';
 import { IAuthConfig } from '../interfaces/auth-config.interface';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, catchError } from 'rxjs/operators';
 import { TokenService } from './token.service';
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class AuthService {
@@ -18,6 +19,7 @@ export class AuthService {
     return this._http.post(
       this.endpoint('login'), data
     ).pipe(
+      catchError(({ error }) => throwError(error)),
       tap(response => this._tokenService.setToken(response))
     )
   }

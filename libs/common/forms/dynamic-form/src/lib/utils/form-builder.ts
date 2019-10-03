@@ -1,6 +1,12 @@
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 
 const formBuilder = new FormBuilder
+
+class ForkFormBuilder extends FormBuilder {
+  createControl(ctrl: FormControl, ) {
+    const control = this.control(ctrl)
+  }
+}
 
 export function buildGroup(fields) {
   const group = formBuilder.group({})

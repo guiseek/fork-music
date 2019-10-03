@@ -36,7 +36,7 @@ export class Instructor {
   title: string | null;
 
   @Column({
-    type: 'date',
+    type: 'datetime',
     nullable: false,
     name: 'birth_date'
   })
