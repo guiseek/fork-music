@@ -21,9 +21,6 @@
       "@env/customer": ["apps/customer-portal/src/environments"],
       "@env/customer/*": ["apps/customer-portal/src/environments/*"],
       "@suite/backend": ["libs/backend/src/index.ts"],
-      "@suite/account-ui": ["libs/account-ui/src/index.ts"],
-      "auth/api": ["libs/auth/api/src"],
-      "auth/api/*": ["libs/auth/api/src/*"],
       "@suite/auth/lazy/sign": ["libs/auth/lazy/sign/src/index.ts"],
       "auth/backend/auth": ["libs/auth/backend/auth/src"],
       "auth/backend/auth/*": ["libs/auth/backend/auth/src/*"],
@@ -43,7 +40,6 @@
       "@suite/data": ["libs/data/src/index.ts"],
       "@suite/nav/toolbar": ["libs/nav/toolbar/src/index.ts"],
       "@suite/nav/sidenav": ["libs/nav/sidenav/src/index.ts"],
-      "@suite/auth/lazy/manager": ["libs/auth/lazy/manager/src/index.ts"],
       "@suite/common/forms/resources": ["libs/common/forms/resources/index.ts"],
       "@suite/common/forms/address-form": [
         "libs/common/forms/address-form/src/index.ts"

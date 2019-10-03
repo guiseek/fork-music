@@ -53,11 +53,6 @@ registerLocaleData(localeBr, 'pt-BR', localeBrExtra);
             ),
           canLoad: [AuthGuard]
         },
-        // {
-        //   path: 'conta',
-        //   loadChildren: () =>
-        //     import('@suite/account-ui').then(module => module.AccountUiModule)
-        // },
         {
           path: 'admin',
           loadChildren: () =>

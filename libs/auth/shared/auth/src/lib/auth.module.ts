@@ -14,7 +14,6 @@ import { AuthService } from './auth.service';
 import { InComponent } from './forms/in.component';
 import { UpComponent } from './forms/up.component';
 import { AuthGuard } from './guards/auth.guard';
-import { ConfirmationCodeComponent } from './confirmation-code/confirmation-code.component';
 
 @NgModule({
   imports: [
@@ -31,8 +30,7 @@ import { ConfirmationCodeComponent } from './confirmation-code/confirmation-code
   providers: [
     AuthService,
   ],
-  declarations: [InComponent, UpComponent, ConfirmationCodeComponent],
-  exports: [InComponent, UpComponent, ConfirmationCodeComponent],
-  entryComponents: [ConfirmationCodeComponent]
+  declarations: [InComponent, UpComponent],
+  exports: [InComponent, UpComponent]
 })
 export class AuthModule {}
