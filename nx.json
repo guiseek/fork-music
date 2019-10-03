@@ -53,9 +53,6 @@
     "nav-sidenav": {
       "tags": ["shared-module"]
     },
-    "auth-lazy-manager": {
-      "tags": []
-    },
     "common-forms-address-form": {
       "tags": ["shared-module"]
     },

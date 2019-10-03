@@ -40,7 +40,6 @@
       "@suite/data": ["libs/data/src/index.ts"],
       "@suite/nav/toolbar": ["libs/nav/toolbar/src/index.ts"],
       "@suite/nav/sidenav": ["libs/nav/sidenav/src/index.ts"],
-      "@suite/auth/lazy/manager": ["libs/auth/lazy/manager/src/index.ts"],
       "@suite/common/forms/resources": ["libs/common/forms/resources/index.ts"],
       "@suite/common/forms/address-form": [
         "libs/common/forms/address-form/src/index.ts"

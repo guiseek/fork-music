@@ -598,37 +598,6 @@
         }
       }
     },
-    "auth-lazy-manager": {
-      "projectType": "library",
-      "root": "libs/auth/lazy/manager",
-      "sourceRoot": "libs/auth/lazy/manager/src",
-      "prefix": "suite",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/auth/lazy/manager/tsconfig.lib.json",
-              "libs/auth/lazy/manager/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/auth/lazy/manager/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/auth/lazy/manager/jest.config.js",
-            "tsConfig": "libs/auth/lazy/manager/tsconfig.spec.json",
-            "setupFile": "libs/auth/lazy/manager/src/test-setup.ts"
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
-        }
-      }
-    },
     "common-forms-address-form": {
       "projectType": "library",
       "root": "libs/common/forms/address-form",
